@@ -5,3 +5,4 @@
 *.pyc
 ./*venv 
 .vscode
+backend-service/bot_server/.idea/
