@@ -1,0 +1,10 @@
+version: '3.2'
+
+services:
+
+  ui:
+    image: bot-ui:latest
+    restart: always
+    ports:
+      - 3000:80
+    hostname: ui
