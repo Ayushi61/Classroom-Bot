@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-if "BOT_SERVER_SECRET_KEY"  not in os.environ:
+if "BOT_SERVER_SECRET_KEY" not in os.environ:
     print("BOT_SERVER_SECRET_KEY not set in env variables.")
     exit(1)
 
