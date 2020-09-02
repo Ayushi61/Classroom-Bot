@@ -9,6 +9,8 @@
 # core.lint:
 # 	docker build ..
 # 	docker run  ...
+BACKEND-SERVICE-CONTAINER=backend-service
+MYSQL-CONTAINER=mysql
 
 backend.lint:
 	- docker build -t backendlinter -f backend-service/lint.Dockerfile ./backend-service/
@@ -17,3 +19,7 @@ backend.lint:
 backend.app:
 	- docker-compose build
 	- docker-compose up -d
+
+clean:
+	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
+	- docker rm -f ${MYSQL-CONTAINER}

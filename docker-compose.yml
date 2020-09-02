@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   mysql-db:
+    container_name: 'mysql'
     image: mysql:5.7
     ports:
       - '3306:3306'
@@ -15,15 +16,9 @@ services:
     build: 
         context: './backend-service'
         dockerfile: 'app.Dockerfile'
+    container_name: backend-service
     image: backend-service:tag
-    environment:
-      BOT_SERVER_SECRET_KEY: 'Sample'
-      MYSQL_DATABASE: 'classroom-db'
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'group18'
-      MYSQL_ROOT_PASSWORD: 'group18'
-      MYSQL_HOST: 'localhost'
-      MYSQL_CONNECTION_PORT: '3306'
+    env_file: backend-service/sample.env
     ports:
       - "8000:8000"
     depends_on:
