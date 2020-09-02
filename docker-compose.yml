@@ -12,6 +12,13 @@ services:
        MYSQL_ROOT_PASSWORD: 'group18'
 
   backend-service:
+    environment:
+      MYSQL_DATABASE: 'classroom-db'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'group18'
+      MYSQL_ROOT_PASSWORD: 'group18'
+      MYSQL_HOST: 'localhost'
+      MYSQL_CONNECTION_PORT: 3306
     build: 
         context: './backend-service'
         dockerfile: 'app.Dockerfile'
