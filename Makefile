@@ -23,7 +23,7 @@ ui.local.start:
 
 ui.docker.lint:
 	docker build --file='ui/lint.dockerfile' ui  --tag=node-lint:local
-	docker run it --name=node-lint node-lint:local
+	docker run -it --name=node-lint node-lint:local
 	docker rm node-lint
 
 ui.docker.build:
