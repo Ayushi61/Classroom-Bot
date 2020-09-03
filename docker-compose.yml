@@ -11,6 +11,7 @@ services:
        MYSQL_USER: 'root'
        MYSQL_PASSWORD: 'group18'
        MYSQL_ROOT_PASSWORD: 'group18'
+    restart: on-failure
 
   backend-service:
     build: 
@@ -19,7 +20,9 @@ services:
     container_name: backend-service
     image: backend-service:tag
     env_file: backend-service/sample.env
+    restart: always
     ports:
       - "8000:8000"
     depends_on:
-      - "mysql-db"
+      - mysql-db
+      
