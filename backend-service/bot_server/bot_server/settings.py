@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+env = environ.Env()
 
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -25,7 +28,8 @@ if "BOT_SERVER_SECRET_KEY" not in os.environ:
     print("BOT_SERVER_SECRET_KEY not set in env variables.")
     exit(1)
 
-SECRET_KEY = os.environ["BOT_SERVER_SECRET_KEY"]
+SECRET_KEY = env("BOT_SERVER_SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -88,11 +93,12 @@ WSGI_APPLICATION = 'bot_server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ["MYSQL_DATABASE"],
-        'USER': os.environ["MYSQL_USER"],
-        'PASSWORD': os.environ["MYSQL_PASSWORD"],
-        'HOST': os.environ["MYSQL_HOST"],
-        'PORT': int(os.environ["MYSQL_CONNECTION_PORT"]),
+        'NAME': env("MYSQL_DATABASE"),
+        'USER': env("MYSQL_USER"),
+        'PASSWORD': env("MYSQL_ROOT_PASSWORD"),
+        'HOST': env("MYSQL_HOST"),
+        'PORT': int(env("MYSQL_CONNECTION_PORT")),
+
     }
 }
 
