@@ -4,7 +4,7 @@ from django.core import serializers
 # Create your models here.
 
 
-class DeptManager(models.Model):
+class DeptManager(models.Manager):
 
     def create_Dept(self, department_name):
         try:
@@ -27,9 +27,9 @@ class DeptManager(models.Model):
 class Dept(models.Model):
 
     class Meta:
-        db_table = "department"
+        db_table = "log_department"
 
-    department_id = models.AutoField(primary_key=True)
+    log_department_id = models.AutoField(primary_key=True)
     department_name = models.CharField(max_length=20, blank=False, null=False)
     objects = DeptManager()
 
@@ -58,9 +58,9 @@ class CourseManager(models.Manager):
 class Course(models.Model):
 
     class Meta:
-        db_table = "course"
+        db_table = "log_course"
 
-    course_id = models.AutoField(primary_key=True)
+    log_course_id = models.AutoField(primary_key=True)
     semester = models.CharField(max_length=20, blank=False, null=False)
     course_name = models.CharField(max_length=20, blank=False, null=False)
     department = models.ForeignKey(Dept, on_delete=models.CASCADE)
