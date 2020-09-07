@@ -1,12 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Link,
-} from "react-router-dom";
-import Group from "./group";
+import { Link } from "react-router-dom";
 
 function Datasource() {
   return (
