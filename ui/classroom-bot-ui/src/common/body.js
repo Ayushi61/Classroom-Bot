@@ -10,6 +10,8 @@ import Group from "../main/group";
 function Body() {
   const loggedIn = true; // Needs to be brought from service
 
+    const loggedIn = true; // Needs to be brought from service
+
   return (
     <div>
       <Router>
