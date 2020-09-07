@@ -39,31 +39,18 @@ function CommandForm (props) {
                                 Select the datasource
                             </Form.Text>
                         </Form.Group>
-                        <Form.Group controlId="action">
-                            <Form.Label>Action</Form.Label>
+                        <Form.Group controlId="method">
+                            <Form.Label>Method</Form.Label>
                             <Form.Control as="select" custom>
-                                <option>Retrieve</option>
-                                <option>Add</option>
-                                <option>Change</option>
-                                <option>Delete</option>
+                                <option>setGroupData (data)</option>
+                                <option>getGroupData (data)</option>
                             </Form.Control>
                             <Form.Text className="text-muted">
-                                Select the action associated with this command
+                                Select the service method to associate with this command
                             </Form.Text>
                         </Form.Group>
                         <Form.Group controlId="access">
                             <Form.Label>Access Control</Form.Label>
-                            <Form.Control as="select" custom>
-                                <option>Admin</option>
-                                <option>User</option>
-                                <option>Custom</option>
-                            </Form.Control>
-                            <Form.Text className="text-muted">
-                                Select the role that you wanna give the access to
-                            </Form.Text>
-                        </Form.Group>
-                        <Form.Group controlId="active">
-                            <Form.Label>Active</Form.Label>
                             <Form.Control as="select" custom>
                                 <option>Admin</option>
                                 <option>User</option>
@@ -91,7 +78,7 @@ function CommandForm (props) {
                                     Save
                                 </Button>
                             </div>
-                            <div class="col-sm-9.5">
+                            <div class="col-sm-9">
                             <Alert key="1" variant="danger">
                                 This is a danger alert—check it out!
                             </Alert>
