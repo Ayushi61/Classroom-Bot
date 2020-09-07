@@ -18,7 +18,6 @@ function Body() {
         <Route exact path="/commands/:command" component={CommandForm} />
         <Route exact path="/datasource" component={Datasource} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/datasource/group" component={Group} />
         {!loggedIn ? <Redirect to="/login" /> : <div></div>}
       </Router>
     </div>
