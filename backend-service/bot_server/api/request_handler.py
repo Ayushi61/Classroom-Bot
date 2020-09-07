@@ -1,5 +1,6 @@
-from .models import Dept
-from .models import Course
+from .models import Course, Dept, Group, Student
+
+# TODO: Add Grade table and requests for it using patch
 
 
 def create_new_course(data):
@@ -28,3 +29,23 @@ def get_all_departments():
         "message": "success",
         "data": data
     }
+
+
+def create_student():
+    pass
+
+
+def create_group():
+    pass
+
+
+def assign_group():
+    pass
+
+
+def get_students_of_group():
+    pass
+
+
+def get_student_details():
+    pass

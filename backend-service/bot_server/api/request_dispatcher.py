@@ -19,3 +19,24 @@ def dispatch_course_get_request(request):
 
 def dispatch_get_dept_request(request):
     return get_all_departments()
+
+
+def dispatch_student_create_request(request):
+    pass
+
+
+def dispatch_student_get_request(request):
+    pass
+
+
+def dispatch_group_create_request(request):
+    pass
+
+
+def dispatch_group_get_request(request):
+    pass
+
+
+def dispatch_update_student_details(request):
+    # based on request body see check what to update
+    pass
