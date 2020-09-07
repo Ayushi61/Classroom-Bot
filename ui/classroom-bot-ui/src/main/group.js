@@ -25,6 +25,7 @@ function Group() {
                       name="username"
                       dataType="text"
                       mode={"inline"}
+                      placement="top"
                       title="Enter username"
                       value="Enter group name"
                     />
