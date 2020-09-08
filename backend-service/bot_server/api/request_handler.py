@@ -8,7 +8,6 @@ Author: Ayushi Rajendra Kumar
 Date: 2020-09-02
 """
 from .models import Course, Dept, Group, Student
-from bot_server import constants
 
 def missing_field_error(field):
 

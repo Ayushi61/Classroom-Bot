@@ -2,6 +2,13 @@ from django.db import models
 import json
 from django_mysql.models import ListCharField
 from django.core import serializers
+<<<<<<< HEAD
+=======
+
+MAX_STUDENTS_IN_GROUP = 5
+
+
+>>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
 # Create your models here.
 MAX_STUDENTS_IN_GROUP = 5
 
@@ -16,30 +23,29 @@ class DeptManager(models.Manager):
             print("error creating department ", e)
             return False
 
-    def get_departments(self,department_name=None):
+    def get_departments(self, department_name=None):
         try:
-            if(department_name is None):
+            if (department_name is None):
                 dept = self.filter().all()
                 return json.loads(serializers.serialize('json',
-                                                    [dept_name for dept_name in dept]))
+                                                        [dept_name for dept_name in dept]))
             else:
                 dept_id = self.filter(department_name=department_name)
-                return json.loads(serializers.serialize('json',[dept for dept in dept_id]))
+                return json.loads(serializers.serialize('json', [dept for dept in dept_id]))
         except Exception as e:
             print("error in getting department ", e)
             return []
 
-    def del_dept(self,department_name):
+    def del_dept(self, department_name):
         try:
             self.filter(department_name=department_name).delete()
             return True
         except Exception as e:
-            print("error in deleting dept ",e)
+            print("error in deleting dept ", e)
             return False
 
 
 class Dept(models.Model):
-
     class Meta:
         db_table = "log_department"
 
@@ -69,27 +75,31 @@ class CourseManager(models.Manager):
             print("error in getting course ", e)
             return []
 
-    def del_course(self,course_name,department):
+    def del_course(self, course_name, department):
         try:
-            self.filter(course_name=course_name,department_id=Dept.objects.get_departments(department)[0]['pk']).delete()
+            self.filter(course_name=course_name,
+                        department_id=Dept.objects.get_departments(department)[0]['pk']).delete()
             return True
         except Exception as e:
-            print("error in deleting course ",e)
+            print("error in deleting course ", e)
             return False
 
+<<<<<<< HEAD
 
 class Course(models.Model):
+=======
+>>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
 
+class Course(models.Model):
     class Meta:
         db_table = "log_course"
-        unique_together=(('course_name','department'),)
+        unique_together = (('course_name', 'department'),)
 
     log_course_id = models.AutoField(primary_key=True)
     semester = models.CharField(max_length=20, blank=False, null=False)
     course_name = models.CharField(max_length=20, blank=False, null=False)
     department = models.ForeignKey(Dept, on_delete=models.CASCADE)
     objects = CourseManager()
-
 
 
 class GroupManager(models.Manager):
@@ -125,7 +135,11 @@ class GroupManager(models.Manager):
             list_size = len(students)
             objs = Group.objects.get(group_num=group_num)
             for i in range(0, list_size):
+<<<<<<< HEAD
                 objs.members.append(students[i]['student_unity_id'])
+=======
+                partOf.members.append(students[i]['student_unity_id'])
+>>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
             objs.save(update_fields=['members'])
             return True
         except Exception as e:
@@ -134,12 +148,16 @@ class GroupManager(models.Manager):
 
 
 class Group(models.Model):
-
     class Meta:
         db_table = "log_group"
 
+<<<<<<< HEAD
     log_group_id = models.AutoField(unique=True)
     group_num = models.IntegerField(null=False, primary_key=True)
+=======
+    log_group_id = models.AutoField(primary_key=True)
+    group_num = models.IntegerField(null=False, unique=True)
+>>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
     project_name = models.CharField(max_length=100, blank=False, null=False)
     objects = GroupManager()
 
@@ -190,26 +208,33 @@ class StudentManager(models.Manager):
 
 
 class Student(models.Model):
-
     class Meta:
         db_table = "log_student"
 
     # TODO: Do we need email id of the student?
-    log_student_id = models.AutoField(unique=True)
-    student_unity_id = models.CharField(max_length=10, primary_key=True)
-    registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
+    log_student_id = models.AutoField(primary_key=True)
+    student_unity_id = models.CharField(max_length=10, unique=True)
+    registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL,null=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL,null=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     objects = StudentManager()
 
 
 class partOf(models.Model):
-
     class Meta:
         db_table = "log_partOf"
+<<<<<<< HEAD
         unique_together=(('group_num','student_unity_id'),)
 
     # log_id=models.AutoField(primary_key=True)
     group_num = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, primary_key=True)
     student_unity_id = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, primary_key=True)
+=======
+
+    log_id = models.AutoField(primary_key=True)
+    group_num = models.ForeignKey(Group, on_delete=models.SET_NULL,null=True)
+    members = ListCharField(
+        base_field=models.CharField(max_length=10, unique=True),
+        size=MAX_STUDENTS_IN_GROUP, max_length=(MAX_STUDENTS_IN_GROUP * 11))
+>>>>>>> cc0c35e9a515efb67da32721732ac2801634db78

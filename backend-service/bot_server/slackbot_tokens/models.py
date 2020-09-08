@@ -2,7 +2,6 @@ from django.db import models
 import json
 from django.core import serializers
 
-
 # Create your managers here.
 class SlackCredManager(models.Manager):
 
