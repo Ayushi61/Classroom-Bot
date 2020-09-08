@@ -103,7 +103,7 @@ class GroupManager(models.Manager):
 
     def get_group(self, group_num):
         try:
-            return self.filter(group_id=group_num)
+            return self.filter(group_num=group_num)
         except Exception as e:
             print("error in getting student details ", e)
             return []
