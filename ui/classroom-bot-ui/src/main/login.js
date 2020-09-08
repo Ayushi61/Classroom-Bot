@@ -6,7 +6,7 @@ import Alert from 'react-bootstrap/alert'
 
 class Login extends Component {
     
-    constructor(props) {
+    constructor (props) {
         super(props);
         this.state = {
             username: '',

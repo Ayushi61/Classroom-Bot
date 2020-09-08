@@ -4,6 +4,7 @@ import Main from "../main/main";
 import Datasource from "../main/datasource";
 import Commands from "../main/commands";
 import CommandForm from "../main/commandForm";
+import UploadData from "../main/uploadData";
 import Login from "../main/login";
 
 class Body extends Component {
@@ -22,6 +23,7 @@ class Body extends Component {
           <Route exact path="/commands" component={Commands} />
           <Route exact path="/commands/:command" component={CommandForm} />
           <Route exact path="/datasource" component={Datasource} />
+          <Route exact path="/datasource/:source" component={UploadData} />
           <Route exact path="/login" component={() => <Login app={this.props.app} /> } />
           {!this.loggedIn ? <Redirect to="/login" /> : <div></div>}
         </Router>

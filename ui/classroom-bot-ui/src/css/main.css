@@ -62,3 +62,7 @@
 .alert-div .alert-text {
     display: none;
 }
+
+.file-upload {
+    display: none;
+}
