@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Main from "../main/main";
 import Datasource from "../main/datasource";
@@ -6,21 +6,28 @@ import Commands from "../main/commands";
 import CommandForm from "../main/commandForm";
 import Login from "../main/login";
 
-function Body() {
-  const loggedIn = true; // Needs to be brought from service
+class Body extends Component {
 
-  return (
-    <div>
-      <Router>
-        <Route exact path="/" component={Main} />
-        <Route exact path="/commands" component={Commands} />
-        <Route exact path="/commands/:command" component={CommandForm} />
-        <Route exact path="/datasource" component={Datasource} />
-        <Route exact path="/login" component={Login} />
-        {!loggedIn ? <Redirect to="/login" /> : <div></div>}
-      </Router>
-    </div>
-  );
+  constructor(props) {
+      super(props);
+      this.loggedIn = this.props.app.logged_in;
+  }
+
+  render () {
+    return (
+      <div>
+        <Router>
+          <Route exact path="/" component={Main} />
+          <Route exact path="/main" component={Main} />
+          <Route exact path="/commands" component={Commands} />
+          <Route exact path="/commands/:command" component={CommandForm} />
+          <Route exact path="/datasource" component={Datasource} />
+          <Route exact path="/login" component={() => <Login app={this.props.app} /> } />
+          {!this.loggedIn ? <Redirect to="/login" /> : <div></div>}
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default Body;

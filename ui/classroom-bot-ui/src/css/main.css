@@ -46,3 +46,19 @@
     width: 100%;
     height: 300px;
 }
+
+.custom-pad {
+    padding: 0px;
+}
+
+.alert-div {
+    display: none;
+}
+
+.alert-div .spinner-border {
+    display: none;
+}
+
+.alert-div .alert-text {
+    display: none;
+}

@@ -79,9 +79,9 @@ function CommandForm (props) {
                                 </Button>
                             </div>
                             <div class="col-sm-9">
-                            <Alert key="1" variant="danger">
-                                This is a danger alert—check it out!
-                            </Alert>
+                                <Alert key="1" variant="danger">
+                                    This is a danger alert—check it out!
+                                </Alert>
                             </div>
                         </div>
                     </Form>
