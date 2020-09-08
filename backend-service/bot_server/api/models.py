@@ -2,8 +2,8 @@ from django.db import models
 import json
 from django_mysql.models import ListCharField
 from django.core import serializers
-import constants
 # Create your models here.
+MAX_STUDENTS_IN_GROUP = 5
 
 
 class DeptManager(models.Manager):
@@ -77,6 +77,7 @@ class CourseManager(models.Manager):
             print("error in deleting course ",e)
             return False
 
+
 class Course(models.Model):
 
     class Meta:
@@ -118,12 +119,12 @@ class GroupManager(models.Manager):
             print("error in getting course %s", e)
             return []
 
-    def set_members(self,group_num):
+    def set_members(self, group_num):
         try:
-            students=Student.objects.get_students_of_group(group_num)
-            list_size=len(students)
+            students = Student.objects.get_students_of_group(group_num)
+            list_size = len(students)
             objs = Group.objects.get(group_num=group_num)
-            for i in range(0,list_size):
+            for i in range(0, list_size):
                 objs.members.append(students[i]['student_unity_id'])
             objs.save(update_fields=['members'])
             return True
@@ -135,11 +136,11 @@ class GroupManager(models.Manager):
 class Group(models.Model):
 
     class Meta:
-        db_table="log_group"
+        db_table = "log_group"
 
-    log_group_id=models.AutoField(unique=True)
-    group_num=models.IntegerField(null=False,primary_key=True)
-    project_name=models.CharField(max_length=100, blank=False,null=False)
+    log_group_id = models.AutoField(unique=True)
+    group_num = models.IntegerField(null=False, primary_key=True)
+    project_name = models.CharField(max_length=100, blank=False, null=False)
     objects = GroupManager()
 
 
@@ -160,7 +161,7 @@ class StudentManager(models.Manager):
         try:
             student = self.filter(student_unity_id=unity_id)
             group = Group.objects.filter(group_id=group_num)
-            if self.filter(group_num=group_num).all().count() <= constants.MAX_STUDENTS_IN_GROUP:
+            if self.filter(group_num=group_num).all().count() <= MAX_STUDENTS_IN_GROUP:
                 student.update(group=group_num)
             else:
                 raise Exception
@@ -196,20 +197,19 @@ class Student(models.Model):
     # TODO: Do we need email id of the student?
     log_student_id = models.AutoField(unique=True)
     student_unity_id = models.CharField(max_length=10, primary_key=True)
-    registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL)
+    registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     objects = StudentManager()
-
 
 
 class partOf(models.Model):
 
     class Meta:
         db_table = "log_partOf"
-        unique_together=((),)
+        unique_together=(('group_num','student_unity_id'),)
 
-    log_id=models.AutoField(primary_key=True)
-    group_num=models.ForeignKey(Group,on_delete=models.SET_NULL)
-    student_unity_id=models.ForeignKey(Student, on_delete=models.SET_NULL)
+    # log_id=models.AutoField(primary_key=True)
+    group_num = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, primary_key=True)
+    student_unity_id = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, primary_key=True)

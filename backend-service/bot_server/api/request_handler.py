@@ -88,7 +88,7 @@ def update_student_details(data):
     if 'unity_id' not in data:
         return missing_field_error('unity_id')
     if 'group_id' in data:
-        return Student.objects.assign_group(unity_id=data['unity_id'], group_id=data['group_id'])
+        return Student.objects.assign_group(unity_id=data['unity_id'], group_num=data['group_id'])
     elif 'grade' in data:
         pass
     else:
@@ -118,8 +118,10 @@ def get_student_details(data):
         "data": response
     }
 
+
 def create_new_dept(data):
     return Dept.objects.create_Dept(department_name=data["department_name"])
+
 
 def delete_dept(data):
     return Dept.objects.del_dept(department_name=data["department_name"])
