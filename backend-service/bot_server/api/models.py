@@ -2,7 +2,7 @@ from django.db import models
 import json
 from django_mysql.models import ListCharField
 from django.core import serializers
-from bot_server import constants
+import constants
 # Create your models here.
 
 
@@ -137,11 +137,9 @@ class Group(models.Model):
     class Meta:
         db_table="log_group"
 
-    log_group_id=models.AutoField(primary_key=True)
-    group_num=models.IntegerField(null=False,unique=True)
+    log_group_id=models.AutoField(unique=True)
+    group_num=models.IntegerField(null=False,primary_key=True)
     project_name=models.CharField(max_length=100, blank=False,null=False)
-    members=ListCharField(base_field=models.ForeignKey(Student, db_column='student_unity_id', on_delete=models.SET_NULL),
-                          size=5)
     objects = GroupManager()
 
 
@@ -196,11 +194,22 @@ class Student(models.Model):
         db_table = "log_student"
 
     # TODO: Do we need email id of the student?
-    log_student_id = models.AutoField(primary_key=True)
-    student_unity_id = models.CharField(max_length=10, unique=True)
+    log_student_id = models.AutoField(unique=True)
+    student_unity_id = models.CharField(max_length=10, primary_key=True)
     registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     objects = StudentManager()
 
+
+
+class partOf(models.Model):
+
+    class Meta:
+        db_table = "log_partOf"
+        unique_together=((),)
+
+    log_id=models.AutoField(primary_key=True)
+    group_num=models.ForeignKey(Group,on_delete=models.SET_NULL)
+    student_unity_id=models.ForeignKey(Student, on_delete=models.SET_NULL)
