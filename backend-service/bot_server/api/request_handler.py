@@ -61,9 +61,17 @@ def create_student(data):
         return missing_field_error('first_name')
     if 'last_name' not in data:
         return missing_field_error('last_name')
+    if 'course_name' not in data:
+        return missing_field_error('course_name')
+    if 'semester' not in data:
+        return missing_field_error('semester')
+    if 'department' not in data:
+        return missing_field_error('department')
 
     response = Student.objects.create_student(student_unity_id=data['unity_id'],
-                                              registered_course=data['course'],
+                                              course_name=data['course_name'],
+                                              semester=data['semester'],
+                                              department=data['department']
                                               first_name=data['first_name'],
                                               last_name=data['last_name'])
     return {

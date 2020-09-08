@@ -111,7 +111,7 @@ class GroupManager(models.Manager):
     # TODO: Remove it if redundant
     def get_students_of_group(self, group_num):
         try:
-            students = Student.objects.filter(group_num=group_num).all()
+            students = Student.objects.filter(group__group_num__contains=group_num).all()
             return json.loads(serializers.serialize('json',
                                                     [student for student in students]))
         except Exception as e:
@@ -144,10 +144,12 @@ class Group(models.Model):
 
 class StudentManager(models.Manager):
 
-    def create_student(self, student_unity_id, registered_course,
+    def create_student(self, student_unity_id, course_name, semester, department,
                        first_name, last_name, group=None):
         try:
-            course = Course.objects.filter(course_name=registered_course)
+            department_id = Dept.objects.get_departments(department)[0]['pk']
+            course = Course.objects.filter(course_name=course_name,
+                                           department=department_id, semester=semester)
             self.create(student_unity_id=student_unity_id, registered_course=course,
                         first_name=first_name, last_name=last_name, group=None)
             return True
@@ -158,7 +160,7 @@ class StudentManager(models.Manager):
     def assign_group(self, unity_id, group_num):
         try:
             student = self.filter(student_unity_id=unity_id)
-            group = Group.objects.filter(group_id=group_num)
+            group = Group.objects.filter(group_num=group_num)
             if self.filter(group_num=group_num).all().count() <= MAX_STUDENTS_IN_GROUP:
                 student.update(group=group_num)
             else:
@@ -179,7 +181,7 @@ class StudentManager(models.Manager):
     def get_fellow_members_of_group(self, unity_id):
         try:
             student = self.filter(student_unity_id=unity_id)
-            students = self.filter(group_id=student.group.group_id).all()
+            students = self.filter(group__group_num__contains=student.group.group_num).all()
             return json.loads(serializers.serialize('json',
                                                     [s for s in students]))
         except Exception as e:
@@ -194,8 +196,8 @@ class Student(models.Model):
     # TODO: Do we need email id of the student?
     log_student_id = models.AutoField(primary_key=True)
     student_unity_id = models.CharField(max_length=10, unique=True)
-    registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL,null=True)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL,null=True)
+    registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=100)
     objects = StudentManager()
@@ -206,7 +208,7 @@ class partOf(models.Model):
         db_table = "log_partOf"
 
     log_id = models.AutoField(primary_key=True)
-    group_num = models.ForeignKey(Group, on_delete=models.SET_NULL,null=True)
+    group_num = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
     members = ListCharField(
         base_field=models.CharField(max_length=10, unique=True),
         size=MAX_STUDENTS_IN_GROUP, max_length=(MAX_STUDENTS_IN_GROUP * 11))
