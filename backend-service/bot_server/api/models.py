@@ -1,8 +1,7 @@
 from django.db import models
 import json
 from django.core import serializers
-
-MAX_STUDENTS = 5
+import constants
 # Create your models here.
 
 
@@ -74,23 +73,25 @@ class StudentManager(models.Manager):
     def create_student(self, student_unity_id, registered_course,
                        first_name, last_name, group=None):
         try:
-            self.create(student_unity_id=student_unity_id, registered_course=registered_course,
+            course = Course.objects.filter(course_name=registered_course)
+            self.create(student_unity_id=student_unity_id, registered_course=course,
                         first_name=first_name, last_name=last_name, group=None)
             return True
         except Exception as e:
-            print("error in creating student %s", e)
+            print("Error in creating student %s", e)
             return False
 
     def assign_group(self, unity_id, group_id):
         try:
             student = self.filter(student_unity_id=unity_id)
-            group = Group.filter(group_id=group_id)
-            if self.filter(group_id=group_id).all().count() <= MAX_STUDENTS:
+            group = Group.objects.filter(group_id=group_id)
+            if self.filter(group_id=group_id).all().count() <= constants.MAX_STUDENTS_IN_GROUP:
                 student.update(group=group_id)
             else:
                 raise Exception
             return True
         except Exception as e:
+            print("Failed to assign, %d reached its limit: %s", group_id, e)
             return False
 
     def get_student_details(self, unity_id):
@@ -98,16 +99,17 @@ class StudentManager(models.Manager):
             student = self.filter(student_unity_id=unity_id)
             return json.loads(serializers.serialize('json', [student]))
         except Exception as e:
-            print("error in getting student details %s", e)
+            print("Error in getting student details %s", e)
             return []
 
-    def get_students_of_group(self, group_id):
+    def get_fellow_members_of_group(self, unity_id):
         try:
-            students = self.filter(group_id=group_id).all()
+            student = self.filter(student_unity_id=unity_id)
+            students = self.filter(group_id=student.group.group_id).all()
             return json.loads(serializers.serialize('json',
-                                                    [student for student in students]))
+                                                    [s for s in students]))
         except Exception as e:
-            print("error in getting course %s", e)
+            print("Error in getting students of a group %s", e)
             return []
 
 
@@ -133,24 +135,25 @@ class GroupManager(models.Manager):
             self.create(group_id=group_id)
             return True
         except Exception as e:
-            print("error in creating student %s", e)
+            print("error in creating group %s", e)
             return False
 
     def get_group(self, group_id):
         try:
-            return self.filter(group_id=group_id)
+            group = self.filter(group_id=group_id)
+            return json.loads(serializers.serialize('json',
+                                                    [group]))
         except Exception as e:
-            print("error in getting student details %s", e)
+            print("Error in getting group details %s", e)
             return []
 
-    # TODO: Remove it if redundant
     def get_students_of_group(self, group_id):
         try:
-            students = Student.filter(group_id=self.group_id).all()
+            students = Student.objects.filter(group_id=self.group_id).all()
             return json.loads(serializers.serialize('json',
                                                     [student for student in students]))
         except Exception as e:
-            print("error in getting course %s", e)
+            print("Error in getting students of a group %s", e)
             return []
 
 

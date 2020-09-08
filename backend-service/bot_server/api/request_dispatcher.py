@@ -1,6 +1,8 @@
 from .request_handler import create_new_course
 from .request_handler import get_course_details
 from .request_handler import get_all_departments
+from .request_handler import (get_student_details, get_students_of_group,
+                              create_group, create_student, update_student_details)
 
 
 def dispatch_course_create_request(request):
@@ -22,21 +24,20 @@ def dispatch_get_dept_request(request):
 
 
 def dispatch_student_create_request(request):
-    pass
+    return create_student(request.data)
 
 
 def dispatch_student_get_request(request):
-    pass
+    return get_student_details(request)
 
 
 def dispatch_group_create_request(request):
-    pass
+    return create_group(request.data)
 
 
 def dispatch_group_get_request(request):
-    pass
+    return get_students_of_group(request)
 
 
 def dispatch_update_student_details(request):
-    # based on request body see check what to update
-    pass
+    return update_student_details(request)
