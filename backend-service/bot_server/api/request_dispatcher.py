@@ -22,9 +22,11 @@ def dispatch_course_create_request(request):
 
 def dispatch_course_get_request(request):
     course_name = request.query_params.get("course_name", None)
+    department = request.query_params.get("department", None)
+    semester = request.query_params.get("semester", None)
 
-    if course_name:
-        return get_course_details(course_name)
+    if course_name and department and semester:
+        return get_course_details(course_name, department, semester)
     else:
         return {"status": 1, "message": "error", "data": []}
 

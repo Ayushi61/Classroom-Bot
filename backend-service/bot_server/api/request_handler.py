@@ -13,7 +13,7 @@ def missing_field_error(field):
 
     error_response = {
         "status": 422,
-        "message": f"Missing field {field}",
+        "message": "Missing field {field}",
         "data": ""
     }
     return error_response
@@ -25,9 +25,11 @@ def create_new_course(data):
                                         semester=data["semester"])
 
 
-def get_course_details(course_name):
+def get_course_details(data):
 
-    data = Course.objects.get_course_details(course_name=course_name)
+    data = Course.objects.get_course_details(course_name=data["course_name"],
+                                        department=data["department"],
+                                        semester=data["semester"])
 
     return {
         "status": 0,

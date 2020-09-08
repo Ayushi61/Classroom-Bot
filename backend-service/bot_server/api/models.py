@@ -60,9 +60,9 @@ class CourseManager(models.Manager):
             print("error in creating course ", e)
             return False
 
-    def get_course_details(self, course_name):
+    def get_course_details(self, course_name, department, semester):
         try:
-            course_name = self.filter(course_name=course_name).all()
+            course_name = self.filter(course_name=course_name, department=department, semester=semester).all()
             return json.loads(serializers.serialize('json',
                                                     [name for name in course_name]))
         except Exception as e:
@@ -82,11 +82,11 @@ class CourseManager(models.Manager):
 class Course(models.Model):
     class Meta:
         db_table = "log_course"
-        unique_together = (('course_name', 'department'),)
+        unique_together = (('course_name', 'department','semester'),)
 
     log_course_id = models.AutoField(primary_key=True)
-    semester = models.CharField(max_length=20, blank=False, null=False)
-    course_name = models.CharField(max_length=20, blank=False, null=False)
+    semester = models.CharField(max_length=20, blank=False, null=False, unique=True)
+    course_name = models.CharField(max_length=20, blank=False, null=False, unique=True)
     department = models.ForeignKey(Dept, on_delete=models.CASCADE)
     objects = CourseManager()
 
