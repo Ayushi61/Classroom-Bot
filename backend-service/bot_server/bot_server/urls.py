@@ -19,5 +19,6 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('course_dept/', include('api.urls'), name='course_dept')
+    path('api/', include('api.urls'), name='api'),
+    path('slackbot_tokens/', include('slackbot_tokens.urls'), name='slackbot_tokens')
 ]

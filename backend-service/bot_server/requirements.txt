@@ -11,3 +11,5 @@ requests==2.24.0
 sqlparse==0.3.1
 urllib3==1.25.10
 django-environ
+pylint
+django_mysql

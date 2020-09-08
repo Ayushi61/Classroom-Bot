@@ -1,7 +1,8 @@
 from django.db import models
 import json
+from django_mysql.models import ListCharField
 from django.core import serializers
-import constants
+from bot_server import constants
 # Create your models here.
 
 
@@ -12,17 +13,29 @@ class DeptManager(models.Manager):
             self.create(department_name=department_name)
             return True
         except Exception as e:
-            print("error creating department %s", e)
+            print("error creating department ", e)
             return False
 
-    def get_all_departments(self):
+    def get_departments(self,department_name=None):
         try:
-            dept = self.filter().all()
-            return json.loads(serializers.serialize('json',
+            if(department_name is None):
+                dept = self.filter().all()
+                return json.loads(serializers.serialize('json',
                                                     [dept_name for dept_name in dept]))
+            else:
+                dept_id = self.filter(department_name=department_name)
+                return json.loads(serializers.serialize('json',[dept for dept in dept_id]))
         except Exception as e:
-            print("error in getting department %s", e)
+            print("error in getting department ", e)
             return []
+
+    def del_dept(self,department_name):
+        try:
+            self.filter(department_name=department_name).delete()
+            return True
+        except Exception as e:
+            print("error in deleting dept ",e)
+            return False
 
 
 class Dept(models.Model):
@@ -31,7 +44,7 @@ class Dept(models.Model):
         db_table = "log_department"
 
     log_department_id = models.AutoField(primary_key=True)
-    department_name = models.CharField(max_length=20, blank=False, null=False)
+    department_name = models.CharField(max_length=20, unique=True, blank=False, null=False)
     objects = DeptManager()
 
 
@@ -39,11 +52,12 @@ class CourseManager(models.Manager):
 
     def create_course(self, course_name, department, semester):
         try:
+            print(department)
             self.create(semester=semester, course_name=course_name,
-                        department=department)
+                        department_id=Dept.objects.get_departments(department)[0]['pk'])
             return True
         except Exception as e:
-            print("error in creating course %s", e)
+            print("error in creating course ", e)
             return False
 
     def get_course_details(self, course_name):
@@ -52,20 +66,83 @@ class CourseManager(models.Manager):
             return json.loads(serializers.serialize('json',
                                                     [name for name in course_name]))
         except Exception as e:
-            print("error in getting course %s", e)
+            print("error in getting course ", e)
             return []
 
+    def del_course(self,course_name,department):
+        try:
+            self.filter(course_name=course_name,department_id=Dept.objects.get_departments(department)[0]['pk']).delete()
+            return True
+        except Exception as e:
+            print("error in deleting course ",e)
+            return False
 
 class Course(models.Model):
 
     class Meta:
         db_table = "log_course"
+        unique_together=(('course_name','department'),)
 
     log_course_id = models.AutoField(primary_key=True)
     semester = models.CharField(max_length=20, blank=False, null=False)
     course_name = models.CharField(max_length=20, blank=False, null=False)
     department = models.ForeignKey(Dept, on_delete=models.CASCADE)
     objects = CourseManager()
+
+
+
+class GroupManager(models.Manager):
+
+    def create_group(self, group_num, project_name):
+        try:
+            self.create(group_num=group_num, project_name=project_name)
+            return True
+        except Exception as e:
+            print("error in creating student %s", e)
+            return False
+
+    def get_group(self, group_num):
+        try:
+            return self.filter(group_id=group_num)
+        except Exception as e:
+            print("error in getting student details ", e)
+            return []
+
+    # TODO: Remove it if redundant
+    def get_students_of_group(self, group_num):
+        try:
+            students = Student.objects.filter(group_num=group_num).all()
+            return json.loads(serializers.serialize('json',
+                                                    [student for student in students]))
+        except Exception as e:
+            print("error in getting course %s", e)
+            return []
+
+    def set_members(self,group_num):
+        try:
+            students=Student.objects.get_students_of_group(group_num)
+            list_size=len(students)
+            objs = Group.objects.get(group_num=group_num)
+            for i in range(0,list_size):
+                objs.members.append(students[i]['student_unity_id'])
+            objs.save(update_fields=['members'])
+            return True
+        except Exception as e:
+            print("error in setting members details ", e)
+            return False
+
+
+class Group(models.Model):
+
+    class Meta:
+        db_table="log_group"
+
+    log_group_id=models.AutoField(primary_key=True)
+    group_num=models.IntegerField(null=False,unique=True)
+    project_name=models.CharField(max_length=100, blank=False,null=False)
+    members=ListCharField(base_field=models.ForeignKey(Student, db_column='student_unity_id', on_delete=models.SET_NULL),
+                          size=5)
+    objects = GroupManager()
 
 
 class StudentManager(models.Manager):
@@ -81,17 +158,17 @@ class StudentManager(models.Manager):
             print("Error in creating student %s", e)
             return False
 
-    def assign_group(self, unity_id, group_id):
+    def assign_group(self, unity_id, group_num):
         try:
             student = self.filter(student_unity_id=unity_id)
-            group = Group.objects.filter(group_id=group_id)
-            if self.filter(group_id=group_id).all().count() <= constants.MAX_STUDENTS_IN_GROUP:
-                student.update(group=group_id)
+            group = Group.objects.filter(group_id=group_num)
+            if self.filter(group_num=group_num).all().count() <= constants.MAX_STUDENTS_IN_GROUP:
+                student.update(group=group_num)
             else:
                 raise Exception
             return True
         except Exception as e:
-            print("Failed to assign, %d reached its limit: %s", group_id, e)
+            print("Failed to assign, %d reached its limit: %s", group_num, e)
             return False
 
     def get_student_details(self, unity_id):
@@ -127,40 +204,3 @@ class Student(models.Model):
     last_name = models.CharField(max_length=100)
     objects = StudentManager()
 
-
-class GroupManager(models.Manager):
-
-    def create_group(self, group_id):
-        try:
-            self.create(group_id=group_id)
-            return True
-        except Exception as e:
-            print("error in creating group %s", e)
-            return False
-
-    def get_group(self, group_id):
-        try:
-            group = self.filter(group_id=group_id)
-            return json.loads(serializers.serialize('json',
-                                                    [group]))
-        except Exception as e:
-            print("Error in getting group details %s", e)
-            return []
-
-    def get_students_of_group(self, group_id):
-        try:
-            students = Student.objects.filter(group_id=self.group_id).all()
-            return json.loads(serializers.serialize('json',
-                                                    [student for student in students]))
-        except Exception as e:
-            print("Error in getting students of a group %s", e)
-            return []
-
-
-class Group(models.Model):
-
-    class Meta:
-        db_table = "log_group"
-
-    group_id = models.AutoField(primary_key=True)
-    objects = GroupManager()

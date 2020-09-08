@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'slackbot_tokens',
 ]
 
 MIDDLEWARE = [

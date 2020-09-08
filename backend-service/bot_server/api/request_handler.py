@@ -1,7 +1,14 @@
-from .models import Course, Dept, Group, Student
-import constants
-# TODO: Add Grade table and requests for it using patch
 
+# TODO: Add Grade table and requests for it using patch
+"""
+This modules has functions to handle all the supported commands for the
+classroom api's.
+
+Author: Ayushi Rajendra Kumar
+Date: 2020-09-02
+"""
+from .models import Course, Dept, Group, Student
+from bot_server import constants
 
 def missing_field_error(field):
 
@@ -29,10 +36,12 @@ def get_course_details(course_name):
         "data": data
     }
 
+def delete_course(data):
+    return Course.objects.del_course(course_name=data["course_name"],department=data["department"])
 
-def get_all_departments():
+def get_departments(dept):
 
-    data = Dept.objects.get_all_departments()
+    data = Dept.objects.get_departments(dept)
 
     return {
         "status": 0,
@@ -108,3 +117,9 @@ def get_student_details(data):
         "message": "success",
         "data": response
     }
+
+def create_new_dept(data):
+    return Dept.objects.create_Dept(department_name=data["department_name"])
+
+def delete_dept(data):
+    return Dept.objects.del_dept(department_name=data["department_name"])

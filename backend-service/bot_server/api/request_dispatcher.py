@@ -1,8 +1,18 @@
+"""
+This modules has functions to dispatches all the supported commands for the
+classroom api's.
+
+Author: Ayushi Rajendra Kumar
+Date: 2020-09-02
+"""
 from .request_handler import create_new_course
 from .request_handler import get_course_details
-from .request_handler import get_all_departments
 from .request_handler import (get_student_details, get_students_of_group,
                               create_group, create_student, update_student_details)
+from .request_handler import get_departments
+from .request_handler import create_new_dept
+from .request_handler import delete_course
+from .request_handler import delete_dept
 
 
 def dispatch_course_create_request(request):
@@ -18,9 +28,18 @@ def dispatch_course_get_request(request):
     else:
         return {"status": 1, "message": "error", "data": []}
 
+def dispatch_course_delete_request(request):
+    return delete_course(request.data)
 
 def dispatch_get_dept_request(request):
-    return get_all_departments()
+    return get_departments(request.data)
+
+
+def dispatch_dept_create_request(request):
+    return create_new_dept(request.data)
+
+def dispatch_dept_delete_request(request):
+    return delete_dept(request.data)
 
 
 def dispatch_student_create_request(request):

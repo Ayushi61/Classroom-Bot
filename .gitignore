@@ -3,6 +3,8 @@
 *__pycache__
 .DS_Store
 *.pyc
-./*venv 
+.venv
+venv/
+ven.bak/
 .vscode
 backend-service/bot_server/.idea/
