@@ -2,13 +2,7 @@ from django.db import models
 import json
 from django_mysql.models import ListCharField
 from django.core import serializers
-<<<<<<< HEAD
-=======
 
-MAX_STUDENTS_IN_GROUP = 5
-
-
->>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
 # Create your models here.
 MAX_STUDENTS_IN_GROUP = 5
 
@@ -84,11 +78,6 @@ class CourseManager(models.Manager):
             print("error in deleting course ", e)
             return False
 
-<<<<<<< HEAD
-
-class Course(models.Model):
-=======
->>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
 
 class Course(models.Model):
     class Meta:
@@ -135,11 +124,7 @@ class GroupManager(models.Manager):
             list_size = len(students)
             objs = Group.objects.get(group_num=group_num)
             for i in range(0, list_size):
-<<<<<<< HEAD
-                objs.members.append(students[i]['student_unity_id'])
-=======
                 partOf.members.append(students[i]['student_unity_id'])
->>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
             objs.save(update_fields=['members'])
             return True
         except Exception as e:
@@ -151,13 +136,8 @@ class Group(models.Model):
     class Meta:
         db_table = "log_group"
 
-<<<<<<< HEAD
-    log_group_id = models.AutoField(unique=True)
-    group_num = models.IntegerField(null=False, primary_key=True)
-=======
     log_group_id = models.AutoField(primary_key=True)
     group_num = models.IntegerField(null=False, unique=True)
->>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
     project_name = models.CharField(max_length=100, blank=False, null=False)
     objects = GroupManager()
 
@@ -224,17 +204,9 @@ class Student(models.Model):
 class partOf(models.Model):
     class Meta:
         db_table = "log_partOf"
-<<<<<<< HEAD
-        unique_together=(('group_num','student_unity_id'),)
-
-    # log_id=models.AutoField(primary_key=True)
-    group_num = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, primary_key=True)
-    student_unity_id = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, primary_key=True)
-=======
 
     log_id = models.AutoField(primary_key=True)
     group_num = models.ForeignKey(Group, on_delete=models.SET_NULL,null=True)
     members = ListCharField(
         base_field=models.CharField(max_length=10, unique=True),
         size=MAX_STUDENTS_IN_GROUP, max_length=(MAX_STUDENTS_IN_GROUP * 11))
->>>>>>> cc0c35e9a515efb67da32721732ac2801634db78
