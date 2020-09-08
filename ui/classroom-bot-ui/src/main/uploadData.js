@@ -6,6 +6,22 @@ class UploadData extends Component {
 
   constructor (props) {
     super(props);
+    this.state = {
+      columns: [
+        "No.",
+        "Group Name",
+        "Members",
+        "Active"
+      ],
+      rows: [
+        {
+          "No.":"1",
+          "Group Name": "Group 1",
+          "Members": "pchaudh5, atrivedi",
+          "Active": "True"
+        }
+      ]
+    }
     this.triggerInputFile = this.triggerInputFile.bind(this);
     this.fileChanged = this.fileChanged.bind(this);
   }
@@ -40,29 +56,21 @@ class UploadData extends Component {
               <Table striped bordered hover size="sm">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Group Name</th>
-                    <th>Members</th>
-                    <th>Active</th>
+                  {this.state.columns.map(col => (
+                    <th>
+                      {col}
+                    </th>
+                  ))}
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>
-                      Group 1
-                    </td>
-                    <td>pchaudh5, atrivedi</td>
-                    <td>True</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>
-                      Group 2
-                    </td>
-                    <td>ayuhshi, rashi</td>
-                    <td>True</td>
-                  </tr>
+                  {this.state.rows.map(row => (
+                    <tr>
+                      {Object.keys(row).map(k => (
+                        <td>{row[k]}</td>
+                      ))}
+                    </tr>
+                  ))}
                 </tbody>
               </Table>
             </div>
