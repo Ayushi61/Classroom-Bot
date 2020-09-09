@@ -3,6 +3,8 @@ import json
 from django.core import serializers
 
 # Create your managers here.
+
+
 class SlackCredManager(models.Manager):
 
     def get_token_for_team(self, team_id):
@@ -14,15 +16,15 @@ class SlackCredManager(models.Manager):
         else:
             return None
 
-    def create_token_for_team(self,team_id,workspace_name,bot_communication_token):
+    def create_token_for_team(self, team_id, workspace_name, bot_communication_token):
         try:
-            self.create(team_id=team_id,workspace_name=workspace_name,bot_communication_token=bot_communication_token)
+            self.create(team_id=team_id, workspace_name=workspace_name, bot_communication_token=bot_communication_token)
             return True
         except Exception as e:
             print("error creating token for team %s", e)
             return False
 
-    def delete_token_for_team(self,team_id):
+    def delete_token_for_team(self, team_id):
         try:
             return self.filter(team_id=team_id).delete()
         except Exception as e:

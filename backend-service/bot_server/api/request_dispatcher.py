@@ -30,8 +30,10 @@ def dispatch_course_get_request(request):
     else:
         return {"status": 1, "message": "error", "data": []}
 
+
 def dispatch_course_delete_request(request):
     return delete_course(request.data)
+
 
 def dispatch_get_dept_request(request):
     return get_departments(request.data)
@@ -39,6 +41,7 @@ def dispatch_get_dept_request(request):
 
 def dispatch_dept_create_request(request):
     return create_new_dept(request.data)
+
 
 def dispatch_dept_delete_request(request):
     return delete_dept(request.data)
@@ -49,7 +52,7 @@ def dispatch_student_create_request(request):
 
 
 def dispatch_student_get_request(request):
-    return get_student_details(request)
+    return get_student_details(request.data)
 
 
 def dispatch_group_create_request(request):
@@ -57,8 +60,8 @@ def dispatch_group_create_request(request):
 
 
 def dispatch_group_get_request(request):
-    return get_students_of_group(request)
+    return get_students_of_group(request.data)
 
 
 def dispatch_update_student_details(request):
-    return update_student_details(request)
+    return update_student_details(request.data)

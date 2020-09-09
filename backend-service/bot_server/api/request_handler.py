@@ -9,11 +9,12 @@ Date: 2020-09-02
 """
 from .models import Course, Dept, Group, Student
 
+
 def missing_field_error(field):
 
     error_response = {
         "status": 422,
-        "message": "Missing field {field}",
+        "message": f"Missing field {field}",
         "data": ""
     }
     return error_response
@@ -28,8 +29,8 @@ def create_new_course(data):
 def get_course_details(data):
 
     data = Course.objects.get_course_details(course_name=data["course_name"],
-                                        department=data["department"],
-                                        semester=data["semester"])
+                                             department=data["department"],
+                                             semester=data["semester"])
 
     return {
         "status": 0,
@@ -37,8 +38,10 @@ def get_course_details(data):
         "data": data
     }
 
+
 def delete_course(data):
-    return Course.objects.del_course(course_name=data["course_name"],department=data["department"])
+    return Course.objects.del_course(course_name=data["course_name"], department=data["department"])
+
 
 def get_departments(dept):
 
@@ -61,17 +64,15 @@ def create_student(data):
         return missing_field_error('first_name')
     if 'last_name' not in data:
         return missing_field_error('last_name')
-    if 'course_name' not in data:
-        return missing_field_error('course_name')
     if 'semester' not in data:
         return missing_field_error('semester')
     if 'department' not in data:
         return missing_field_error('department')
 
     response = Student.objects.create_student(student_unity_id=data['unity_id'],
-                                              course_name=data['course_name'],
+                                              course_name=data['course'],
                                               semester=data['semester'],
-                                              department=data['department']
+                                              department=data['department'],
                                               first_name=data['first_name'],
                                               last_name=data['last_name'])
     return {
@@ -82,10 +83,11 @@ def create_student(data):
 
 
 def create_group(data):
-    if 'group_id' not in data:
-        return missing_field_error('group_id')
 
-    response = Group.objects.create_group(group_id=data['group_id'])
+    if 'group_num' not in data:
+        return missing_field_error('group_num')
+
+    response = Group.objects.create_group(group_num=data['group_num'])
     return {
         "status": 0,
         "message": "success",
@@ -96,8 +98,8 @@ def create_group(data):
 def update_student_details(data):
     if 'unity_id' not in data:
         return missing_field_error('unity_id')
-    if 'group_id' in data:
-        return Student.objects.assign_group(unity_id=data['unity_id'], group_num=data['group_id'])
+    if 'group_num' in data:
+        return Student.objects.assign_group(unity_id=data['unity_id'], group_num=data['group_num'])
     elif 'grade' in data:
         pass
     else:
@@ -105,10 +107,10 @@ def update_student_details(data):
 
 
 def get_students_of_group(data):
-    if 'group_id' not in data:
-        return missing_field_error('group_id')
+    if 'group_num' not in data:
+        return missing_field_error('group_num')
 
-    response = Group.objects.get_students_of_group(data[group_id])
+    response = Group.objects.get_students_of_group(data['group_num'])
     return {
         "status": 0,
         "message": "success",

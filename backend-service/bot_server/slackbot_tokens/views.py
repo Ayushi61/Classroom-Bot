@@ -10,6 +10,7 @@ error_response = {
     "message": "record"
 }
 
+
 class SlackCred(generics.ListAPIView, generics.CreateAPIView):
 
     def get(self, request, *args, **kwargs):

@@ -8,6 +8,7 @@ Date: 2020-09-02
 from .request_handler import create_new_token
 from .request_handler import get_token_details
 
+
 def dispatch_token_create_request(request):
     response = create_new_token(request.data)
     return response
