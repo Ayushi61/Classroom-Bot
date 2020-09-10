@@ -1,10 +1,11 @@
-# lint:
-# 	ui.lint
-# 	core.lint
+BACKEND-SERVICE-CONTAINER=backend-service
+MYSQL-CONTAINER=mysql
 
-# ui.lint:
-# 	docker build ...
-# 	docker run ...
+.PHONY : help
+help :
+	@echo "backend.lint		: Run static code analyis for backend"
+	@echo "backend.app		: Build and run backend service alongwith mysql server"
+	@echo "clean			: Remove docker containers."
 
 # core.lint:
 # 	docker build ..

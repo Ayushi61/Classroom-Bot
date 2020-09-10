@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+env = environ.Env()
 
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -21,11 +24,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-if "BOT_SERVER_SECRET_KEY"  not in os.environ:
+if "BOT_SERVER_SECRET_KEY" not in os.environ:
     print("BOT_SERVER_SECRET_KEY not set in env variables.")
     exit(1)
 
-SECRET_KEY = os.environ["BOT_SERVER_SECRET_KEY"]
+SECRET_KEY = env("BOT_SERVER_SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'api',
+    'slackbot_tokens',
 ]
 
 MIDDLEWARE = [
@@ -78,10 +84,22 @@ WSGI_APPLICATION = 'bot_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env("MYSQL_DATABASE"),
+        'USER': env("MYSQL_USER"),
+        'PASSWORD': env("MYSQL_ROOT_PASSWORD"),
+        'HOST': env("MYSQL_HOST"),
+        'PORT': int(env("MYSQL_CONNECTION_PORT")),
+
     }
 }
 
@@ -123,3 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
