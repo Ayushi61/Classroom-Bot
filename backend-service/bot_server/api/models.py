@@ -7,61 +7,21 @@ from django.core import serializers
 MAX_STUDENTS_IN_GROUP = 5
 
 
-class DeptManager(models.Manager):
-
-    def create_Dept(self, department_name):
-        try:
-            self.create(department_name=department_name)
-            return True
-        except Exception as e:
-            print("error creating department ", e)
-            return False
-
-    def get_departments(self, department_name=None):
-        try:
-            if (department_name is None):
-                dept = self.filter().all()
-                return json.loads(serializers.serialize('json',
-                                                        [dept_name for dept_name in dept]))
-            else:
-                dept_id = self.filter(department_name=department_name)
-                return json.loads(serializers.serialize('json', [dept for dept in dept_id]))
-        except Exception as e:
-            print("error in getting department ", e)
-            return []
-
-    def del_dept(self, department_name):
-        try:
-            self.filter(department_name=department_name).delete()
-            return True
-        except Exception as e:
-            print("error in deleting dept ", e)
-            return False
-
-
-class Dept(models.Model):
-    class Meta:
-        db_table = "log_department"
-
-    log_department_id = models.AutoField(primary_key=True)
-    department_name = models.CharField(max_length=20, unique=True, blank=False, null=False)
-    objects = DeptManager()
-
-
 class CourseManager(models.Manager):
-
-    def create_course(self, course_name, department, semester):
+    
+    def create_course(self, workspace_id, course_name, department, semester):
         try:
-            self.create(semester=semester, course_name=course_name,
-                        department=Dept.objects.get(department_name=department))
+            self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
+                        department=department)
             return True
         except Exception as e:
             print("error in creating course ", e)
             return False
 
-    def get_course_details(self, course_name, department, semester):
+    def get_course_details(self, workspace_id, course_name, department, semester):
         try:
-            course_name = self.filter(course_name=course_name, department=department, semester=semester).all()
+            course_name = self.filter(workspace_id=workspace_id, course_name=course_name, department=department,
+                                      semester=semester).all()
             # print(course_name)
             return json.loads(serializers.serialize('json',
                                                     [name for name in course_name]))
@@ -69,19 +29,19 @@ class CourseManager(models.Manager):
             print("error in getting course ", e, flush=True)
             return []
 
-    def get_all_courses(self):
+    def get_all_courses(self, workspace_id):
         try:
-            course_details = self.filter().all()
+            course_details = self.filter(workspace_id=workspace_id).all()
             return json.loads(serializers.serialize('json',
                                                     [name for name in course_details]))
         except Exception as e:
             print("error in getting course ", e, flush=True)
             return []
 
-    def del_course(self, course_name, department):
+    def del_course(self, workspace_id, course_name, department):
         try:
             self.filter(course_name=course_name,
-                        department_id=Dept.objects.get_departments(department)[0]['pk']).delete()
+                        department_id=department).delete()
             return True
         except Exception as e:
             print("error in deleting course ", e)
@@ -91,12 +51,13 @@ class CourseManager(models.Manager):
 class Course(models.Model):
     class Meta:
         db_table = "log_course"
-        unique_together = (('course_name', 'department', 'semester'),)
+        unique_together = (('course_name', 'department', 'semester', 'workspace_id'),)
 
     log_course_id = models.AutoField(primary_key=True)
+    workspace_id = models.IntegerField(null=False, unique=True,default=-1)
     semester = models.CharField(max_length=20, blank=False, null=False, unique=True)
     course_name = models.CharField(max_length=20, blank=False, null=False, unique=True)
-    department = models.ForeignKey(Dept, on_delete=models.CASCADE)
+    department = models.CharField(max_length=20,  blank=False, null=False)
     objects = CourseManager()
 
 

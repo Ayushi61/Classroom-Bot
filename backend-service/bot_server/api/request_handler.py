@@ -1,4 +1,3 @@
-
 # TODO: Add Grade table and requests for it using patch
 """
 This modules has functions to handle all the supported commands for the
@@ -7,11 +6,10 @@ classroom api's.
 Author: Ayushi Rajendra Kumar
 Date: 2020-09-02
 """
-from .models import Course, Dept, Group, Student
+from .models import Course, Group, Student
 
 
 def missing_field_error(field):
-
     error_response = {
         "status": 422,
         "message": f"Missing field {field}",
@@ -21,14 +19,14 @@ def missing_field_error(field):
 
 
 def create_new_course(data):
-    return Course.objects.create_course(course_name=data["course_name"],
+    return Course.objects.create_course(workspace_id=data["workspace_id"],
+                                        course_name=data["course_name"],
                                         department=data["department"],
                                         semester=data["semester"])
 
 
-def get_course_details(data):
-
-    data = Course.objects.get_course_details(course_name=data["course_name"],
+def get_course_details(workspace_id, data):
+    data = Course.objects.get_course_details(workspace_id=workspace_id, course_name=data["course_name"],
                                              department=data["department"],
                                              semester=data["semester"])
 
@@ -39,9 +37,8 @@ def get_course_details(data):
     }
 
 
-def get_all_courses():
-
-    data = Course.objects.get_all_courses()
+def get_all_courses(workspace_id):
+    data = Course.objects.get_all_courses(workspace_id=workspace_id)
 
     return {
         "status": 0,
@@ -53,20 +50,7 @@ def get_all_courses():
 def delete_course(data):
     return Course.objects.del_course(course_name=data["course_name"], department=data["department"])
 
-
-def get_departments(dept):
-
-    data = Dept.objects.get_departments(dept)
-
-    return {
-        "status": 0,
-        "message": "success",
-        "data": data
-    }
-
-
 def create_student(data):
-
     if 'unity_id' not in data:
         return missing_field_error('unity_id')
     if 'course' not in data:
@@ -89,7 +73,6 @@ def create_student(data):
 
 
 def create_group(data):
-
     if 'group_num' not in data:
         return missing_field_error('group_num')
 
@@ -134,11 +117,3 @@ def get_student_details(data):
         "message": "success",
         "data": response
     }
-
-
-def create_new_dept(data):
-    return Dept.objects.create_Dept(department_name=data["department_name"])
-
-
-def delete_dept(data):
-    return Dept.objects.del_dept(department_name=data["department_name"])
