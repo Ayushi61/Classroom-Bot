@@ -42,5 +42,24 @@ ui.docker.down:
 	docker-compose stop ui
 
 
+.PHONY : backend.lint
+backend.lint:
+    docker build -t backendlinter -f backend-service/lint.Dockerfile ./backend-service/
+    docker run --rm backendlinter
 
+.PHONY : backend.app
+backend.app:
+    docker-compose build
+    docker-compose up -d
+
+# temporary hack: run make backend.app twice and finally restart.backend
+.PHONY : restart.backend
+restart.backend:
+    - docker rm -f ${BACKEND-SERVICE-CONTAINER}
+    - docker-compose up -d
+
+.PHONY : clean
+clean:
+    - docker rm -f ${BACKEND-SERVICE-CONTAINER}
+    - docker rm -f ${MYSQL-CONTAINER}
 
