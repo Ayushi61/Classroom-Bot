@@ -11,7 +11,7 @@ function TopBar() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="/datasource">Data Configuration</Nav.Link>
+                        <Nav.Link href="/table/datasource">Data Configuration</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
