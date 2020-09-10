@@ -1,0 +1,9 @@
+language: minimal
+
+services:
+    docker
+
+jobs:
+    include:
+      - stage: backend-lint
+        script: make backend.lint

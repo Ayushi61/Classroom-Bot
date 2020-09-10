@@ -2,6 +2,7 @@ asgiref==3.2.10
 Django==3.1
 django-cors-headers==3.3.0
 djangorestframework==3.11.0
+mysql-connector-python
 mysqlclient==1.4.6
 pytz==2020.1
 python-dotenv==0.13.0
@@ -9,3 +10,6 @@ sqlparse==0.3.1
 requests==2.24.0
 sqlparse==0.3.1
 urllib3==1.25.10
+django-environ
+pylint
+django_mysql

@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include('api.urls'), name='api'),
+    path('slackbot_tokens/', include('slackbot_tokens.urls'), name='slackbot_tokens')
 ]
