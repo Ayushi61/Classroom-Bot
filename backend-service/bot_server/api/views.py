@@ -9,9 +9,8 @@ from .request_dispatcher import (dispatch_student_create_request, dispatch_stude
 from .request_dispatcher import dispatch_dept_create_request
 from .request_dispatcher import dispatch_dept_delete_request
 from .request_dispatcher import dispatch_course_delete_request
-from .serializer import CourseSerializer
+from .serializer import CourseSerializer, GroupSerializer, StudentSerializer
 from .serializer import DeptSerializer
-
 
 error_response = {
     "data": [],
@@ -21,7 +20,6 @@ error_response = {
 
 
 class Dept(generics.ListAPIView, generics.CreateAPIView):
-
     serializer_class = DeptSerializer
 
     def get(self, request, *args, **kwargs):
@@ -38,10 +36,10 @@ class Dept(generics.ListAPIView, generics.CreateAPIView):
 
 
 class Course(generics.ListAPIView, generics.CreateAPIView):
-
     serializer_class = CourseSerializer
 
     def get(self, request, *args, **kwargs):
+        print("entered!!")
         response = dispatch_course_get_request(request)
         return Response(data=response)
 
@@ -55,16 +53,14 @@ class Course(generics.ListAPIView, generics.CreateAPIView):
 
 
 class Student(generics.ListAPIView, generics.CreateAPIView):
+    serializer_class = StudentSerializer
 
     def get(self, request, *args, **kwargs):
         response = dispatch_student_get_request(request)
         return Response(data=response)
 
     def post(self, request, *args, **kwargs):
-        action = request.data['action']
-        if action == "start":
-            response = None
-            response = dispatch_student_create_request(request)
+        response = dispatch_student_create_request(request)
         return Response(data=response)
 
     def patch(self, request, *args, **kwargs):
@@ -73,14 +69,12 @@ class Student(generics.ListAPIView, generics.CreateAPIView):
 
 
 class Group(generics.ListAPIView, generics.CreateAPIView):
+    serializer_class = GroupSerializer
 
     def get(self, request, *args, **kwargs):
         response = dispatch_group_get_request(request)
         return Response(data=response)
 
     def post(self, request, *args, **kwargs):
-        action = request.data['action']
-        if action == "start":
-            response = None
-            response = dispatch_group_create_request(request)
+        response = dispatch_group_create_request(request)
         return Response(data=response)

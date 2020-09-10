@@ -6,7 +6,7 @@ Author: Ayushi Rajendra Kumar
 Date: 2020-09-02
 """
 from .request_handler import create_new_course
-from .request_handler import get_course_details
+from .request_handler import get_course_details,get_all_courses
 from .request_handler import (get_student_details, get_students_of_group,
                               create_group, create_student, update_student_details)
 from .request_handler import get_departments
@@ -28,7 +28,7 @@ def dispatch_course_get_request(request):
     if course_name and department and semester:
         return get_course_details(course_name, department, semester)
     else:
-        return {"status": 1, "message": "error", "data": []}
+        return get_all_courses()
 
 
 def dispatch_course_delete_request(request):

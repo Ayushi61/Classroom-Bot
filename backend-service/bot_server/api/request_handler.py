@@ -38,6 +38,16 @@ def get_course_details(data):
         "data": data
     }
 
+def get_all_courses():
+
+    data = Course.objects.get_all_courses()
+
+    return {
+        "status": 0,
+        "message": "success",
+        "data": data
+    }
+
 
 def delete_course(data):
     return Course.objects.del_course(course_name=data["course_name"], department=data["department"])
@@ -69,17 +79,12 @@ def create_student(data):
     if 'department' not in data:
         return missing_field_error('department')
 
-    response = Student.objects.create_student(student_unity_id=data['unity_id'],
+    return Student.objects.create_student(student_unity_id=data['unity_id'],
                                               course_name=data['course'],
                                               semester=data['semester'],
                                               department=data['department'],
                                               first_name=data['first_name'],
                                               last_name=data['last_name'])
-    return {
-        "status": 0,
-        "message": "success",
-        "data": response
-    }
 
 
 def create_group(data):
@@ -87,7 +92,7 @@ def create_group(data):
     if 'group_num' not in data:
         return missing_field_error('group_num')
 
-    response = Group.objects.create_group(group_num=data['group_num'])
+    response = Group.objects.create_group(group_num=data['group_num'],project_name=data['project_name'])
     return {
         "status": 0,
         "message": "success",
