@@ -24,9 +24,10 @@ def get_token_details(team_id):
         "data": data
     }
 
+
 def get_requested_details(team_id, data):
 
-    ret_data= SlackCred.objects.get_requested(team_id=team_id,data=data)
+    ret_data = SlackCred.objects.get_requested(team_id=team_id, data=data)
 
     return {
         "status": 0,

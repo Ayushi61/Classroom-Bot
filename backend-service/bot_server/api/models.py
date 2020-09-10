@@ -62,7 +62,7 @@ class CourseManager(models.Manager):
     def get_course_details(self, course_name, department, semester):
         try:
             course_name = self.filter(course_name=course_name, department=department, semester=semester).all()
-            #print(course_name)
+            # print(course_name)
             return json.loads(serializers.serialize('json',
                                                     [name for name in course_name]))
         except Exception as e:
@@ -71,7 +71,7 @@ class CourseManager(models.Manager):
 
     def get_all_courses(self):
         try:
-            course_details= self.filter().all()
+            course_details = self.filter().all()
             return json.loads(serializers.serialize('json',
                                                     [name for name in course_details]))
         except Exception as e:
@@ -112,7 +112,7 @@ class GroupManager(models.Manager):
 
     def get_group(self, group_num):
         try:
-            group=self.filter(group_num=group_num)
+            group = self.filter(group_num=group_num)
             return json.loads(serializers.serialize('json',
                                                     [grp for grp in group]))
         except Exception as e:
@@ -160,7 +160,7 @@ class StudentManager(models.Manager):
                        first_name, last_name, group=None):
         try:
             department_id = Dept.objects.get(department_name=department)
-            course = Course.objects.get(course_name=course_name,department=department_id,semester=semester)
+            course = Course.objects.get(course_name=course_name, department=department_id, semester=semester)
             self.create(student_unity_id=student_unity_id, registered_course=course,
                         first_name=first_name, last_name=last_name, group=None)
             return True

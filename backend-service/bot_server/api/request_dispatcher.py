@@ -6,7 +6,7 @@ Author: Ayushi Rajendra Kumar
 Date: 2020-09-02
 """
 from .request_handler import create_new_course
-from .request_handler import get_course_details,get_all_courses
+from .request_handler import get_course_details, get_all_courses
 from .request_handler import (get_student_details, get_students_of_group,
                               create_group, create_student, update_student_details)
 from .request_handler import get_departments
