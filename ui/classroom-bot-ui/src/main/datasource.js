@@ -1,46 +1,65 @@
-import React from "react";
+import React, { Component }from "react";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
 
-function Datasource() {
-  return (
-    <div>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-12 table-div">
-            <Table striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Active</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <Link to="/datasource/group">Group</Link>
-                  </td>
-                  <td>@Bot retrieve values from group [document]</td>
-                  <td>False</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    <a href="/datasource/doc">Documents</a>
-                  </td>
-                  <td>@Bot retrieve values from documents [document]</td>
-                  <td>False</td>
-                </tr>
-              </tbody>
-            </Table>
+class Datasource extends Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      columns: [
+        "No.",
+        "Table Name",
+        "Description",
+        "Link"
+      ],
+      rows: [
+        {
+          "No.":"1",
+          "Link": "/form/class",
+          "Table Name": "Class",
+          "Description": "Table contains the class details"
+        }
+      ]
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12 table-div">
+              <Table striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    {this.state.columns.map(col => (
+                      <th>
+                        {col}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.rows.map(row => (
+                    <tr>
+                      {Object.keys(row).map(k => {
+                          if (k === "Link") {
+                            return <td><a href={row[k]}>Link</a></td>
+                          } else {
+                            return <td>{row[k]}</td>
+                          }
+                        }
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Datasource;
