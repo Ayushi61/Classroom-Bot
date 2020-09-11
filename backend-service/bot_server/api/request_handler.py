@@ -49,7 +49,8 @@ def get_all_courses(workspace_id):
 
 
 def delete_course(data):
-    return Course.objects.del_course(course_name=data["course_name"], department=data["department"])
+    return Course.objects.del_course(workspace_id=data["workspace_id"],
+                                     course_name=data["course_name"], department=data["department"])
 
 
 def create_student(data):

@@ -40,8 +40,8 @@ class CourseManager(models.Manager):
 
     def del_course(self, workspace_id, course_name, department):
         try:
-            self.filter(course_name=course_name,
-                        department_id=department).delete()
+            self.filter(workspace_id=workspace_id, course_name=course_name,
+                        department=department).delete()
             return True
         except Exception as e:
             print("error in deleting course ", e)
@@ -54,11 +54,11 @@ class Course(models.Model):
         unique_together = (('course_name', 'department', 'semester', 'workspace_id'),)
 
     log_course_id = models.AutoField(primary_key=True)
-    workspace_id = models.IntegerField(null=False, unique=True, default=-1)
+    workspace_id = models.CharField(max_length=255, null=False, unique=True, default=None)
     semester = models.CharField(max_length=20, blank=False, null=False, unique=True)
     course_name = models.CharField(max_length=20, blank=False, null=False, unique=True)
     department = models.CharField(max_length=20,  blank=False, null=False)
-    bot_token = models.CharField(max_length=256, blank=False, null=False, default=None)
+    bot_token = models.CharField(max_length=255, blank=False, null=False, default=None)
     objects = CourseManager()
 
 
