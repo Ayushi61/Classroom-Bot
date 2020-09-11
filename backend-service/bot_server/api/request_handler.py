@@ -6,7 +6,8 @@ classroom api's.
 Author: Ayushi Rajendra Kumar
 Date: 2020-09-02
 """
-from .models import Course, Group, Student
+from .models import Course, Group, Student, Assignment
+import traceback
 
 
 def missing_field_error(field):
@@ -23,7 +24,8 @@ def create_new_course(data):
                                         course_name=data["course_name"],
                                         department=data["department"],
                                         semester=data["semester"],
-                                        bot_token=data["bot_token"])
+                                        bot_token=data["bot_token"],
+                                        admin_user_id=data["admin_user_id"])
 
 
 def get_course_details(workspace_id, data):
@@ -155,3 +157,24 @@ def get_students_of_group(data):
         "message": "success",
         "data": response
     }
+
+
+def get_homeworks_for_team_id(team_id):
+
+    response = Assignment.objects.get_assignment_for_team(team_id=team_id)
+
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
+
+def create_new_homework(homework: dict):
+
+    try:
+        return Assignment.objects.create_new_assignment(assignment=homework)
+    except Exception as e:
+        traceback.print_exc()
+        print(homework)
+        return "Could not create the howework. Something went wrong."
