@@ -4,9 +4,10 @@ from .request_dispatcher import dispatch_course_create_request
 from .request_dispatcher import dispatch_course_get_request
 from .request_dispatcher import (dispatch_student_create_request, dispatch_student_get_request,
                                  dispatch_group_create_request, dispatch_group_get_request,
-                                 dispatch_update_student_details, dispatch_student_delete_request)
+                                 dispatch_update_student_details, dispatch_student_delete_request,
+                                 dispatch_assignment_get_request, dispatch_assignent_post_request)
 from .request_dispatcher import dispatch_course_delete_request
-from .serializer import CourseSerializer, GroupSerializer, StudentSerializer
+from .serializer import CourseSerializer, GroupSerializer, StudentSerializer, AssignmentSerializer
 
 error_response = {
     "data": [],
@@ -19,17 +20,22 @@ class Course(generics.ListAPIView, generics.CreateAPIView):
     serializer_class = CourseSerializer
 
     def get(self, request, *args, **kwargs):
-        print("entered!!")
         response = dispatch_course_get_request(request)
         return Response(data=response)
 
     def post(self, request, *args, **kwargs):
-        response = dispatch_course_create_request(request)
-        return Response(data=response)
 
-    def delete(self, request, *args, **kwargs):
-        response = dispatch_course_delete_request(request)
-        return Response(data=response)
+        serializer = CourseSerializer(data=request.data)
+
+        if serializer.is_valid():
+            response = dispatch_course_create_request(request)
+            return Response(data=response)
+        else:
+            return Response(data=False)
+
+    # def delete(self, request, *args, **kwargs):
+    #     response = dispatch_course_delete_request(request)
+    #     return Response(data=response)
 
 
 class Student(generics.ListAPIView, generics.CreateAPIView):
@@ -62,3 +68,21 @@ class Group(generics.ListAPIView, generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         response = dispatch_group_create_request(request)
         return Response(data=response)
+
+
+class Assignment(generics.ListAPIView, generics.CreateAPIView):
+
+    def get(self, request, *args, **kwargs):
+        response = dispatch_assignment_get_request(request)
+        return Response(data=response)
+
+    def post(self, request, *args, **kwargs):
+
+        serializer = AssignmentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            response = dispatch_assignent_post_request(serializer.data)
+            return Response(data=response)
+        else:
+            print(serializer.errors)
+            return Response(data=serializer.errors)

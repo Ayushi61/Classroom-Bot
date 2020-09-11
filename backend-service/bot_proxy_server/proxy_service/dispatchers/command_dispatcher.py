@@ -40,3 +40,6 @@ def assign_command_handler(command):
 
     if command == "/group":
         return group_handler
+
+    elif command == "/assignment":
+        return assignment_handler

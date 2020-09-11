@@ -9,10 +9,18 @@ MAX_STUDENTS_IN_GROUP = 5
 
 class CourseManager(models.Manager):
 
-    def create_course(self, workspace_id, course_name, department, semester, bot_token):
+    def is_user_id_admin_of_team(self, team_id, user_id):
+
+        course = self.filter(workspace_id=team_id, admin_user_id=user_id).first()
+
+        if course:
+            return True
+        return False
+
+    def create_course(self, workspace_id, course_name, department, semester, bot_token, admin_user_id):
         try:
             self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
-                        department=department, bot_token=bot_token)
+                        department=department, bot_token=bot_token, admin_user_id=admin_user_id)
             return True
         except Exception as e:
             print("error in creating course ", e, flush=True)
@@ -22,7 +30,6 @@ class CourseManager(models.Manager):
         try:
             course_name = self.filter(workspace_id=workspace_id, course_name=course_name, department=department,
                                       semester=semester).all()
-            # print(course_name)
             return json.loads(serializers.serialize('json',
                                                     [name for name in course_name]))
         except Exception as e:
@@ -54,11 +61,12 @@ class Course(models.Model):
         unique_together = (('course_name', 'department', 'semester', 'workspace_id'),)
 
     log_course_id = models.AutoField(primary_key=True)
-    workspace_id = models.CharField(max_length=255, null=False, unique=True, default=None)
-    semester = models.CharField(max_length=20, blank=False, null=False, unique=True)
+    workspace_id = models.CharField(max_length=100, null=False, blank=False, unique=True)
+    semester = models.CharField(max_length=20, blank=False, null=False)
     course_name = models.CharField(max_length=20, blank=False, null=False, unique=True)
     department = models.CharField(max_length=20,  blank=False, null=False)
-    bot_token = models.CharField(max_length=255, blank=False, null=False, default=None)
+    bot_token = models.CharField(max_length=256, blank=False, null=False, unique=True)
+    admin_user_id = models.CharField(max_length=100, blank=False, null=False)
     objects = CourseManager()
 
 
@@ -204,3 +212,38 @@ class partOf(models.Model):
     members = ListCharField(
         base_field=models.CharField(max_length=10, unique=True),
         size=MAX_STUDENTS_IN_GROUP, max_length=(MAX_STUDENTS_IN_GROUP * 11))
+
+
+class AssignmentManager(models.Manager):
+
+    def create_new_assignment(self, assignment:dict):
+
+        admin_user_id = assignment["created_by"]
+        team_id = assignment["team_id"]
+
+        if Course.objects.is_user_id_admin_of_team(team_id=team_id, user_id=admin_user_id):
+            self.create(**assignment)
+            return "Assignment created successfully."
+        else:
+            return "You are not authorized to create assignments."
+
+    def get_assignment_for_team(self, team_id):
+
+        homeworks = self.filter(team_id=team_id).all()
+        homeworks = json.loads(serializers.serialize('json', [homework for homework in homeworks]))
+        return homeworks
+
+
+class Assignment(models.Model):
+
+    class Meta:
+        db_table = "log_assignment"
+        unique_together = (('team_id', 'assignment_name'), )
+
+    log_assignment_id = models.AutoField(primary_key=True)
+    team_id = models.CharField(max_length=100, blank=False, null=False)
+    assignment_name = models.CharField(max_length=100, blank=False, null=False)
+    due_by = models.DateTimeField(blank=False, null=False)
+    homework_url = models.URLField(blank=True, null=True)
+    created_by = models.CharField(blank=False, null=False, max_length=100)
+    objects = AssignmentManager()
