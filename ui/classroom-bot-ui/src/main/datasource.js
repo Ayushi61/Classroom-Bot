@@ -88,14 +88,47 @@ class Datasource extends Component {
     this.triggerInputFile = this.triggerInputFile.bind(this);
     this.fileChanged = this.fileChanged.bind(this);
     this.downloadTemplate = this.downloadTemplate.bind(this);
+    this.readerOnLoad = this.readerOnLoad.bind(this);
   }
 
   triggerInputFile (event) {
     this.fileInput.click();
   }
 
+  // readerOnLoad (event) {
+  //   let data = event.target.result.split('\n');
+  //   let i=0;
+  //   let temp = {};
+  //   temp.excel_upload = true;
+  //   temp.columns = [];
+  //   temp.rows = [];
+  //   data.forEach( function (row) {
+  //     if (i === 0) {
+  //       temp.columns = row.split(',');
+  //     } else {
+  //       let r = {};
+  //       let j = 0;
+  //       let t = row.split(',');
+  //       t.forEach( function (item) {
+  //         r[temp.columns[j++]] = item;
+  //       });
+  //       temp.rows.push(r);
+  //     }
+  //     i ++;
+  //   });
+  //   this.setState(temp);
+  // }
+
   fileChanged (event) {
     console.log(event.target.files[0]);
+    let f = event.target.files[0];
+    var reader = new FileReader();
+    // reader.onload = readerOnLoad;
+    reader.readAsText(f);
+  }
+
+  handleFileLoad (event){
+    console.log(event.target.result);
   }
 
   downloadTemplate (event) {
