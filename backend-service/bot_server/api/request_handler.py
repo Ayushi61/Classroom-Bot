@@ -22,7 +22,8 @@ def create_new_course(data):
     return Course.objects.create_course(workspace_id=data["workspace_id"],
                                         course_name=data["course_name"],
                                         department=data["department"],
-                                        semester=data["semester"])
+                                        semester=data["semester"],
+                                        bot_token=data["bot_token"])
 
 
 def get_course_details(workspace_id, data):
@@ -50,26 +51,86 @@ def get_all_courses(workspace_id):
 def delete_course(data):
     return Course.objects.del_course(course_name=data["course_name"], department=data["department"])
 
+
 def create_student(data):
+
     if 'unity_id' not in data:
         return missing_field_error('unity_id')
-    if 'course' not in data:
-        return missing_field_error('course')
-    if 'first_name' not in data:
-        return missing_field_error('first_name')
-    if 'last_name' not in data:
-        return missing_field_error('last_name')
-    if 'semester' not in data:
-        return missing_field_error('semester')
-    if 'department' not in data:
-        return missing_field_error('department')
+    if 'name' not in data:
+        return missing_field_error('name')
+    if 'email_id' not in data:
+        return missing_field_error('email_id')
+
+    if 'workspace_id' in data:
+        course = Course.objects.get(workspace_id=data['workspace_id'])
+    elif 'course_id' in data:
+        course = Course.objects.get(log_course_id=data['course_id'])
+    else:
+        return missing_field_error("Course Identifier")
 
     return Student.objects.create_student(student_unity_id=data['unity_id'],
-                                          course_name=data['course'],
-                                          semester=data['semester'],
-                                          department=data['department'],
-                                          first_name=data['first_name'],
-                                          last_name=data['last_name'])
+                                          course=course,
+                                          name=data['name'],
+                                          email_id=data['email_id'])
+
+
+def update_student_details(data):
+
+    if 'email_id' not in data:
+        return missing_field_error('email_id')
+
+    if 'workspace_id' in data:
+        course = Course.objects.get(workspace_id=data['workspace_id'])
+    elif 'course_id' in data:
+        course = Course.objects.get(log_course_id=data['course_id'])
+    else:
+        return missing_field_error("Course Identifier")
+
+    # TODO: Add bot token to response whenever 'workspace_id' in data else remove it
+
+    response = None
+    if 'group_num' in data:
+        response = Student.objects.assign_group(email_id=data['email_id'], course=course, group_num=data['group_num'])
+    elif 'slack_user_id' in data:
+        response = Student.objects.update_slack_user_id(data['email_id'], course, data['slack_user_id'])
+    else:
+        response = missing_field_error('No field to update')
+    return response
+
+
+def get_student_details(email_id, workspace_id=None, course_id=None):
+
+    if workspace_id is not None:
+        course = Course.objects.get(workspace_id=workspace_id)
+    elif course_id is not None:
+        course = Course.objects.get(log_course_id=course_id)
+    else:
+        return missing_field_error("Course Identifier")
+
+    response = Student.objects.get_student_details(email_id=email_id, course=course)
+
+    # TODO: Add bot token whenever 'workspace_id' in data else remove it
+
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
+
+def delete_student(data):
+
+    if 'email_id' not in data:
+        return missing_field_error('email_id')
+
+    if 'workspace_id' in data:
+        course = Course.objects.get(workspace_id=data['workspace_id'])
+    elif 'course_id' in data:
+        course = Course.objects.get(log_course_id=data['course_id'])
+    else:
+        return missing_field_error("Course Identifier")
+
+    return Student.objects.delete_student(email_id=data['email_id'], course=course)
 
 
 def create_group(data):
@@ -84,34 +145,11 @@ def create_group(data):
     }
 
 
-def update_student_details(data):
-    if 'unity_id' not in data:
-        return missing_field_error('unity_id')
-    if 'group_num' in data:
-        return Student.objects.assign_group(unity_id=data['unity_id'], group_num=data['group_num'])
-    elif 'grade' in data:
-        pass
-    else:
-        return missing_field_error('No field to update')
-
-
 def get_students_of_group(data):
     if 'group_num' not in data:
         return missing_field_error('group_num')
 
     response = Group.objects.get_students_of_group(data['group_num'])
-    return {
-        "status": 0,
-        "message": "success",
-        "data": response
-    }
-
-
-def get_student_details(data):
-    if 'unity_id' not in data:
-        return missing_field_error('unity_id')
-
-    response = Student.objects.get_student_details(data['unity_id'])
     return {
         "status": 0,
         "message": "success",

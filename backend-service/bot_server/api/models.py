@@ -8,14 +8,14 @@ MAX_STUDENTS_IN_GROUP = 5
 
 
 class CourseManager(models.Manager):
-    
-    def create_course(self, workspace_id, course_name, department, semester):
+
+    def create_course(self, workspace_id, course_name, department, semester, bot_token):
         try:
             self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
-                        department=department)
+                        department=department, bot_token=bot_token)
             return True
         except Exception as e:
-            print("error in creating course ", e)
+            print("error in creating course ", e, flush=True)
             return False
 
     def get_course_details(self, workspace_id, course_name, department, semester):
@@ -54,10 +54,11 @@ class Course(models.Model):
         unique_together = (('course_name', 'department', 'semester', 'workspace_id'),)
 
     log_course_id = models.AutoField(primary_key=True)
-    workspace_id = models.IntegerField(null=False, unique=True,default=-1)
+    workspace_id = models.IntegerField(null=False, unique=True, default=-1)
     semester = models.CharField(max_length=20, blank=False, null=False, unique=True)
     course_name = models.CharField(max_length=20, blank=False, null=False, unique=True)
     department = models.CharField(max_length=20,  blank=False, null=False)
+    bot_token = models.CharField(max_length=256, blank=False, null=False, default=None)
     objects = CourseManager()
 
 
@@ -108,33 +109,31 @@ class GroupManager(models.Manager):
 class Group(models.Model):
     class Meta:
         db_table = "log_group"
+        unique_together = (('group_num', 'registered_course_id'),)
 
     log_group_id = models.AutoField(primary_key=True)
     group_num = models.IntegerField(null=False, unique=True)
+    registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     project_name = models.CharField(max_length=100, blank=False, null=True)
     objects = GroupManager()
 
 
 class StudentManager(models.Manager):
 
-    def create_student(self, student_unity_id, course_name, semester, department,
-                       first_name, last_name, group=None):
+    def create_student(self, student_unity_id, course, name, email_id, group=None, slack_user_id=None):
         try:
-            department_id = Dept.objects.get(department_name=department)
-            course = Course.objects.get(course_name=course_name, department=department_id, semester=semester)
             self.create(student_unity_id=student_unity_id, registered_course=course,
-                        first_name=first_name, last_name=last_name, group=None)
+                        name=name, email_id=email_id, group=None, slack_user_id=None)
             return True
         except Exception as e:
             print("Error in creating student %s", e, flush=True)
             return False
 
-    def assign_group(self, unity_id, group_num):
+    def assign_group(self, email_id, course, group_num):
         try:
-            student = self.filter(student_unity_id=unity_id)
-            group = Group.objects.filter(group_num=group_num)
-            print(group, flush=True)
-            if self.filter(group=group[0]).all().count() <= MAX_STUDENTS_IN_GROUP:
+            student = self.get(email_id=email_id, registered_course=course)
+            group = Group.objects.filter(group_num=group_num, registered_course=course)
+            if self.get(group=group).all().count() <= MAX_STUDENTS_IN_GROUP:
                 print("Reached here", flush=True)
                 student.update(group=group[0])
             else:
@@ -144,37 +143,55 @@ class StudentManager(models.Manager):
             print("Failed to assign, %d reached its limit: %s", group_num, e, flush=True)
             return False
 
-    def get_student_details(self, unity_id):
+    def update_slack_user_id(self, email_id, course, slack_user_id):
         try:
-            student = self.filter(student_unity_id=unity_id)
+            student = self.filter(email_id=email_id, registered_course=course)
+            student.update(slack_user_id=slack_user_id)
+            return True
+        except Exception as e:
+            print("Error in assigning the Slack User Identifier", e, flush=True)
+            return False
+
+    def get_student_details(self, email_id, course):
+        try:
+            student = self.get(email_id=email_id, registered_course=course)
             return json.loads(serializers.serialize('json',
-                                                    [s for s in student]))
+                                                    [student]))
         except Exception as e:
             print("Error in getting student details %s", e, flush=True)
             return []
 
-    def get_fellow_members_of_group(self, unity_id):
+    # def get_fellow_members_of_group(self, email_id):
+    #     try:
+    #         student = self.get(email_id=unity_id)
+    #         students = self.get(group_id=student.group.group_id).all()
+    #         return json.loads(serializers.serialize('json',
+    #                                                 [s for s in students]))
+    #     except Exception as e:
+    #         print("Error in getting students of a group %s", e, flush=True)
+    #         return []
+
+    def delete_student(self, email_id, course):
         try:
-            student = self.filter(student_unity_id=unity_id)
-            students = self.filter(group_id=student.group.group_id).all()
-            return json.loads(serializers.serialize('json',
-                                                    [s for s in students]))
+            self.filter(email_id=email_id, registered_course=course).delete()
+            return True
         except Exception as e:
-            print("Error in getting students of a group %s", e, flush=True)
-            return []
+            print("error in deleting course ", e)
+            return False
 
 
 class Student(models.Model):
     class Meta:
         db_table = "log_student"
+        unique_together = (('registered_course_id', 'email_id'),)
 
-    # TODO: Do we need email id of the student?
     log_student_id = models.AutoField(primary_key=True)
     student_unity_id = models.CharField(max_length=10, unique=True)
     registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
     group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    email_id = models.EmailField(unique=True, default=None)
+    slack_user_id = models.CharField(max_length=100, null=True)
     objects = StudentManager()
 
 
