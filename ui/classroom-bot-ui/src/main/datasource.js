@@ -87,6 +87,7 @@ class Datasource extends Component {
     }
     this.triggerInputFile = this.triggerInputFile.bind(this);
     this.fileChanged = this.fileChanged.bind(this);
+    this.downloadTemplate = this.downloadTemplate.bind(this);
   }
 
   triggerInputFile (event) {
@@ -97,6 +98,29 @@ class Datasource extends Component {
     console.log(event.target.files[0]);
   }
 
+  downloadTemplate (event) {
+    let csv_text = "";
+    csv_text = this.state.columns.join(',') + '\n';
+    this.state.rows.forEach( function(row){
+      let i = 0;
+      let columns = Object.keys(row);
+      columns.forEach( function(c) {
+        if (i === 0)
+          csv_text += row[c];
+        else
+          csv_text += ',' + row[c];
+        i ++;
+      });
+      csv_text += '\n';
+    });
+    var uri = encodeURIComponent(csv_text);
+    var link = document.createElement("a");
+    link.setAttribute("href", 'data:text/csv;charset=utf-8,' + uri);
+    link.setAttribute("download", "template.csv");
+    document.body.appendChild(link);
+    link.click();
+  }
+
   render() {
     return (
       <div>
@@ -104,13 +128,16 @@ class Datasource extends Component {
           <div className="row">
             {this.state.excel_upload ? (
               <div className="row table-div">
+                <Button variant="outline-primary" type="button" className="custom-btn" onClick={this.downloadTemplate}>
+                  Download
+                </Button>
                 <Button variant="primary" type="button" className="custom-btn" onClick={this.triggerInputFile}>
                   Upload
-                  </Button>
+                </Button>
                 <input type="file" className="file-upload" ref={fileInput => this.fileInput = fileInput} onChange={this.fileChanged}/>
                 <Button variant="primary" type="button" disabled className="custom-btn">
                   Save
-                  </Button>
+                </Button>
               </div>
             ) : (
                 <div></div>
