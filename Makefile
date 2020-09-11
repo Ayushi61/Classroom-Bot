@@ -7,12 +7,12 @@ help :
 	@echo "backend.app		: Build and run backend service alongwith mysql server"
 	@echo "clean			: Remove docker containers."
 
-# core.lint:
-# 	docker build ..
-# 	docker run  ...
+
+start.all:
+	docker-compose build
+	docker-compose up -d
 
 
-# UI management commands
 ui.install:
 	cd ui/classroom-bot-ui && npm install
 
@@ -44,7 +44,7 @@ ui.docker.down:
 
 .PHONY : backend.lint
 backend.lint:
-	docker build -t backendlinter -f backend-service/lint.Dockerfile ./backend-service/
+	docker build -t backendlinter -f backend-service/lint.dockerfile ./backend-service/
 	docker run --rm backendlinter
 
 .PHONY : backend.app
@@ -54,9 +54,9 @@ backend.app:
 
 # temporary hack: run make backend.app twice and finally restart.backend
 .PHONY : restart.backend
-restart.backend:
-	docker rm -f ${BACKEND-SERVICE-CONTAINER}
-	docker-compose up -d
+backend.restart:
+	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
+	- docker-compose up -d
 
 .PHONY : clean
 clean:

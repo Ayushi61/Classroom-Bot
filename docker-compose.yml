@@ -15,15 +15,15 @@ services:
     ports:
       - '3306:3306'
     environment:
-       MYSQL_DATABASE: 'classroom_db'
-       MYSQL_USER: 'root'
-       MYSQL_ROOT_PASSWORD: 'group18'
+       MYSQL_DATABASE: classroom_db
+       MYSQL_USER: root
+       MYSQL_ROOT_PASSWORD: group18
     restart: on-failure
 
   backend-service:
     build: 
         context: './backend-service'
-        dockerfile: 'app.Dockerfile'
+        dockerfile: 'deploy.dockerfile'
     container_name: backend-service
     image: backend-service:tag
     env_file: backend-service/sample.env
