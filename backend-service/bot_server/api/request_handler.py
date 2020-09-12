@@ -135,12 +135,29 @@ def delete_student(data):
 
     return Student.objects.delete_student(email_id=data['email_id'], course=course)
 
+# Group APIs
 
-def create_group(data):
-    if 'group_num' not in data:
-        return missing_field_error('group_num')
 
-    response = Group.objects.create_group(group_num=data['group_num'], project_name=data['project_name'])
+def create_group(group_info: dict):
+
+    try:
+        return Group.objects.create_group(group_info=group_info)
+    except Exception as e:
+        traceback.print_exc()
+        print(group_info)
+        return f"Could not create the a group: {e}"
+
+
+def get_students_of_group(workspace_id, course_id, group_number):
+
+    if workspace_id is not None:
+        course = Course.objects.get(workspace_id=workspace_id)
+    elif course_id is not None:
+        course = Course.objects.get(log_course_id=course_id)
+    else:
+        return missing_field_error("Course Identifier")
+
+    response = Group.objects.get_group_details(group_number, course)
     return {
         "status": 0,
         "message": "success",
@@ -148,11 +165,15 @@ def create_group(data):
     }
 
 
-def get_students_of_group(data):
-    if 'group_num' not in data:
-        return missing_field_error('group_num')
+def get_all_groups(workspace_id, course_id):
 
-    response = Group.objects.get_students_of_group(data['group_num'])
+    if workspace_id is not None:
+        course = Course.objects.get(workspace_id=workspace_id)
+    elif course_id is not None:
+        course = Course.objects.get(log_course_id=course_id)
+    else:
+        return missing_field_error("Course Identifier")
+    response = Group.objects.get_all_groups(course)
     return {
         "status": 0,
         "message": "success",

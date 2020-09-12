@@ -59,15 +59,20 @@ class Student(generics.ListAPIView, generics.CreateAPIView):
 
 
 class Group(generics.ListAPIView, generics.CreateAPIView):
-    serializer_class = GroupSerializer
 
     def get(self, request, *args, **kwargs):
         response = dispatch_group_get_request(request)
         return Response(data=response)
 
     def post(self, request, *args, **kwargs):
-        response = dispatch_group_create_request(request)
-        return Response(data=response)
+        serializer = GroupSerializer(data=request.data)
+
+        if serializer.is_valid():
+            response = dispatch_group_create_request(serializer.data)
+            return Response(data=response)
+        else:
+            print(serializer.errors)
+            return Response(data=serializer.errors)
 
 
 class Assignment(generics.ListAPIView, generics.CreateAPIView):

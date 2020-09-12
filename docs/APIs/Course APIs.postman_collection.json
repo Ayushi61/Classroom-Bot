@@ -38,6 +38,11 @@
 							"key": "bot_token",
 							"value": "sjdbchjsdbvhjbcfhvjhdbjvhbdkvnjdn",
 							"type": "text"
+						},
+						{
+							"key": "admin_user_id",
+							"value": "abcd",
+							"type": "text"
 						}
 					]
 				},
@@ -100,46 +105,6 @@
 							"key": "workspace_id",
 							"value": "abc12450145"
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE course",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "course_name",
-							"value": "510",
-							"type": "text"
-						},
-						{
-							"key": "department",
-							"value": "CSC",
-							"type": "text"
-						},
-						{
-							"key": "workspace_id",
-							"value": "abc12450145",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8000/api/course",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"course"
 					]
 				}
 			},
