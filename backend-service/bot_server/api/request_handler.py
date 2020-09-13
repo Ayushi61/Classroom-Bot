@@ -93,7 +93,7 @@ def update_student_details(data):
 
     response = None
     if 'group_num' in data:
-        response = Student.objects.assign_group(email_id=data['email_id'], course=course, group_num=data['group_num'])
+        response = Student.objects.assign_group(email_id=data['email_id'], course=data['course_id'], group_number=data['group_num'])
     elif 'slack_user_id' in data:
         response = Student.objects.update_slack_user_id(data['email_id'], course, data['slack_user_id'])
     else:
@@ -120,6 +120,13 @@ def get_student_details(email_id, workspace_id=None, course_id=None):
         "data": response
     }
 
+def get_all_students():
+    response = Student.objects.get_all_students()
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
 
 def delete_student(data):
 
@@ -172,7 +179,7 @@ def get_all_groups(workspace_id, course_id):
     elif course_id is not None:
         course = Course.objects.get(log_course_id=course_id)
     else:
-        return missing_field_error("Course Identifier")
+        course = None
     response = Group.objects.get_all_groups(course)
     return {
         "status": 0,
