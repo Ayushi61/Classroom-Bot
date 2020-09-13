@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "66c5be37-a6a0-4a0d-90f1-9b4624a47a6e",
+		"name": "Group APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"workspace_id\": \"abc12450145\",\n    \"group_number\": 18,\n    \"participants\": [\n        {\"email_id\": \"abc@gmail.com\"},\n        {\"email_id\":\"xyz@gmail.com\"}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST through UI",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"course_id\": \"1\",\n    \"group_number\": 20,\n    \"participants\": [\n        {\"email_id\": \"cde@gmail.com\"}\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Group details for a group_number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/group?type=group_number&workspace_id=abc12450145&group_number=18",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"group"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "group_number"
+						},
+						{
+							"key": "workspace_id",
+							"value": "abc12450145"
+						},
+						{
+							"key": "group_number",
+							"value": "18"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all groups",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/group?type=all&workspace_id=abc12450145",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"group"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "all"
+						},
+						{
+							"key": "workspace_id",
+							"value": "abc12450145"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

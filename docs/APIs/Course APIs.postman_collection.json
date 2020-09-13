@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "6b5461a2-c97f-4354-9394-1d2903af366e",
+		"name": "Course APIs",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "workspace_id",
+							"value": "abc12450145",
+							"type": "text"
+						},
+						{
+							"key": "course_name",
+							"value": "510",
+							"type": "text"
+						},
+						{
+							"key": "department",
+							"value": "CSC",
+							"type": "text"
+						},
+						{
+							"key": "semester",
+							"value": "F2020",
+							"type": "text"
+						},
+						{
+							"key": "bot_token",
+							"value": "sjdbchjsdbvhjbcfhvjhdbjvhbdkvnjdn",
+							"type": "text"
+						},
+						{
+							"key": "admin_user_id",
+							"value": "abcd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/course",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET course",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "course_name",
+							"value": "510",
+							"type": "text"
+						},
+						{
+							"key": "department",
+							"value": "CSC",
+							"type": "text"
+						},
+						{
+							"key": "semester",
+							"value": "F2020",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/course?workspace_id=abc12450145",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"course"
+					],
+					"query": [
+						{
+							"key": "workspace_id",
+							"value": "abc12450145"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
