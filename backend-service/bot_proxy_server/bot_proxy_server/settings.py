@@ -33,7 +33,7 @@ DEBUG = True
 
 api_version = "v0.1"
 
-ALLOWED_HOSTS = ['localhost', 'cd791688639d.ngrok.io']
+ALLOWED_HOSTS = ['localhost', '8634a1d9f3b3.ngrok.io']
 
 
 # Application definition

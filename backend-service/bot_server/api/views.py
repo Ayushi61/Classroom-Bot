@@ -2,15 +2,12 @@ from rest_framework import generics
 from rest_framework.response import Response
 from .request_dispatcher import dispatch_course_create_request
 from .request_dispatcher import dispatch_course_get_request
-from .request_dispatcher import dispatch_get_dept_request
 from .request_dispatcher import (dispatch_student_create_request, dispatch_student_get_request,
                                  dispatch_group_create_request, dispatch_group_get_request,
-                                 dispatch_update_student_details)
-from .request_dispatcher import dispatch_dept_create_request
-from .request_dispatcher import dispatch_dept_delete_request
+                                 dispatch_update_student_details, dispatch_student_delete_request,
+                                 dispatch_assignment_get_request, dispatch_assignent_post_request)
 from .request_dispatcher import dispatch_course_delete_request
-from .serializer import CourseSerializer, GroupSerializer, StudentSerializer
-from .serializer import DeptSerializer
+from .serializer import CourseSerializer, GroupSerializer, StudentSerializer, AssignmentSerializer
 
 error_response = {
     "data": [],
@@ -19,37 +16,26 @@ error_response = {
 }
 
 
-class Dept(generics.ListAPIView, generics.CreateAPIView):
-    serializer_class = DeptSerializer
-
-    def get(self, request, *args, **kwargs):
-        response = dispatch_get_dept_request(request)
-        return Response(data=response)
-
-    def post(self, request, *args, **kwargs):
-        response = dispatch_dept_create_request(request)
-        return Response(data=response)
-
-    def delete(self, request, *args, **kwargs):
-        response = dispatch_dept_delete_request()
-        return Response(data=response)
-
-
 class Course(generics.ListAPIView, generics.CreateAPIView):
     serializer_class = CourseSerializer
 
     def get(self, request, *args, **kwargs):
-        print("entered!!")
         response = dispatch_course_get_request(request)
         return Response(data=response)
 
     def post(self, request, *args, **kwargs):
-        response = dispatch_course_create_request(request)
-        return Response(data=response)
 
-    def delete(self, request, *args, **kwargs):
-        response = dispatch_course_delete_request(request)
-        return Response(data=response)
+        serializer = CourseSerializer(data=request.data)
+
+        if serializer.is_valid():
+            response = dispatch_course_create_request(request)
+            return Response(data=response)
+        else:
+            return Response(data=False)
+
+    # def delete(self, request, *args, **kwargs):
+    #     response = dispatch_course_delete_request(request)
+    #     return Response(data=response)
 
 
 class Student(generics.ListAPIView, generics.CreateAPIView):
@@ -67,14 +53,41 @@ class Student(generics.ListAPIView, generics.CreateAPIView):
         response = dispatch_update_student_details(request)
         return Response(data=response)
 
+    def delete(self, request, *args, **kwargs):
+        response = dispatch_student_delete_request(request)
+        return Response(data=response)
+
 
 class Group(generics.ListAPIView, generics.CreateAPIView):
-    serializer_class = GroupSerializer
 
     def get(self, request, *args, **kwargs):
         response = dispatch_group_get_request(request)
         return Response(data=response)
 
     def post(self, request, *args, **kwargs):
-        response = dispatch_group_create_request(request)
+        serializer = GroupSerializer(data=request.data)
+
+        if serializer.is_valid():
+            response = dispatch_group_create_request(serializer.data)
+            return Response(data=response)
+        else:
+            print(serializer.errors)
+            return Response(data=serializer.errors)
+
+
+class Assignment(generics.ListAPIView, generics.CreateAPIView):
+
+    def get(self, request, *args, **kwargs):
+        response = dispatch_assignment_get_request(request)
         return Response(data=response)
+
+    def post(self, request, *args, **kwargs):
+
+        serializer = AssignmentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            response = dispatch_assignent_post_request(serializer.data)
+            return Response(data=response)
+        else:
+            print(serializer.errors)
+            return Response(data=serializer.errors)

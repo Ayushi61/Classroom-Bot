@@ -1,0 +1,310 @@
+{
+	"info": {
+		"_postman_id": "ebc52c70-249c-46ab-9b6f-7a908071d804",
+		"name": "Student API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST Student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "workspace_id",
+							"value": "abc12450145",
+							"type": "text"
+						},
+						{
+							"key": "email_id",
+							"value": "abc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "ABC XYZ",
+							"type": "text"
+						},
+						{
+							"key": "unity_id",
+							"value": "abchh86",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Student from UI",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "course_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "email_id",
+							"value": "xyz@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "XYZ ABX",
+							"type": "text"
+						},
+						{
+							"key": "unity_id",
+							"value": "dcef67",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Student to register",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email_id",
+							"value": "abc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "workspace_id",
+							"value": "abc12450145",
+							"type": "text"
+						},
+						{
+							"key": "slack_user_id",
+							"value": "userid123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH Student via UI",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email_id",
+							"value": "xyz@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "course_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "slack_user_id",
+							"value": "userid234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Student via workspace",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/student?email_id=abc@gmail.com&workspace_id=abc12450145",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					],
+					"query": [
+						{
+							"key": "email_id",
+							"value": "abc@gmail.com"
+						},
+						{
+							"key": "workspace_id",
+							"value": "abc12450145"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Student via UI",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/student?email_id=xyz@gmail.com&course_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					],
+					"query": [
+						{
+							"key": "email_id",
+							"value": "xyz@gmail.com"
+						},
+						{
+							"key": "course_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Student",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email_id",
+							"value": "xyz@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "course_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Student via Slack",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email_id",
+							"value": "abc@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "workspace_id",
+							"value": "abc12450145",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
