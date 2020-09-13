@@ -23,10 +23,43 @@ class Datasource extends Component {
             "Description": "Table contains the class details"
           },
           {
+            "No.": "1",
+            "Link": "/table/group",
+            "Table Name": "Group",
+            "Description": "Table contains the Group details"
+          },
+          {
             "No.": "2",
             "Link": "/table/students",
             "Table Name": "Student",
             "Description": "Table contains the students in the class"
+          }
+        ]
+      }
+    } else if (this.props.match.params.name === "group") {
+      this.state = {
+        excel_upload: false,
+        columns: [
+          "No.",
+          "Action",
+          "Class Name",
+          "Team ID",
+          "Semester"
+        ],
+        rows: [
+          {
+            "No.": "1",
+            "Link": "/form/group",
+            "Class Name": "CSC SE Fall 2020",
+            "Team ID": "T001",
+            "Semester": "Fall 2020"
+          },
+          {
+            "No.": "2",
+            "Link": "/form/group",
+            "Class Name": "CSC SE Fall 2019",
+            "Team ID": "T002",
+            "Semester": "Fall 2019"
           }
         ]
       }
@@ -43,14 +76,14 @@ class Datasource extends Component {
         rows: [
           {
             "No.": "1",
-            "Link": "/class",
+            "Link": "/form/class",
             "Class Name": "CSC SE Fall 2020",
             "Team ID": "T001",
             "Semester": "Fall 2020"
           },
           {
             "No.": "2",
-            "Link": "/class",
+            "Link": "/form/class",
             "Class Name": "CSC SE Fall 2019",
             "Team ID": "T002",
             "Semester": "Fall 2019"
@@ -86,8 +119,7 @@ class Datasource extends Component {
       }
     }
 
-    this.setState({"loaded":false});
-
+    this.setState({ "loaded": false });
     this.triggerInputFile = this.triggerInputFile.bind(this);
     this.fileChanged = this.fileChanged.bind(this);
     this.downloadTemplate = this.downloadTemplate.bind(this);
@@ -148,7 +180,7 @@ class Datasource extends Component {
       });
       if (j < total_rows - 1)
         csv_text += '\n';
-      j ++;
+      j++;
     });
     var uri = encodeURIComponent(csv_text);
     var link = document.createElement("a");
@@ -177,10 +209,10 @@ class Datasource extends Component {
                     Save
                   </Button>
                 ) : (
-                  <Button variant="primary" type="button" className="custom-btn">
-                    Save
-                  </Button>
-                )}
+                    <Button variant="primary" type="button" className="custom-btn">
+                      Save
+                    </Button>
+                  )}
               </div>
             ) : (
                 <div></div>
