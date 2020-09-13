@@ -7,7 +7,7 @@ Date: 2020-09-02
 """
 from .request_handler import create_new_course
 from .request_handler import get_course_details, get_all_courses
-from .request_handler import (get_student_details, get_students_of_group,
+from .request_handler import (get_student_details, get_all_students, get_students_of_group,
                               create_group, create_student, update_student_details,
                               delete_student, get_all_groups, get_homeworks_for_team_id,
                               create_new_homework)
@@ -49,7 +49,7 @@ def dispatch_student_get_request(request):
     if email_id and (workspace_id or course_id):
         return get_student_details(email_id, workspace_id, course_id)
     else:
-        return False
+        return get_all_students()
 
 
 def dispatch_update_student_details(request):
