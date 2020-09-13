@@ -36,11 +36,16 @@ class CourseManager(models.Manager):
             print("error in getting course ", e, flush=True)
             return []
 
-    def get_all_courses(self, workspace_id):
+    def get_all_courses(self, workspace_id=None):
         try:
-            course_details = self.filter(workspace_id=workspace_id).all()
-            return json.loads(serializers.serialize('json',
-                                                    [name for name in course_details]))
+            if(workspace_id != None):
+                course_details = self.filter(workspace_id=workspace_id).all()
+                return json.loads(serializers.serialize('json',
+                                                        [name for name in course_details]))
+            else:
+                course_details = self.filter().all()
+                return json.loads(serializers.serialize('json',
+                                                        [name for name in course_details]))
         except Exception as e:
             print("error in getting course ", e, flush=True)
             return []
