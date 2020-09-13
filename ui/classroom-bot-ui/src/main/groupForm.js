@@ -1,20 +1,19 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 import Form from "react-bootstrap/form";
-import { Multiselect } from "multiselect-react-dropdown";
 import Button from "react-bootstrap/button";
 import Alert from "react-bootstrap/alert";
 
 function GroupForm() {
-  const data = [
-    { Name: "Rashi", id: 1 },
-    { Name: "Ayushi", id: 2 },
-    { Name: "Adarsh", id: 3 },
-    { Name: "Prithvi", id: 4 },
-    { Name: "Prithviraj", id: 5 },
-  ];
+  // const data = [
+  //   { Name: "Rashi", id: 1 },
+  //   { Name: "Ayushi", id: 2 },
+  //   { Name: "Adarsh", id: 3 },
+  //   { Name: "Prithvi", id: 4 },
+  //   { Name: "Prithviraj", id: 5 },
+  // ];
 
-  const [options] = useState(data);
+  // const [options] = useState(data);
   return (
     <div>
       <div class="row">
@@ -45,7 +44,7 @@ function GroupForm() {
             <Form.Group controlId="student">
               <Form.Label>Students</Form.Label>
               <div style={{ width: "90%", display: "flex" }}>
-                <Multiselect options={options} displayValue="Name" />
+                
               </div>
               <Form.Text className="text-muted">
                 Select the name of the students in a group

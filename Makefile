@@ -50,13 +50,13 @@ backend.lint:
 .PHONY : backend.app
 backend.app:
 	- docker-compose build
-	- docker-compose up -d
+	- docker-compose up -d backend-service
 
 # temporary hack: run make backend.app twice and finally restart.backend
 .PHONY : restart.backend
 backend.restart:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
-	- docker-compose up -d
+	- docker-compose up -d backend-service
 
 .PHONY : clean
 clean:

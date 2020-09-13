@@ -85,66 +85,70 @@ class Datasource extends Component {
         ]
       }
     }
+
+    this.setState({"loaded":false});
+
     this.triggerInputFile = this.triggerInputFile.bind(this);
     this.fileChanged = this.fileChanged.bind(this);
     this.downloadTemplate = this.downloadTemplate.bind(this);
-    this.readerOnLoad = this.readerOnLoad.bind(this);
+    this.handleFile = this.handleFile.bind(this);
   }
 
-  triggerInputFile (event) {
+  triggerInputFile(event) {
     this.fileInput.click();
   }
 
-  // readerOnLoad (event) {
-  //   let data = event.target.result.split('\n');
-  //   let i=0;
-  //   let temp = {};
-  //   temp.excel_upload = true;
-  //   temp.columns = [];
-  //   temp.rows = [];
-  //   data.forEach( function (row) {
-  //     if (i === 0) {
-  //       temp.columns = row.split(',');
-  //     } else {
-  //       let r = {};
-  //       let j = 0;
-  //       let t = row.split(',');
-  //       t.forEach( function (item) {
-  //         r[temp.columns[j++]] = item;
-  //       });
-  //       temp.rows.push(r);
-  //     }
-  //     i ++;
-  //   });
-  //   this.setState(temp);
-  // }
+  handleFile = (e) => {
+    let data = e.target.result.split('\n');
+    let i = 0;
+    let temp = {};
+    temp.excel_upload = true;
+    temp.columns = [];
+    temp.rows = [];
+    data.forEach(function (row) {
+      if (i === 0) {
+        temp.columns = row.split(',');
+      } else {
+        let r = {};
+        let j = 0;
+        let t = row.split(',');
+        t.forEach(function (item) {
+          r[temp.columns[j++]] = item;
+        });
+        temp.rows.push(r);
+      }
+      i++;
+    });
+    temp.loaded = true;
+    this.setState(temp);
+  }
 
-  fileChanged (event) {
+  fileChanged(event) {
     console.log(event.target.files[0]);
     let f = event.target.files[0];
     var reader = new FileReader();
-    // reader.onload = readerOnLoad;
+    reader.onloadend = this.handleFile;
     reader.readAsText(f);
   }
 
-  handleFileLoad (event){
-    console.log(event.target.result);
-  }
-
-  downloadTemplate (event) {
+  downloadTemplate(event) {
     let csv_text = "";
     csv_text = this.state.columns.join(',') + '\n';
-    this.state.rows.forEach( function(row){
+    let j = 0;
+    let total_rows = this.state.rows.length;
+    this.state.rows.forEach(function (row) {
       let i = 0;
       let columns = Object.keys(row);
-      columns.forEach( function(c) {
+      columns.forEach(function (c) {
         if (i === 0)
           csv_text += row[c];
         else
           csv_text += ',' + row[c];
-        i ++;
+        i++;
       });
-      csv_text += '\n';
+      if (j < total_rows - 1)
+        csv_text += '\n';
+      j ++;
     });
     var uri = encodeURIComponent(csv_text);
     var link = document.createElement("a");
@@ -167,10 +171,16 @@ class Datasource extends Component {
                 <Button variant="primary" type="button" className="custom-btn" onClick={this.triggerInputFile}>
                   Upload
                 </Button>
-                <input type="file" className="file-upload" ref={fileInput => this.fileInput = fileInput} onChange={this.fileChanged}/>
-                <Button variant="primary" type="button" disabled className="custom-btn">
-                  Save
-                </Button>
+                <input type="file" className="file-upload" ref={fileInput => this.fileInput = fileInput} onChange={this.fileChanged} />
+                {!this.state.loaded ? (
+                  <Button variant="primary" type="button" disabled className="custom-btn">
+                    Save
+                  </Button>
+                ) : (
+                  <Button variant="primary" type="button" className="custom-btn">
+                    Save
+                  </Button>
+                )}
               </div>
             ) : (
                 <div></div>
