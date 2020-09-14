@@ -1,9 +1,17 @@
-# SE-Sem-Project
-Slack Bot
-Google docs - https://docs.google.com/document/d/1OzYZXsb9THPUgvDd-S4kfuzB8Zro25vByq_3eIK_EHU/edit?ts=5f39ee16
+Classbot
 
+A SlackBot to take care of your classroom resources!!
+[![Build Status](https://travis-ci.org/Ayushi61/Classroom-Bot.svg?branch=master)](https://travis-ci.org/github/Ayushi61/Classroom-Bot)
+[![DOI](https://zenodo.org/badge/288084201.svg)](https://zenodo.org/badge/latestdoi/288084201)
 
-### Notes:
+Have look at how useful can classbot be for your classroom workspace!!!
 
-Before committing, it is a responsibility of a developer to run:
-- docker exec ${BACKEND-SERVICE-CONTAINER} python manage.py makemigrations
+[![Classbot Video](https://img.youtube.com/vi/CRSTGNChs1o/0.jpg)](https://youtu.be/CRSTGNChs1o)
+
+#### Table Of Contents
+
+[Code of Conduct](CODE_OF_CONDUCT.md)
+
+[How to Contribute?](CONTRIBUTING.md)
+
+[Citation](CITATION.md)
