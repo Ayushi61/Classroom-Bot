@@ -120,6 +120,7 @@ def get_student_details(email_id, workspace_id=None, course_id=None):
         "data": response
     }
 
+
 def get_all_students():
     response = Student.objects.get_all_students()
     return {
@@ -127,6 +128,7 @@ def get_all_students():
         "message": "success",
         "data": response
     }
+
 
 def delete_student(data):
 
