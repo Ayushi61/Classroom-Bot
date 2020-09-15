@@ -1,6 +1,5 @@
-Classbot
+# Classbot - A SlackBot to take care of your classroom resources!!
 
-A SlackBot to take care of your classroom resources!!
 [![Build Status](https://travis-ci.org/Ayushi61/Classroom-Bot.svg?branch=master)](https://travis-ci.org/github/Ayushi61/Classroom-Bot)
 [![DOI](https://zenodo.org/badge/288084201.svg)](https://zenodo.org/badge/latestdoi/288084201)
 
