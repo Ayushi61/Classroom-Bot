@@ -63,3 +63,6 @@ clean:
 	docker rm -f ${BACKEND-SERVICE-CONTAINER}
 	docker rm -f ${MYSQL-CONTAINER}
 
+backend.down:
+	docker-compose stop backend-service
+	docker-compose rm backend-service
