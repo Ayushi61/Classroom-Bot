@@ -19,7 +19,7 @@ class Body extends Component {
           <Route exact path="/" component={Main} />
           <Route exact path="/main" component={Main} />
           <Route exact path="/table/:name" component={Datasource} />
-          <Route exact path="/form/course" component={CourseForm} />
+          <Route exact path="/form/course/:id" component={CourseForm} />
           <Route exact path="/form/group" component={GroupForm} />
           <Route
             exact

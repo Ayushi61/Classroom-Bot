@@ -10,6 +10,7 @@ class Datasource extends Component {
     this.state = {
       excel_upload: false,
       loaded: false,
+      manual_add: false,
       columns: [],
       rows: []
     };
@@ -17,6 +18,7 @@ class Datasource extends Component {
     this.fileChanged = this.fileChanged.bind(this);
     this.downloadTemplate = this.downloadTemplate.bind(this);
     this.handleFile = this.handleFile.bind(this);
+    this.convertToWord = this.convertToWord.bind(this);
   }
 
   triggerInputFile(event) {
@@ -49,7 +51,6 @@ class Datasource extends Component {
   }
 
   fileChanged(event) {
-    console.log(event.target.files[0]);
     let f = event.target.files[0];
     var reader = new FileReader();
     reader.onloadend = this.handleFile;
@@ -90,7 +91,7 @@ class Datasource extends Component {
         excel_upload: false,
         columns: [
           "No.",
-          "Action",
+          "Link",
           "Table Name",
           "Description"
         ],
@@ -177,6 +178,18 @@ class Datasource extends Component {
     }
   }
 
+  convertToWord(text) {
+    text = text.split("_");
+    let final = [];
+    text.forEach(
+      function (item) {
+        item = item.charAt(0).toUpperCase() + item.slice(1);
+        final.push(item);
+      }
+    );
+    return final.join(" ");
+  }
+
   render() {
     return (
       <div>
@@ -202,11 +215,15 @@ class Datasource extends Component {
                   )}
               </div>
             ) : (
-              <div className="row table-div">
-                  <Button variant="primary" type="button" className="custom-btn" href="/form/course">
-                    New
-                  </Button>
-                </div>
+                this.state.manual_add ? (
+                  <div className="row table-div">
+                    <Button variant="primary" type="button" className="custom-btn" href={'/form/' + this.props.match.params.name + '/new'}>
+                      New
+                    </Button>
+                  </div>
+                ) : (
+                    <div></div>
+                  )
               )
             }
             <div className="col-sm-12 table-div">
@@ -215,7 +232,7 @@ class Datasource extends Component {
                   <tr>
                     {this.state.columns.map(col => (
                       <th>
-                        {col}
+                        {this.convertToWord(col)}
                       </th>
                     ))}
                   </tr>
