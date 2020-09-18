@@ -31,15 +31,19 @@ class CourseService {
   }
 
   getData() {
-    return fetch('http://localhost:8000/api/course')
+    return fetch('http://'+process.env.REACT_APP_BACKEND_HOST+':'+process.env.REACT_APP_BACKEND_PORT+'/api/course')
       .then((response) => response.json())
       .then((responseData) => {
         let data = {};
         data.columns = [];
         data.columns.push("Link");
         data.columns = data.columns.concat(Object.keys(responseData.data[0].fields));
+        delete data.columns[data.columns.indexOf('bot_token')];
+        delete data.columns[data.columns.indexOf('admin_user_id')];
         data.rows = [];
         responseData.data.forEach(element => {
+          delete element.fields.bot_token;
+          delete element.fields.admin_user_id; 
           element.fields["Link"] = "/form/course";
           data.rows.push(element.fields);
         });

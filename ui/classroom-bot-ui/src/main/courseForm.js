@@ -3,7 +3,7 @@ import Form from "react-bootstrap/form";
 import Button from "react-bootstrap/button";
 import Alert from "react-bootstrap/alert";
 
-class ClassForm extends Component {
+class CourseForm extends Component {
   render() {
     return (
       <div>
@@ -63,4 +63,4 @@ class ClassForm extends Component {
   }
 }
 
-export default ClassForm;
+export default CourseForm;
