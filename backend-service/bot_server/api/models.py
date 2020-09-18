@@ -38,7 +38,7 @@ class CourseManager(models.Manager):
 
     def get_all_courses(self, workspace_id=None):
         try:
-            if(workspace_id != None):
+            if workspace_id is not None:
                 course_details = self.filter(workspace_id=workspace_id).all()
                 return json.loads(serializers.serialize('json',
                                                         [name for name in course_details]))
@@ -49,6 +49,16 @@ class CourseManager(models.Manager):
         except Exception as e:
             print("error in getting course ", e, flush=True)
             return []
+
+    def get_workspace_id(self, course):
+        try:
+            workspace_id = self.filter(log_course_id=course).all()
+            workspace_id = json.loads(serializers.serialize('json',
+                                      [name for name in workspace_id]))
+            return workspace_id[0]['fields']['workspace_id']
+        except Exception as e:
+            print("error in getting workspace id ", e)
+            return ""
 
     def del_course(self, workspace_id, course_name, department):
         try:
@@ -104,8 +114,10 @@ class GroupManager(models.Manager):
 
     def get_students_of_group(self, group_number, course):
         try:
-            group = self.filter(group_number=group_number, registered_course=course).first()
-            students = Student.objects.filter(group=group, registered_course=course).all()
+            group = self.filter(group_number=group_number, registered_course_id=course).first()
+            grp = json.loads(serializers.serialize('json',
+                             [group]))
+            students = Student.objects.filter(group=grp[0]['pk'], registered_course=course).all()
             return json.loads(serializers.serialize('json',
                                                     [student for student in students]))
         except Exception as e:
@@ -114,9 +126,24 @@ class GroupManager(models.Manager):
 
     def get_all_groups(self, course):
         try:
-            groups = self.filter(registered_course=course).all()
-            return json.loads(serializers.serialize('json',
-                                                    [group for group in groups]))
+            if course is not None:
+                groups = self.filter(registered_course=course).all()
+                return json.loads(serializers.serialize('json',
+                                  [group for group in groups]))
+            else:
+                groups = self.filter().all()
+                grp = json.loads(serializers.serialize('json',
+                                                       [group for group in groups]))
+                for i, v in grp[0].items():
+                    if('fields' in i):
+                        grp_num = v['group_number']
+                        reg_course = v['registered_course']
+                        students = self.get_students_of_group(grp_num, reg_course)[0]
+                        v['students'] = []
+                        for i1, v1 in students.items():
+                            if('fields' in i1):
+                                v['students'].append(v1)
+                return grp
         except Exception as e:
             print("Error in getting all groups:", e)
             return []
@@ -171,6 +198,15 @@ class StudentManager(models.Manager):
         except Exception as e:
             print("Error in getting student details %s", e, flush=True)
             return []
+
+    def get_all_students(self):
+        try:
+            students = self.filter().all()
+            return json.loads(serializers.serialize('json',
+                                                    [student for student in students]))
+        except Exception as e:
+            print("error in deleting course ", e)
+            return ""
 
     def delete_student(self, email_id, course):
         try:
