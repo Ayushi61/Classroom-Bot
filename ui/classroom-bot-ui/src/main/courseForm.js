@@ -12,7 +12,8 @@ class CourseForm extends Component {
     this.isValid = this.isValid.bind(this);
     this.submit = this.submit.bind(this);
     this.state = {
-      validated: false
+      validated: false,
+      show_alert: false
     };
   }
 
@@ -37,17 +38,33 @@ class CourseForm extends Component {
   }
 
   submit(event) {
-    const form = event.currentTarget;
+    let form = event.currentTarget;
+    event.preventDefault();
+    event.stopPropagation();
     if (form.checkValidity() === false) {
       this.setState({
         validated: false
       })
-      event.preventDefault();
-      event.stopPropagation();
     }
-
-    this.CourseService.saveOne();
-    console.log("Submitting the form");
+    let data = {};
+    Array.from(form.elements).forEach(element => {
+      data[element.id] = element.value;
+    });
+    data['bot_token'] = Math.floor(100000 + Math.random() * 900000);
+    data['admin_user_id'] = "id";
+    this.CourseService.saveOne(data).then((success) => {
+      if (success) {
+        this.setState({
+          show_alert: true,
+          alert_message: "Data successfully updated"
+        });
+      } else {
+        this.setState({
+          show_alert: true,
+          alert_message: "Some error occured and data not saved"
+        });
+      }
+    });
   }
 
   render() {
@@ -86,17 +103,17 @@ class CourseForm extends Component {
                 </Form.Text>
               </Form.Group>
               <div className="row">
-                <div className="col-sm-1">
+                <div className="col-sm-2">
                   <Button className="custom-form-btn" variant="primary" type="Submit">
                     Save
                   </Button>
                 </div>
-                <div className="col-sm-1">
-                  <Button className="custom-form-btn" variant="outline-primary">Cancel</Button>
+                <div className="col-sm-2">
+                  <Button className="custom-form-btn" variant="outline-primary" href="/table/course">Cancel</Button>
                 </div>
-                <div className="col-sm-10">
-                  <Alert key="1" variant="danger">
-                    This is a danger alert—check it out!
+                <div className="col-sm-8">
+                  <Alert key="1" variant="danger" show={this.state.show_alert}>
+                    {this.state.alert_message}
                   </Alert>
                 </div>
               </div>

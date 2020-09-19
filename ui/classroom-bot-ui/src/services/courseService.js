@@ -1,6 +1,8 @@
 class CourseService {
 
   constructor() {
+    this.api = 'http://' + process.env.REACT_APP_BACKEND_HOST + ':' + process.env.REACT_APP_BACKEND_PORT + '/api/course';
+
     this.data = {
       excel_upload: false,
       loaded: false,
@@ -31,7 +33,7 @@ class CourseService {
   }
 
   getData() {
-    return fetch('http://' + process.env.REACT_APP_BACKEND_HOST + ':' + process.env.REACT_APP_BACKEND_PORT + '/api/course')
+    return fetch(this.api)
       .then((response) => response.json())
       .then((responseData) => {
         let data = {};
@@ -44,7 +46,7 @@ class CourseService {
         responseData.data.forEach(element => {
           delete element.fields.bot_token;
           delete element.fields.admin_user_id;
-          element.fields["Link"] = "/form/course/"+element.fields.workspace_id;
+          element.fields["Link"] = "/form/course/" + element.fields.workspace_id;
           data.rows.push(element.fields);
         });
         data.excel_upload = false;
@@ -56,8 +58,8 @@ class CourseService {
   }
 
   getCourseData(workspace_id) {
-    return fetch('http://' + process.env.REACT_APP_BACKEND_HOST + ':' + process.env.REACT_APP_BACKEND_PORT + '/api/course?workspace_id='+workspace_id)
-    .then((response) => response.json())
+    return fetch(this.api + '?workspace_id=' + workspace_id)
+      .then((response) => response.json())
       .then((responseData) => {
         return responseData.data[0].fields;
       })
@@ -68,8 +70,24 @@ class CourseService {
 
   }
 
-  saveOne() {
-
+  saveOne(data) {
+    let formData = new FormData();
+    for (var key in data) {
+      formData.append(key, data[key]);
+    }
+    return fetch(this.api, {
+      method: 'POST',
+      body: formData
+    }).then(response => {
+      let data = response.json();
+      data['status'] = 'success';
+      return data;
+    }).catch(error => {
+      let data = {};
+      data['error'] = error;
+      data['status'] = 'error';
+      return data;
+    });
   }
 
 }
