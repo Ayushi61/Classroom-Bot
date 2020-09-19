@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import CourseService from '../services/courseService'
 import GroupService from "../services/groupService";
+import StudentService from "../services/studentService";
 
 class Datasource extends Component {
 
@@ -128,31 +129,9 @@ class Datasource extends Component {
         this.setState(response);
       });
     } else if (this.props.match.params.name === "students") {
-      this.setState({
-        excel_upload: true,
-        columns: [
-          "No.",
-          "Student Name",
-          "Student ID",
-          "Class",
-          "Degree Level"
-        ],
-        rows: [
-          {
-            "No.": "1",
-            "Student Name": "Prithviraj Chaudhuri",
-            "Student ID": "pchaudh5",
-            "Class": "CSC510 Fall 2020",
-            "Degree Level": "Masters"
-          },
-          {
-            "No.": "2",
-            "Student Name": "Adarsh Trivedi",
-            "Student ID": "atrivedi",
-            "Class": "CSC510 Fall 2020",
-            "Degree Level": "PhD"
-          }
-        ]
+      this.StudentService = new StudentService();
+      this.StudentService.getData().then((response) => {
+        this.setState(response);
       });
     }
   }
