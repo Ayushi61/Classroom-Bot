@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import CourseService from '../services/courseService'
+import GroupService from "../services/groupService";
 
 class Datasource extends Component {
 
@@ -117,31 +118,9 @@ class Datasource extends Component {
         ]
       });
     } else if (this.props.match.params.name === "group") {
-      this.setState({
-        excel_upload: false,
-        columns: [
-          "No.",
-          "Action",
-          "Class Name",
-          "Team ID",
-          "Semester"
-        ],
-        rows: [
-          {
-            "No.": "1",
-            "Link": "/form/group",
-            "Class Name": "CSC SE Fall 2020",
-            "Team ID": "T001",
-            "Semester": "Fall 2020"
-          },
-          {
-            "No.": "2",
-            "Link": "/form/group",
-            "Class Name": "CSC SE Fall 2019",
-            "Team ID": "T002",
-            "Semester": "Fall 2019"
-          }
-        ]
+      this.GroupService = new GroupService();
+      this.GroupService.getData().then((response) => {
+        this.setState(response);
       });
     } else if (this.props.match.params.name === "course") {
       this.courseService = new CourseService();
