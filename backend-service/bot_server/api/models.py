@@ -182,7 +182,7 @@ class StudentManager(models.Manager):
             self.create_student(student_unity_id=student_unity_id, course=course, email_id=email_id, name=name)
         group = Group.objects.filter(group_number=group_number, registered_course=course).first()
         if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
-            student.update(group=group)
+            self.get(email_id=email_id, registered_course=course).group.add(group)
             return True
         else:
             raise Exception
@@ -231,7 +231,7 @@ class Student(models.Model):
     log_student_id = models.AutoField(primary_key=True)
     student_unity_id = models.CharField(max_length=10, unique=True)
     registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
+    group = models.ManyToManyField(Group, null=True)
     name = models.CharField(max_length=100)
     email_id = models.EmailField(unique=True, default=None)
     slack_user_id = models.CharField(max_length=100, null=True)
