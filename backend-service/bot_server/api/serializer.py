@@ -26,6 +26,8 @@ class StudentSerializer(serializers.Serializer):
 
 class ParticipantsSerializer(serializers.Serializer):
     email_id = serializers.EmailField(required=True)
+    student_unity_id = serializers.CharField(max_length=1000, required=True)
+    name =  serializers.CharField(max_length=1000, required=True)
 
 
 class GroupSerializer(serializers.Serializer):
