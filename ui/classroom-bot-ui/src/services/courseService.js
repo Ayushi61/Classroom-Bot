@@ -42,7 +42,7 @@ class CourseService {
         data.columns = data.columns.concat(Object.keys(responseData.data[0].fields));
         data.rows = [];
         responseData.data.forEach(element => {
-          element.fields["Link"] = "/form/group/" + element.fields.group_number;
+          element.fields["Link"] = "/form/course/" + element.fields.workspace_id;
           data.rows.push(element.fields);
         });
         data.excel_upload = false;

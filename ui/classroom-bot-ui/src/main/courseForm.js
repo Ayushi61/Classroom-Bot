@@ -24,10 +24,11 @@ class CourseForm extends Component {
       this.CourseService.getCourseData(workspace_id).then((response) => {
         Object.keys(response).forEach(element => {
           let ele = document.getElementById(element);
-          if (ele !== null)
-            document.getElementById(element).value = response[element];
+          if (ele !== null) {
+            ele.value = response[element];
+            ele.disabled = true;
+          }
         });
-        document.getElementById('workspace_id').disabled = true;
       });
     }
   }
