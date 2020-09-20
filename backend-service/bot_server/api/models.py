@@ -54,7 +54,7 @@ class CourseManager(models.Manager):
         try:
             workspace_id = self.filter(log_course_id=course).all()
             workspace_id = json.loads(serializers.serialize('json',
-                                      [name for name in workspace_id]))
+                                                            [name for name in workspace_id]))
             return workspace_id[0]['fields']['workspace_id']
         except Exception as e:
             print("error in getting workspace id ", e)
@@ -79,7 +79,7 @@ class Course(models.Model):
     workspace_id = models.CharField(max_length=100, null=False, blank=False, unique=True)
     semester = models.CharField(max_length=20, blank=False, null=False)
     course_name = models.CharField(max_length=20, blank=False, null=False, unique=True)
-    department = models.CharField(max_length=20,  blank=False, null=False)
+    department = models.CharField(max_length=20, blank=False, null=False)
     bot_token = models.CharField(max_length=255, blank=False, null=False, unique=True)
     admin_user_id = models.CharField(max_length=100, blank=False, null=False)
     objects = CourseManager()
@@ -102,7 +102,6 @@ class GroupManager(models.Manager):
                 continue
         return "Create Group Successfully."
 
-
     def get_group_details(self, group_number, course):
         try:
             group = self.filter(group_number=group_number, registered_course=course).first()
@@ -117,7 +116,7 @@ class GroupManager(models.Manager):
         try:
             group = self.filter(group_number=group_number, registered_course_id=course).first()
             grp = json.loads(serializers.serialize('json',
-                             [group]))
+                                                   [group]))
             students = Student.objects.filter(group=grp[0]['pk'], registered_course=course).all()
             return json.loads(serializers.serialize('json',
                                                     [student for student in students]))
@@ -130,20 +129,21 @@ class GroupManager(models.Manager):
             if course is not None:
                 groups = self.filter(registered_course=course).all()
                 return json.loads(serializers.serialize('json',
-                                  [group for group in groups]))
+                                                        [group for group in groups]))
             else:
                 groups = self.filter().all()
                 grp = json.loads(serializers.serialize('json',
                                                        [group for group in groups]))
-                for i, v in grp[0].items():
-                    if('fields' in i):
-                        grp_num = v['group_number']
-                        reg_course = v['registered_course']
-                        students = self.get_students_of_group(grp_num, reg_course)[0]
-                        v['students'] = []
-                        for i1, v1 in students.items():
-                            if('fields' in i1):
-                                v['students'].append(v1)
+                for grp1 in grp:
+                    for i, v in grp1.items():
+                        if ('fields' in i):
+                            grp_num = v['group_number']
+                            reg_course = v['registered_course']
+                            students = self.get_students_of_group(grp_num, reg_course)[0]
+                            v['students'] = []
+                            for i1, v1 in students.items():
+                                if ('fields' in i1):
+                                    v['students'].append(v1)
                 return grp
         except Exception as e:
             print("Error in getting all groups:", e)
@@ -174,12 +174,12 @@ class StudentManager(models.Manager):
 
     def assign_group(self, participant, course, group_number):
 
-        email_id=participant['email_id']
-        student_unity_id=participant['student_unity_id']
-        name=participant['name']
+        email_id = participant['email_id']
+        student_unity_id = participant['student_unity_id']
+        name = participant['name']
         student = self.filter(email_id=email_id, registered_course=course).all()
-        if(student.values().count()==0):
-            self.create_student(student_unity_id=student_unity_id,course=course,email_id=email_id,name=name)
+        if (student.values().count() == 0):
+            self.create_student(student_unity_id=student_unity_id, course=course, email_id=email_id, name=name)
         group = Group.objects.filter(group_number=group_number, registered_course=course).first()
         if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
             student.update(group=group)
@@ -259,10 +259,9 @@ class AssignmentManager(models.Manager):
 
 
 class Assignment(models.Model):
-
     class Meta:
         db_table = "log_assignment"
-        unique_together = (('workspace_id', 'assignment_name'), )
+        unique_together = (('workspace_id', 'assignment_name'),)
 
     log_assignment_id = models.AutoField(primary_key=True)
     workspace_id = models.CharField(max_length=100, blank=False, null=False)
