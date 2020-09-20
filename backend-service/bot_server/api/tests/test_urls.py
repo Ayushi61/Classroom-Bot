@@ -12,7 +12,7 @@ class TestURLs(SimpleTestCase):
 
     def test_student_url_resolution(self):
         url = reverse('student_url')
-        self.assertEquals(resolve(url).func, api.views.Student)
+        self.assertEquals(resolve(url).func.view_class, api.views.Student)
 
     def test_group_url_resolution(self):
         url = reverse('group_url')
