@@ -135,15 +135,16 @@ class GroupManager(models.Manager):
                 groups = self.filter().all()
                 grp = json.loads(serializers.serialize('json',
                                                        [group for group in groups]))
-                for i, v in grp[0].items():
-                    if('fields' in i):
-                        grp_num = v['group_number']
-                        reg_course = v['registered_course']
-                        students = self.get_students_of_group(grp_num, reg_course)[0]
-                        v['students'] = []
-                        for i1, v1 in students.items():
-                            if('fields' in i1):
-                                v['students'].append(v1)
+                for grp1 in grp:
+                    for i, v in grp1.items():
+                        if('fields' in i):
+                            grp_num = v['group_number']
+                            reg_course = v['registered_course']
+                            students = self.get_students_of_group(grp_num, reg_course)[0]
+                            v['students'] = []
+                            for i1, v1 in students.items():
+                                if('fields' in i1):
+                                    v['students'].append(v1)
                 return grp
         except Exception as e:
             print("Error in getting all groups:", e)
