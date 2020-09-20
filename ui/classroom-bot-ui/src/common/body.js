@@ -5,12 +5,10 @@ import Datasource from "../main/datasource";
 import Commands from "../main/commands";
 import CommandForm from "../main/commandForm";
 import Login from "../main/login";
-import Group from "../main/group";
+import { withRouter } from "react-router";
 
 function Body() {
   const loggedIn = true; // Needs to be brought from service
-
-    const loggedIn = true; // Needs to be brought from service
 
   return (
     <div>
@@ -25,5 +23,4 @@ function Body() {
     </div>
   );
 }
-
 export default Body;
