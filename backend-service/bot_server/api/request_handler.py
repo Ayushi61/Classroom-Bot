@@ -8,15 +8,15 @@ Date: 2020-09-02
 """
 from .models import Course, Group, Student, Assignment
 import traceback
+from rest_framework import exceptions
 
 
 def missing_field_error(field):
     error_response = {
-        "status": 422,
+        "status": 400,
         "message": f"Missing field {field}",
-        "data": ""
     }
-    return error_response
+    raise exceptions.ValidationError(detail=error_response)
 
 
 def create_new_course(data):

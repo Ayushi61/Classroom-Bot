@@ -97,7 +97,6 @@ class GroupManager(models.Manager):
 
         self.create(group_number=group_number, registered_course=course)
         for participant in group_info['participants']:
-            print(participant['email_id'])
             if Student.objects.assign_group(participant['email_id'], course, group_number):
                 continue
         return "Create Group Successfully."

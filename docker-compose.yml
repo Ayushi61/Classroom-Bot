@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  mysql-db:
+  mysql:
     container_name: 'mysql'
     image: mysql:5.7
     ports:
-      - '3306:3306'
+      - 52000:3306
     environment:
        MYSQL_DATABASE: 'classroom_db'
        MYSQL_USER: 'root'
@@ -23,5 +23,18 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - mysql-db
+      - mysql
+  
+  test-backend:
+    build: 
+        context: './backend-service'
+        dockerfile: 'test.Dockerfile'
+    container_name: 'test-backend'
+    image: test-backend:tag
+    env_file: backend-service/sample.env
+    restart: always
+    ports:
+      - "8002:8002"
+    depends_on:
+      - mysql
       

@@ -35,6 +35,8 @@ class GroupSerializer(serializers.Serializer):
     participants = ParticipantsSerializer(required=True, many=True)
 
     def validate(self, attrs):
+        if 'participants' in attrs and len(attrs['participants']) == 0:
+            raise serializers.ValidationError("Group must have atleast one participant.")
         if 'workspace_id' not in attrs and 'course_id' not in attrs:
             raise serializers.ValidationError("Atleast one of course_id or workspace_id must be present")
         return attrs

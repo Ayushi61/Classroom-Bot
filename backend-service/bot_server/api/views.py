@@ -72,7 +72,7 @@ class Group(generics.ListAPIView, generics.CreateAPIView):
             return Response(data=response)
         else:
             print(serializer.errors)
-            return Response(data=serializer.errors)
+            return Response(data=serializer.errors, status=400)
 
 
 class Assignment(generics.ListAPIView, generics.CreateAPIView):
