@@ -15,11 +15,11 @@ group_data = {
                 'workspace_id': W_ID,
                 'group_number': 18,
                 'participants': [
-                    {'email_id': 'email@gmail.com'},
-                    {'email_id': 'email2@gmail.com'}
+                    {'email_id': 'email@gmail.com', 'student_unity_id': 'unityid', 'name': 'First Last'},
+                    {'email_id': 'email2@gmail.com', 'student_unity_id': 'unityid2', 'name': 'First2 Last2'}
                 ]
             }
-assignment_data = {'team_id': W_ID, 'assignment_name': 'HW1',
+assignment_data = {'workspace_id': W_ID, 'assignment_name': 'HW1',
                    'due_by': '2020-02-01T10:10Z', 'homework_url': 'https://hw1.url.com',
                    'created_by': 'abcd'}
 
@@ -48,7 +48,6 @@ class TestPostViews(TestCase):
     def test_post_group(self):
         self.client.post(self.course_url, data=course_data, content_type='application/json')
         self.client.post(self.student_url, data=student1_data, content_type='application/json')
-        self.client.post(self.student_url, data=student2_data, content_type='application/json')
 
         response = self.client.post(self.group_url, data=group_data, content_type='application/json')
         self.assertEquals(response.data, 'Create Group Successfully.')

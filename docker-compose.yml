@@ -24,17 +24,3 @@ services:
       - "8000:8000"
     depends_on:
       - mysql
-  
-  test-backend:
-    build: 
-        context: './backend-service'
-        dockerfile: 'test.Dockerfile'
-    container_name: 'test-backend'
-    image: test-backend:tag
-    env_file: backend-service/sample.env
-    restart: always
-    ports:
-      - "8002:8002"
-    depends_on:
-      - mysql
-      

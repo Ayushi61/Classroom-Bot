@@ -190,9 +190,9 @@ def get_all_groups(workspace_id, course_id):
     }
 
 
-def get_homeworks_for_team_id(team_id):
+def get_homeworks_for_team_id(workspace_id):
 
-    response = Assignment.objects.get_assignment_for_team(team_id=team_id)
+    response = Assignment.objects.get_assignment_for_team(workspace_id=workspace_id)
 
     return {
         "status": 0,
