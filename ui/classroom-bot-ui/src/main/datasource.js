@@ -90,8 +90,10 @@ class Datasource extends Component {
   }
 
   saveData() {
-    let res = this.service.saveAll(this.state)
-    console.log(res);
+    this.service.saveAll(this.state)
+    this.service.getData().then((response) => {
+      this.setState(response);
+    });
   }
 
   componentDidMount() {
