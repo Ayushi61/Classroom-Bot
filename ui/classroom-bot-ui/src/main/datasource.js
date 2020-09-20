@@ -21,6 +21,7 @@ class Datasource extends Component {
     this.downloadTemplate = this.downloadTemplate.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.convertToWord = this.convertToWord.bind(this);
+    this.saveData = this.saveData.bind(this);
   }
 
   triggerInputFile(event) {
@@ -42,6 +43,8 @@ class Datasource extends Component {
         let j = 0;
         let t = row.split(',');
         t.forEach(function (item) {
+          if (item.trim() === 'null' || item.trim() === '"null"')
+            item = '';
           r[temp.columns[j++]] = item;
         });
         temp.rows.push(r);
@@ -86,6 +89,11 @@ class Datasource extends Component {
     link.click();
   }
 
+  saveData() {
+    let res = this.service.saveAll(this.state)
+    console.log(res);
+  }
+
   componentDidMount() {
 
     if (this.props.match.params.name === "datasource") {
@@ -119,18 +127,18 @@ class Datasource extends Component {
         ]
       });
     } else if (this.props.match.params.name === "group") {
-      this.GroupService = new GroupService();
-      this.GroupService.getData().then((response) => {
+      this.service = new GroupService();
+      this.service.getData().then((response) => {
         this.setState(response);
       });
     } else if (this.props.match.params.name === "course") {
-      this.courseService = new CourseService();
-      this.courseService.getData().then((response) => {
+      this.service = new CourseService();
+      this.service.getData().then((response) => {
         this.setState(response);
       });
     } else if (this.props.match.params.name === "students") {
-      this.StudentService = new StudentService();
-      this.StudentService.getData().then((response) => {
+      this.service = new StudentService();
+      this.service.getData().then((response) => {
         this.setState(response);
       });
     }
@@ -167,7 +175,7 @@ class Datasource extends Component {
                     Save
                   </Button>
                 ) : (
-                    <Button variant="primary" type="button" className="custom-btn">
+                    <Button variant="primary" type="button" className="custom-btn" onClick={this.saveData}>
                       Save
                     </Button>
                   )}

@@ -51,7 +51,29 @@ class StudentService {
     }
 
     saveAll(data) {
-
+        let rows = data.rows;
+        let success = [];
+        rows.forEach(element => {
+            let formData = new FormData();
+            for (var key in element) {
+                let key2 = key;
+                if (key.trim() === 'student_unity_id')
+                    key2 = 'unity_id';
+                if (key.trim() === 'registered_course')
+                    key2 = 'course_id';
+                formData.append(key2, element[key]);
+            }
+            fetch(this.api, {
+                method: 'POST',
+                body: formData
+            }).then(response => {
+                console.log(response);
+                success.push(response);
+            }).catch(error => {
+                success.push(error);
+            });
+        });
+        return success;
     }
 
 }
