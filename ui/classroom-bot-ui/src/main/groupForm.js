@@ -30,8 +30,22 @@ class GroupForm extends Component {
     let course = "new";
     if (this.props.match != null)
       course = this.props.match.params.course;
+
+    this.StudentService.getData().then(response => {
+      this.setState({
+        participants: response.rows
+      });
+    });
+
+    this.CourseService.getData().then(response => {
+      this.setState({
+        courses: response.rows
+      });
+    });
+
     if (course !== "new") {
       this.GroupService.getGroupData(course, number).then((response) => {
+        let i = 0;
         Object.keys(response).forEach(element => {
           if (element !== 'students') {
             let ele = document.getElementById(element);
@@ -40,21 +54,21 @@ class GroupForm extends Component {
               ele.disabled = true;
             }
           } else {
+            response[element].forEach(student => {
+              i++;
+              let ele = document.getElementById('member' + i);
+              if (ele !== null) {
+                ele.value = student.fields.student_unity_id + '|' + student.fields.email_id + '|' + student.fields.name;
+              }
+            });
           }
+          this.state.max_members.forEach(member => {
+            let ele = document.getElementById('member' + (member+1));
+            ele.disabled = true;
+          });
         });
       });
     } else {
-      this.StudentService.getData().then(response => {
-        this.setState({
-          participants: response.rows
-        });
-      });
-
-      this.CourseService.getData().then(response => {
-        this.setState({
-          courses: response.rows
-        });
-      });
     }
   }
 
@@ -85,15 +99,14 @@ class GroupForm extends Component {
         data.participants.push(participant);
       }
     });
-    console.log(data);
     this.GroupService.saveOne(data).then((response) => {
-      console.log(response);
       if (response.length > 0) {
         this.setState({
           show_alert: true,
           alert_message: response
         });
       }
+      this.props.history.push('/table/group');
     });
   }
 

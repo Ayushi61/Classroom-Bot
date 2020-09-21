@@ -60,6 +60,7 @@ class CourseForm extends Component {
           alert_message: "Some error occured and data not saved"
         });
       }
+      this.props.history.push('/table/course');
     });
   }
 
