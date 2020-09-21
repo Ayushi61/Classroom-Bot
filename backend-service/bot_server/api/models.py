@@ -18,13 +18,9 @@ class CourseManager(models.Manager):
         return False
 
     def create_course(self, workspace_id, course_name, department, semester, bot_token, admin_user_id):
-        try:
-            self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
-                        department=department, bot_token=bot_token, admin_user_id=admin_user_id)
-            return True
-        except Exception as e:
-            print("error in creating course ", e, flush=True)
-            return False
+        self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
+                    department=department, bot_token=bot_token, admin_user_id=admin_user_id)
+        return "Create Course Successfully."
 
     def get_course_details(self, workspace_id, course_name, department, semester):
         try:
@@ -164,13 +160,10 @@ class Group(models.Model):
 class StudentManager(models.Manager):
 
     def create_student(self, student_unity_id, course, name, email_id, group=None, slack_user_id=None):
-        try:
-            self.create(student_unity_id=student_unity_id, registered_course=course,
-                        name=name, email_id=email_id, group=None, slack_user_id=None)
-            return True
-        except Exception as e:
-            print("Error in creating student %s", e, flush=True)
-            return False
+
+        self.create(student_unity_id=student_unity_id, registered_course=course,
+                    name=name, email_id=email_id, group=None, slack_user_id=None)
+        return "Create Student Successfully."
 
     def assign_group(self, participant, course, group_number):
 

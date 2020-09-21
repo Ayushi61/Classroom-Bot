@@ -8,24 +8,28 @@ Date: 2020-09-02
 """
 from .models import Course, Group, Student, Assignment
 import traceback
+from rest_framework import exceptions
 
 
 def missing_field_error(field):
     error_response = {
-        "status": 422,
+        "status": 400,
         "message": f"Missing field {field}",
-        "data": ""
     }
-    return error_response
+    raise exceptions.ValidationError(detail=error_response)
 
 
 def create_new_course(data):
-    return Course.objects.create_course(workspace_id=data["workspace_id"],
-                                        course_name=data["course_name"],
-                                        department=data["department"],
-                                        semester=data["semester"],
-                                        bot_token=data["bot_token"],
-                                        admin_user_id=data["admin_user_id"])
+    try:
+        return Course.objects.create_course(workspace_id=data["workspace_id"],
+                                            course_name=data["course_name"],
+                                            department=data["department"],
+                                            semester=data["semester"],
+                                            bot_token=data["bot_token"],
+                                            admin_user_id=data["admin_user_id"])
+    except Exception as e:
+        traceback.print_exc()
+        return f"Could not create the a course/workspace: {e}"
 
 
 def get_course_details(workspace_id, data):
@@ -57,15 +61,19 @@ def delete_course(data):
 
 def create_student(data):
 
-    if 'workspace_id' in data:
-        course = Course.objects.get(workspace_id=data['workspace_id'])
-    else:
-        course = Course.objects.get(log_course_id=data['course_id'])
+    try:
+        if 'workspace_id' in data:
+            course = Course.objects.get(workspace_id=data['workspace_id'])
+        else:
+            course = Course.objects.get(log_course_id=data['course_id'])
 
-    return Student.objects.create_student(student_unity_id=data['student_unity_id'],
-                                          course=course,
-                                          name=data['name'],
-                                          email_id=data['email_id'])
+        return Student.objects.create_student(student_unity_id=data['student_unity_id'],
+                                              course=course,
+                                              name=data['name'],
+                                              email_id=data['email_id'])
+    except Exception as e:
+        traceback.print_exc()
+        return f"Could not create the a course/workspace: {e}"
 
 
 def update_student_details(data):
@@ -181,9 +189,9 @@ def get_all_groups(workspace_id, course_id):
     }
 
 
-def get_homeworks_for_team_id(team_id):
+def get_homeworks_for_team_id(workspace_id):
 
-    response = Assignment.objects.get_assignment_for_team(team_id=team_id)
+    response = Assignment.objects.get_assignment_for_team(workspace_id=workspace_id)
 
     return {
         "status": 0,
