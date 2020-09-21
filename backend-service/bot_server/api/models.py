@@ -178,14 +178,21 @@ class StudentManager(models.Manager):
         student_unity_id = participant['student_unity_id']
         name = participant['name']
         student = self.filter(email_id=email_id, registered_course=course).all()
-        if (student.values().count() == 0):
-            self.create_student(student_unity_id=student_unity_id, course=course, email_id=email_id, name=name)
         group = Group.objects.filter(group_number=group_number, registered_course=course).first()
-        if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
-            self.get(email_id=email_id, registered_course=course).group.add(group)
-            return True
+        if (student.values().count() == 0):
+            instance = self.create(student_unity_id=student_unity_id, registered_course=course, email_id=email_id,
+                                   name=name)
+            if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
+                instance.group.add(group)
+                return True
+            else:
+                return Exception
         else:
-            raise Exception
+            if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
+                self.get(email_id=email_id, registered_course=course).group.add(group)
+                return True
+            else:
+                return Exception
 
     def update_slack_user_id(self, email_id, course, slack_user_id):
         try:
