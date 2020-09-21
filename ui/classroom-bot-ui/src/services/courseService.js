@@ -6,29 +6,8 @@ class CourseService {
     this.data = {
       excel_upload: false,
       loaded: false,
-      columns: [
-        "No.",
-        "Action",
-        "Class Name",
-        "Team ID",
-        "Semester"
-      ],
-      rows: [
-        {
-          "No.": "1",
-          "Link": "/form/class",
-          "Class Name": "CSC SE Fall 2020",
-          "Team ID": "T001",
-          "Semester": "Fall 2020"
-        },
-        {
-          "No.": "2",
-          "Link": "/form/class",
-          "Class Name": "CSC SE Fall 2019",
-          "Team ID": "T002",
-          "Semester": "Fall 2019"
-        }
-      ]
+      columns: [],
+      rows: []
     };
   }
 
@@ -69,10 +48,6 @@ class CourseService {
         return responseData.data[0].fields;
       })
       .catch(error => console.warn(error));
-  }
-
-  isValid() {
-
   }
 
   saveOne(data) {

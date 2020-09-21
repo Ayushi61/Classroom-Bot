@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/form'
 import Button from 'react-bootstrap/button'
-import LoginService from '../services/loginservice'
+import LoginService from '../services/loginService'
 import Alert from 'react-bootstrap/alert'
 
 class Login extends Component {
