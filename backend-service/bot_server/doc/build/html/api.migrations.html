@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>api.migrations package &#8212; Classroom Bot 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api.tests package" href="api.tests.html" />
+    <link rel="prev" title="api package" href="api.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="api-migrations-package">
+<h1>api.migrations package<a class="headerlink" href="#api-migrations-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-api.migrations.0001_initial">
+<span id="api-migrations-0001-initial-module"></span><h2>api.migrations.0001_initial module<a class="headerlink" href="#module-api.migrations.0001_initial" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0001_initial.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0001_initial.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0001_initial.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0001_initial.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = []</em><a class="headerlink" href="#api.migrations.0001_initial.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0001_initial.Migration.initial">
+<code class="sig-name descname">initial</code><em class="property"> = True</em><a class="headerlink" href="#api.migrations.0001_initial.Migration.initial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0001_initial.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;CreateModel  name='Course', fields=[('log_course_id', &lt;django.db.models.fields.AutoField&gt;), ('workspace_id', &lt;django.db.models.fields.CharField&gt;), ('semester', &lt;django.db.models.fields.CharField&gt;), ('course_name', &lt;django.db.models.fields.CharField&gt;), ('department', &lt;django.db.models.fields.CharField&gt;), ('bot_token', &lt;django.db.models.fields.CharField&gt;), ('admin_user_id', &lt;django.db.models.fields.CharField&gt;)], options={'db_table': 'log_course', 'unique_together': {('course_name', 'department', 'semester', 'workspace_id')}}&gt;, &lt;CreateModel  name='Group', fields=[('log_group_id', &lt;django.db.models.fields.AutoField&gt;), ('group_number', &lt;django.db.models.fields.IntegerField&gt;), ('registered_course', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'db_table': 'log_group', 'unique_together': {('group_number', 'registered_course_id')}}&gt;, &lt;CreateModel  name='Assignment', fields=[('log_assignment_id', &lt;django.db.models.fields.AutoField&gt;), ('team_id', &lt;django.db.models.fields.CharField&gt;), ('assignment_name', &lt;django.db.models.fields.CharField&gt;), ('due_by', &lt;django.db.models.fields.DateTimeField&gt;), ('homework_url', &lt;django.db.models.fields.URLField&gt;), ('created_by', &lt;django.db.models.fields.CharField&gt;)], options={'db_table': 'log_assignment', 'unique_together': {('team_id', 'assignment_name')}}&gt;, &lt;CreateModel  name='Student', fields=[('log_student_id', &lt;django.db.models.fields.AutoField&gt;), ('student_unity_id', &lt;django.db.models.fields.CharField&gt;), ('name', &lt;django.db.models.fields.CharField&gt;), ('email_id', &lt;django.db.models.fields.EmailField&gt;), ('slack_user_id', &lt;django.db.models.fields.CharField&gt;), ('group', &lt;django.db.models.fields.related.ForeignKey&gt;), ('registered_course', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'db_table': 'log_student', 'unique_together': {('registered_course_id', 'email_id')}}&gt;]</em><a class="headerlink" href="#api.migrations.0001_initial.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations.0002_auto_20200920_1131">
+<span id="api-migrations-0002-auto-20200920-1131-module"></span><h2>api.migrations.0002_auto_20200920_1131 module<a class="headerlink" href="#module-api.migrations.0002_auto_20200920_1131" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0002_auto_20200920_1131.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0002_auto_20200920_1131.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0002_auto_20200920_1131.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0002_auto_20200920_1131.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = [('api', '0001_initial')]</em><a class="headerlink" href="#api.migrations.0002_auto_20200920_1131.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0002_auto_20200920_1131.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;RenameField  model_name='assignment', old_name='team_id', new_name='workspace_id'&gt;, &lt;AlterUniqueTogether  name='assignment', unique_together={('workspace_id', 'assignment_name')}&gt;]</em><a class="headerlink" href="#api.migrations.0002_auto_20200920_1131.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations.0003_partof">
+<span id="api-migrations-0003-partof-module"></span><h2>api.migrations.0003_partof module<a class="headerlink" href="#module-api.migrations.0003_partof" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0003_partof.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0003_partof.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0003_partof.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0003_partof.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = [('api', '0002_auto_20200920_1131')]</em><a class="headerlink" href="#api.migrations.0003_partof.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0003_partof.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;CreateModel  name='PartOf', fields=[('log_pof_id', &lt;django.db.models.fields.AutoField&gt;), ('group', &lt;django.db.models.fields.related.ForeignKey&gt;), ('student', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'db_table': 'log_partOf', 'unique_together': {('group',)}}&gt;]</em><a class="headerlink" href="#api.migrations.0003_partof.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations.0004_remove_student_group">
+<span id="api-migrations-0004-remove-student-group-module"></span><h2>api.migrations.0004_remove_student_group module<a class="headerlink" href="#module-api.migrations.0004_remove_student_group" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0004_remove_student_group.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0004_remove_student_group.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0004_remove_student_group.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0004_remove_student_group.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = [('api', '0003_partof')]</em><a class="headerlink" href="#api.migrations.0004_remove_student_group.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0004_remove_student_group.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='student', name='group'&gt;]</em><a class="headerlink" href="#api.migrations.0004_remove_student_group.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations.0005_partof_registered_course">
+<span id="api-migrations-0005-partof-registered-course-module"></span><h2>api.migrations.0005_partof_registered_course module<a class="headerlink" href="#module-api.migrations.0005_partof_registered_course" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0005_partof_registered_course.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0005_partof_registered_course.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0005_partof_registered_course.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0005_partof_registered_course.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = [('api', '0004_remove_student_group')]</em><a class="headerlink" href="#api.migrations.0005_partof_registered_course.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0005_partof_registered_course.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;AddField  model_name='partof', name='registered_course', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;]</em><a class="headerlink" href="#api.migrations.0005_partof_registered_course.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations.0006_auto_20200920_1800">
+<span id="api-migrations-0006-auto-20200920-1800-module"></span><h2>api.migrations.0006_auto_20200920_1800 module<a class="headerlink" href="#module-api.migrations.0006_auto_20200920_1800" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0006_auto_20200920_1800.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0006_auto_20200920_1800.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0006_auto_20200920_1800.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0006_auto_20200920_1800.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = [('api', '0005_partof_registered_course')]</em><a class="headerlink" href="#api.migrations.0006_auto_20200920_1800.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0006_auto_20200920_1800.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;AddField  model_name='student', name='group', field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;, &lt;DeleteModel  name='PartOf'&gt;]</em><a class="headerlink" href="#api.migrations.0006_auto_20200920_1800.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations.0007_auto_20200920_1813">
+<span id="api-migrations-0007-auto-20200920-1813-module"></span><h2>api.migrations.0007_auto_20200920_1813 module<a class="headerlink" href="#module-api.migrations.0007_auto_20200920_1813" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0007_auto_20200920_1813.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0007_auto_20200920_1813.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0007_auto_20200920_1813.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0007_auto_20200920_1813.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = [('api', '0006_auto_20200920_1800')]</em><a class="headerlink" href="#api.migrations.0007_auto_20200920_1813.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0007_auto_20200920_1813.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;RemoveField  model_name='student', name='group'&gt;, &lt;CreateModel  name='PartOf', fields=[('log_pof_id', &lt;django.db.models.fields.AutoField&gt;), ('group', &lt;django.db.models.fields.related.ForeignKey&gt;), ('registered_course', &lt;django.db.models.fields.related.ForeignKey&gt;), ('student', &lt;django.db.models.fields.related.ForeignKey&gt;)], options={'db_table': 'log_partOf', 'unique_together': {('group',)}}&gt;]</em><a class="headerlink" href="#api.migrations.0007_auto_20200920_1813.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations.0008_auto_20200920_1837">
+<span id="api-migrations-0008-auto-20200920-1837-module"></span><h2>api.migrations.0008_auto_20200920_1837 module<a class="headerlink" href="#module-api.migrations.0008_auto_20200920_1837" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.migrations.0008_auto_20200920_1837.Migration">
+<em class="property">class </em><code class="sig-prename descclassname">api.migrations.0008_auto_20200920_1837.</code><code class="sig-name descname">Migration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">app_label</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.migrations.0008_auto_20200920_1837.Migration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.migrations.migration.Migration</span></code></p>
+<dl class="py attribute">
+<dt id="api.migrations.0008_auto_20200920_1837.Migration.dependencies">
+<code class="sig-name descname">dependencies</code><em class="property"> = [('api', '0007_auto_20200920_1813')]</em><a class="headerlink" href="#api.migrations.0008_auto_20200920_1837.Migration.dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.migrations.0008_auto_20200920_1837.Migration.operations">
+<code class="sig-name descname">operations</code><em class="property"> = [&lt;AddField  model_name='student', name='group', field=&lt;django.db.models.fields.related.ManyToManyField&gt;&gt;, &lt;DeleteModel  name='PartOf'&gt;]</em><a class="headerlink" href="#api.migrations.0008_auto_20200920_1837.Migration.operations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.migrations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api.migrations" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Classroom Bot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="all-about-me.html">All about me</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">api package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.admin">api.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.models">api.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.request_dispatcher">api.request_dispatcher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.request_handler">api.request_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.serializer">api.serializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.views">api.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="api.html">api package</a><ul>
+      <li>Previous: <a href="api.html" title="previous chapter">api package</a></li>
+      <li>Next: <a href="api.tests.html" title="next chapter">api.tests package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ayushi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api.migrations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

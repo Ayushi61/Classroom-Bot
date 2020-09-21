@@ -1,7 +1,5 @@
 from django.db import models
 import json
-from django_mysql.models import ListCharField
-from collections import defaultdict
 from django.core import serializers
 
 # Create your models here.
@@ -9,22 +7,27 @@ MAX_STUDENTS_IN_GROUP = 5
 
 '''
     ---models.py---
-    
+
     Structure
-    
+
     Models: Course, Student, Group, Assinment
     Managers: CourseManager, StudentManager, GroupManager, AssignmentManager
-    
+
 '''
 
 
 class CourseManager(models.Manager):
+    '''API's for Class Course
+
+    To perform CRUD operations on Course.
+
+    '''
 
     def is_user_id_admin_of_team(self, workspace_id, user_id):
         """check if user belongs to admin
 
-        :param int workspace_id:
-        :param str user_id:
+        :param str workspace_id: slackbot related id , 1 for each course
+        :param str user_id: Id of the user performing operation on the table
         :return: True on success
         :rtype: bool
         """
@@ -35,11 +38,30 @@ class CourseManager(models.Manager):
         return False
 
     def create_course(self, workspace_id, course_name, department, semester, bot_token, admin_user_id):
+        """Creates Course
+
+        :param str workspace_id: slackbot related id , 1 for each course
+        :param str course_name: Name of the course
+        :param int department: Name of the department that the course belongs to
+        :param str semester: Semester in which the course is offered
+        :param str bot_token: Slackbot related token
+        :param str admin_user_id: user id of the admin
+        :return: message for successful creation
+        :rtype: str
+        """
         self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
                     department=department, bot_token=bot_token, admin_user_id=admin_user_id)
         return "Create Course Successfully."
 
     def get_course_details(self, workspace_id, course_name, department, semester):
+        """ Retrieve the details of the course
+
+        :param workspace_id:
+        :param course_name:
+        :param department:
+        :param semester:
+        :return:
+        """
         try:
             course_name = self.filter(workspace_id=workspace_id, course_name=course_name, department=department,
                                       semester=semester).all()
@@ -50,6 +72,11 @@ class CourseManager(models.Manager):
             return []
 
     def get_all_courses(self, workspace_id=None):
+        """ Retrieve all courses
+
+        :param workspace_id:
+        :return:
+        """
         try:
             if workspace_id is not None:
                 course_details = self.filter(workspace_id=workspace_id).all()
@@ -64,6 +91,11 @@ class CourseManager(models.Manager):
             return []
 
     def get_workspace_id(self, course):
+        """ Get the workspace if , given the course
+
+        :param course:
+        :return:
+        """
         try:
             workspace_id = self.filter(log_course_id=course).all()
             workspace_id = json.loads(serializers.serialize('json',
@@ -74,6 +106,13 @@ class CourseManager(models.Manager):
             return ""
 
     def del_course(self, workspace_id, course_name, department):
+        """ delete the course
+
+        :param workspace_id:
+        :param course_name:
+        :param department:
+        :return:
+        """
         try:
             self.filter(workspace_id=workspace_id, course_name=course_name,
                         department=department).delete()
@@ -112,8 +151,16 @@ class Course(models.Model):
 
 
 class GroupManager(models.Manager):
+    """
+    API's to perform CRUD operations on Group table
+    """
 
     def create_group(self, group_info: dict):
+        """Create the group, and assign participants
+
+        :param group_info:
+        :return:
+        """
 
         group_number = group_info["group_number"]
         if 'workspace_id' in group_info:
@@ -127,8 +174,14 @@ class GroupManager(models.Manager):
             if Student.objects.assign_group(participant, course, group_number):
                 continue
         return "Create Group Successfully."
-    
+
     def get_group_details(self, group_number, course):
+        """ Get group details
+
+        :param group_number:
+        :param course:
+        :return:
+        """
         try:
             group = self.filter(group_number=group_number, registered_course=course).first()
             group_details = json.loads(serializers.serialize('json', [group]))
@@ -139,6 +192,12 @@ class GroupManager(models.Manager):
             return []
 
     def get_students_of_group(self, group_number, course):
+        """Get list of students belonging to a particular group and course
+
+        :param group_number:
+        :param course:
+        :return:
+        """
         try:
             group = self.filter(group_number=group_number, registered_course_id=course).first()
             grp = json.loads(serializers.serialize('json',
@@ -151,6 +210,11 @@ class GroupManager(models.Manager):
             return []
 
     def get_all_groups(self, course):
+        """Retrieve all groups
+
+        :param course:
+        :return:
+        """
         try:
             if course is not None:
                 groups = self.filter(registered_course=course).all()
@@ -175,6 +239,20 @@ class GroupManager(models.Manager):
             print("Error in getting all groups:", e)
             return []
 
+    def del_group(self, group_number, registered_course_id):
+        """delete the group
+
+        :param group_number:
+        :param registered_course_id:
+        :return:
+        """
+        try:
+            self.filter(group_number=group_number, registered_course_id=registered_course_id).delete()
+            return True
+        except Exception as e:
+            print("error in deleting group ", e)
+            return False
+
 
 class Group(models.Model):
     '''
@@ -197,10 +275,13 @@ class Group(models.Model):
 
 
 class StudentManager(models.Manager):
-    
+    """
+    API's to perform CRUD operations on manager tables.
+    """
+
     def get_groups_for_a_slack_user(self, user_id):
         student_records = self.filter(slack_user_id=user_id).all()
-        
+
         if student_records:
             res = json.loads(serializers.serialize('json', [student_record for student_record in student_records]))
             response_text = "You're in following groups: "
@@ -219,25 +300,41 @@ class StudentManager(models.Manager):
                         if g_group in groups:
                             if g_detail["fields"]["name"] not in member_info[g_group]:
                                 member_info[g_group].append(g_detail["fields"]["name"])
-                            
+
                 print(dict(member_info))
-                            
+
                 for key in sorted(member_info):
                     response_text += "\n\n"
                     response_text += "Your team members in group number {}\n".format(key)
                     for index, member in enumerate(member_info[key]):
-                        response_text += "{}. {}\n".format(index+1, member)
+                        response_text += "{}. {}\n".format(index + 1, member)
             return response_text
         else:
             return "Student not registered with classroom bot. Try /me register your_email_id"
 
     def create_student(self, student_unity_id, course, name, email_id, slack_user_id=None):
+        """Create student entry
+
+        :param student_unity_id:
+        :param course:
+        :param name:
+        :param email_id:
+        :param slack_user_id:
+        :return:
+        """
 
         self.create(student_unity_id=student_unity_id, registered_course=course,
                     name=name, email_id=email_id, slack_user_id=None)
         return "Create Student Successfully."
 
     def assign_group(self, participant, course, group_number):
+        """Assign group to a student
+
+        :param participant:
+        :param course:
+        :param group_number:
+        :return:
+        """
 
         email_id = participant['email_id']
         student_unity_id = participant['student_unity_id']
@@ -260,6 +357,13 @@ class StudentManager(models.Manager):
                 return Exception
 
     def update_slack_user_id(self, email_id, course, slack_user_id):
+        """Update user id for the slack
+
+        :param email_id:
+        :param course:
+        :param slack_user_id:
+        :return:
+        """
         try:
             student = self.filter(email_id=email_id, registered_course=course)
             student.update(slack_user_id=slack_user_id)
@@ -269,6 +373,12 @@ class StudentManager(models.Manager):
             return False
 
     def get_student_details(self, email_id, course):
+        """Get student details
+
+        :param email_id:
+        :param course:
+        :return:
+        """
         try:
             student = self.get(email_id=email_id, registered_course=course)
             return json.loads(serializers.serialize('json',
@@ -278,20 +388,30 @@ class StudentManager(models.Manager):
             return []
 
     def get_all_students(self):
+        """Get all student details
+
+        :return:
+        """
         try:
             students = self.filter().all()
             return json.loads(serializers.serialize('json',
                                                     [student for student in students]))
         except Exception as e:
-            print("error in deleting course ", e)
+            print("error in getting studnet details ", e)
             return ""
 
     def delete_student(self, email_id, course):
+        """ Delete student
+
+        :param email_id:
+        :param course:
+        :return:
+        """
         try:
             self.filter(email_id=email_id, registered_course=course).delete()
             return True
         except Exception as e:
-            print("error in deleting course ", e)
+            print("error in deleting student ", e)
             return False
 
 
@@ -324,8 +444,16 @@ class Student(models.Model):
 
 
 class AssignmentManager(models.Manager):
+    """
+    API's to perform CRUD operations on Assignment table
+    """
 
     def create_new_assignment(self, assignment: dict):
+        """Create new Assignment
+
+        :param assignment:
+        :return:
+        """
 
         admin_user_id = assignment["created_by"]
         workspace_id = assignment["workspace_id"]
@@ -337,10 +465,29 @@ class AssignmentManager(models.Manager):
             return "You are not authorized to create assignments."
 
     def get_assignment_for_team(self, workspace_id):
+        """Get assignment assigned to a team
+
+        :param workspace_id:
+        :return:
+        """
 
         homeworks = self.filter(workspace_id=workspace_id).all()
         homeworks = json.loads(serializers.serialize('json', [homework for homework in homeworks]))
         return homeworks
+
+    def delete_assignment(self, workspace_id, assignment_name):
+        """Delete assignment
+
+        :param workspace_id:
+        :param assignment_name:
+        :return:
+        """
+        try:
+            self.filter(workspace_id=workspace_id, assignment_name=assignment_name).delete()
+            return True
+        except Exception as e:
+            print("error in deleting Assignment ", e)
+            return False
 
 
 class Assignment(models.Model):
