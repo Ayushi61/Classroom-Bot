@@ -22,7 +22,7 @@ group_data = {
                 ]
             }
 assignment_data = {'workspace_id': W_ID, 'assignment_name': 'HW1',
-                   'due_by': '2020-02-01T10:10Z', 'homework_url': 'https://hw1.url.com',
+                   'due_by': '2020-02-01T10:10', 'homework_url': 'https://hw1.url.com',
                    'created_by': 'abcd'}
 
 

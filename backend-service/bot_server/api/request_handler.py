@@ -20,12 +20,16 @@ def missing_field_error(field):
 
 
 def create_new_course(data):
-    return Course.objects.create_course(workspace_id=data["workspace_id"],
-                                        course_name=data["course_name"],
-                                        department=data["department"],
-                                        semester=data["semester"],
-                                        bot_token=data["bot_token"],
-                                        admin_user_id=data["admin_user_id"])
+    try:
+        return Course.objects.create_course(workspace_id=data["workspace_id"],
+                                            course_name=data["course_name"],
+                                            department=data["department"],
+                                            semester=data["semester"],
+                                            bot_token=data["bot_token"],
+                                            admin_user_id=data["admin_user_id"])
+    except Exception as e:
+        traceback.print_exc()
+        return f"Could not create the a course/workspace: {e}"
 
 
 def get_course_details(workspace_id, data):
@@ -57,24 +61,28 @@ def delete_course(data):
 
 def create_student(data):
 
-    if 'unity_id' not in data:
-        return missing_field_error('unity_id')
-    if 'name' not in data:
-        return missing_field_error('name')
-    if 'email_id' not in data:
-        return missing_field_error('email_id')
+    try:
+        if 'unity_id' not in data:
+            return missing_field_error('unity_id')
+        if 'name' not in data:
+            return missing_field_error('name')
+        if 'email_id' not in data:
+            return missing_field_error('email_id')
 
-    if 'workspace_id' in data:
-        course = Course.objects.get(workspace_id=data['workspace_id'])
-    elif 'course_id' in data:
-        course = Course.objects.get(log_course_id=data['course_id'])
-    else:
-        return missing_field_error("Course Identifier")
+        if 'workspace_id' in data:
+            course = Course.objects.get(workspace_id=data['workspace_id'])
+        elif 'course_id' in data:
+            course = Course.objects.get(log_course_id=data['course_id'])
+        else:
+            return missing_field_error("Course Identifier")
 
-    return Student.objects.create_student(student_unity_id=data['unity_id'],
-                                          course=course,
-                                          name=data['name'],
-                                          email_id=data['email_id'])
+        return Student.objects.create_student(student_unity_id=data['unity_id'],
+                                            course=course,
+                                            name=data['name'],
+                                            email_id=data['email_id'])
+    except Exception as e:
+        traceback.print_exc()
+        return f"Could not create the a student: {e}"
 
 
 def update_student_details(data):
