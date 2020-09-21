@@ -19,6 +19,9 @@ ui.install:
 ui.build:
 	cd ui/classroom-bot-ui && npm run-script build
 
+ui.test:
+	cd ui/classroom-bot-ui && npm test
+
 ui.local.start:
 	cd ui/classroom-bot-ui && npm start
 

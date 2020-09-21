@@ -53,7 +53,16 @@ class GroupService {
                 data.manual_add = true;
                 return data;
             })
-            .catch(error => console.warn(error));
+            .catch(error => {
+                console.warn(error);
+                let data = {};
+                data.columns = [];
+                data.rows = [];
+                data.excel_upload = false;
+                data.loaded = false;
+                data.manual_add = true;
+                return data;
+            });
     }
 
     getCourseData(workspace_id) {

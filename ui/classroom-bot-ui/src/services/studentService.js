@@ -47,7 +47,16 @@ class StudentService {
                 data.manual_add = false;
                 return data;
             })
-            .catch(error => console.warn(error));
+            .catch(error => {
+                console.warn(error);
+                let data = {};
+                data.columns = [];
+                data.rows = [];
+                data.excel_upload = true;
+                data.loaded = false;
+                data.manual_add = false;
+                return data;
+            });
     }
 
     saveAll(data) {

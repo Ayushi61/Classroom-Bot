@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import CourseService from '../services/courseService'
 import GroupService from "../services/groupService";
 import StudentService from "../services/studentService";
+import Alert from "react-bootstrap/alert";
 
 class Datasource extends Component {
 
@@ -115,16 +116,16 @@ class Datasource extends Component {
             "Description": "Table contains the class details"
           },
           {
-            "No.": "1",
-            "Link": "/table/group",
-            "Table Name": "Group",
-            "Description": "Table contains the Group details"
-          },
-          {
             "No.": "2",
             "Link": "/table/students",
             "Table Name": "Student",
             "Description": "Table contains the students in the class"
+          },
+          {
+            "No.": "3",
+            "Link": "/table/group",
+            "Table Name": "Group",
+            "Description": "Table contains the Group details"
           }
         ]
       });
@@ -194,33 +195,41 @@ class Datasource extends Component {
                   )
               )
             }
-            <div className="col-sm-12 table-div">
-              <Table striped bordered hover size="sm">
-                <thead>
-                  <tr>
-                    {this.state.columns.map(col => (
-                      <th>
-                        {this.convertToWord(col)}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.state.rows.map(row => (
-                    <tr key={Math.random()}>
-                      {this.state.columns.map(k => {
-                        if (k === "Link") {
-                          return <td><a href={row[k]}>Edit</a></td>
-                        } else {
-                          return <td>{row[k]}</td>
-                        }
-                      }
-                      )}
+            {this.state.columns.length > 0 ? (
+              <div className="col-sm-12 table-div">
+                <Table striped bordered hover size="sm">
+                  <thead>
+                    <tr>
+                      {this.state.columns.map(col => (
+                        <th>
+                          {this.convertToWord(col)}
+                        </th>
+                      ))}
                     </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {this.state.rows.map(row => (
+                      <tr key={Math.random()}>
+                        {this.state.columns.map(k => {
+                          if (k === "Link") {
+                            return <td><a href={row[k]}>Open</a></td>
+                          } else {
+                            return <td>{row[k]}</td>
+                          }
+                        }
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </div>
+            ) : (
+              <div className="col-sm-12 table-div">
+                <Alert key="1" variant="primary">
+                  No data to display
+                </Alert>
+              </div>
+            )}
           </div>
         </div>
       </div>
