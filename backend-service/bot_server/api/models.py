@@ -1,16 +1,31 @@
 from django.db import models
 import json
-from django_mysql.models import ListCharField
 from django.core import serializers
 
 # Create your models here.
 MAX_STUDENTS_IN_GROUP = 5
 
+'''
+    ---models.py---
+    
+    Structure
+    
+    Models: Course, Student, Group, Assinment
+    Managers: CourseManager, StudentManager, GroupManager, AssignmentManager
+    
+'''
+
 
 class CourseManager(models.Manager):
 
     def is_user_id_admin_of_team(self, workspace_id, user_id):
+        """check if user belongs to admin
 
+        :param int workspace_id:
+        :param str user_id:
+        :return: True on success
+        :rtype: bool
+        """
         course = self.filter(workspace_id=workspace_id, admin_user_id=user_id).first()
 
         if course:
@@ -67,6 +82,19 @@ class CourseManager(models.Manager):
 
 
 class Course(models.Model):
+    '''
+    Description for class Course
+
+    :ivar log_course_id: Primary key indexing for course
+    :ivar workspace_id: slackbot workspace id -unique
+    :ivar semester: Semester for which course is offered - unique
+    :ivar course_name: name of the course - unique
+    :ivar department: Department that offers this course
+    :ivar bot_token: token for internal communication with slackbot
+    :ivar admin_user_id: user id/role who can edit the course field
+
+    '''
+
     class Meta:
         db_table = "log_course"
         unique_together = (('course_name', 'department', 'semester', 'workspace_id'),)
@@ -147,6 +175,15 @@ class GroupManager(models.Manager):
 
 
 class Group(models.Model):
+    '''
+    Description for class Group
+
+    :ivar log_group_id: Primary key indexing for group
+    :ivar group_number: group number - unique
+    :ivar registered_course: related course - unique
+
+    '''
+
     class Meta:
         db_table = "log_group"
         unique_together = (('group_number', 'registered_course_id'),)
@@ -224,6 +261,19 @@ class StudentManager(models.Manager):
 
 
 class Student(models.Model):
+    '''
+        Description for class Student
+
+        :ivar log_student_id: Primary key indexing for student_id
+        :ivar student_unity_id: unitiy id of student- unique
+        :ivar registered_course: related course
+        :ivar group: list of groups that the user belongs to
+        :ivar name: related course
+        :ivar email_id: users email id- unique
+        :ivar slack_user_id: slack user
+
+        '''
+
     class Meta:
         db_table = "log_student"
         unique_together = (('registered_course_id', 'email_id'),)
@@ -259,6 +309,18 @@ class AssignmentManager(models.Manager):
 
 
 class Assignment(models.Model):
+    '''
+            Description for class Assignment
+
+            :ivar log_assignment_id: Primary key indexing for student_id
+            :ivar workspace_id: slackbot workspace- unique
+            :ivar assignment_name: name of the assignment- unique
+            :ivar due_by: to be submited by - date time
+            :ivar homework_url: url for the assignment
+            :ivar created_by: name of the creator of assignment
+
+            '''
+
     class Meta:
         db_table = "log_assignment"
         unique_together = (('workspace_id', 'assignment_name'),)
