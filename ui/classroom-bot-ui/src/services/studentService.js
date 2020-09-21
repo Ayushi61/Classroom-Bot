@@ -5,29 +5,8 @@ class StudentService {
 
         this.data = {
             excel_upload: true,
-            columns: [
-                "No.",
-                "Student Name",
-                "Student ID",
-                "Class",
-                "Degree Level"
-            ],
-            rows: [
-                {
-                    "No.": "1",
-                    "Student Name": "Prithviraj Chaudhuri",
-                    "Student ID": "pchaudh5",
-                    "Class": "CSC510 Fall 2020",
-                    "Degree Level": "Masters"
-                },
-                {
-                    "No.": "2",
-                    "Student Name": "Adarsh Trivedi",
-                    "Student ID": "atrivedi",
-                    "Class": "CSC510 Fall 2020",
-                    "Degree Level": "PhD"
-                }
-            ]
+            columns: [],
+            rows: []
         };
     }
 

@@ -18,9 +18,10 @@ class CourseForm extends Component {
   }
 
   componentDidMount() {
-    let workspace_id = this.props.match.params.id;
-    if (workspace_id === "new") {
-    } else {
+    let workspace_id = "new";
+    if (this.props.match != null) 
+      workspace_id = this.props.match.params.id;
+    if (workspace_id !== "new") {
       this.CourseService.getCourseData(workspace_id).then((response) => {
         Object.keys(response).forEach(element => {
           let ele = document.getElementById(element);
@@ -32,12 +33,7 @@ class CourseForm extends Component {
       });
     }
   }
-
-  isValid(event) {
-    this.CourseService.isValid();
-    console.log("Validating form");
-  }
-
+  
   submit(event) {
     let form = event.currentTarget;
     event.preventDefault();

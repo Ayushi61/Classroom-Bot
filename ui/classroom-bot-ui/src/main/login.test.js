@@ -2,10 +2,11 @@ import Login from "./login";
 import Enzyme from "enzyme";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Adapter from "enzyme-adapter-react-16";
-Enzyme.configure({ adapter: new Adapter() });
-import React, { Component } from "react";
+import React from "react";
 import { MemoryRouter } from "react-router";
 import { shallow, mount } from "enzyme";
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe("routes using memory router", () => {
   it("should show Login component for / router (using memory router)", () => {

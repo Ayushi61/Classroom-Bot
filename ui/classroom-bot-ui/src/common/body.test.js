@@ -35,21 +35,31 @@ describe("routes using memory router", () => {
 describe("routes using memory router", () => {
   it("should show Command form component for / router (using memory router)", () => {
     const component = mount(
+<<<<<<< HEAD
       <MemoryRouter initialentries="{['/form/course/abc12450145']}">
         render ={" "}
         {(props) => <CourseForm {...props} key={this.props.location.key} />}
+=======
+      <MemoryRouter initialentries="{['/form/course/new']}">
+        <CourseForm />
+>>>>>>> 93c12e0bde09331ed169379db008dc73be2825fb
       </MemoryRouter>
     );
-    expect(component.find(CourseForm)).toHaveLength(0);
+    expect(component.find(CourseForm)).toHaveLength(1);
   });
 });
 
 describe("routes using memory router", () => {
   it("should show group form component for / router (using memory router)", () => {
     const component = mount(
+<<<<<<< HEAD
       <MemoryRouter initialentries="{['/form/group/1']}">
         render ={" "}
         {(props) => <GroupForm {...props} key={this.props.location.key} />}
+=======
+      <MemoryRouter initialentries="{['/form/group/new']}">
+        <GroupForm />
+>>>>>>> 93c12e0bde09331ed169379db008dc73be2825fb
       </MemoryRouter>
     );
     expect(component.find(GroupForm)).toHaveLength(0);

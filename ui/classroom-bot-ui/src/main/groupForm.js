@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/form";
 import Button from "react-bootstrap/button";
 import Alert from "react-bootstrap/alert";
+import GroupService from "../services/groupService";
 
 class GroupForm extends Component {
 
@@ -24,14 +25,23 @@ class GroupForm extends Component {
           unity_id: "ayushi",
           name: "Ayushi Rajendran"
         }
-      ]
+      ],
+      courses: [1, 2, 3]
     };
   }
 
   componentDidMount() {
-    let number = this.props.match.params.number;
-    if (number === "new") {
-    } else {
+    let number = "new";
+    if (this.props.match != null)
+      number = this.props.match.params.number;
+    let course = "";
+    if (this.props.match != null)
+      course = this.props.match.params.course;
+    if (number !== "new") {
+      this.GroupService = new GroupService();
+      this.GroupService.getGroupData(course, number).then((response) => {
+        console.log(response);
+      });
     }
   }
 
@@ -49,13 +59,25 @@ class GroupForm extends Component {
                   Please enter the Group number
               </Form.Text>
               </Form.Group>
+              <Form.Group controlId="course">
+                <Form.Label>Course</Form.Label>
+                <Form.Control required as="select">
+                  <option></option>
+                  {this.state.courses.map(c => (
+                    <option key={Math.random()} value={c}>{c}</option>
+                  ))}
+                </Form.Control>
+                <Form.Text className="text-muted">
+                  Select a participant for the group
+                  </Form.Text>
+              </Form.Group>
               {this.state.max_members.map(i => (
-                <Form.Group controlId={"member"+(i+1)}>
-                  <Form.Label>Member {(i+1)}</Form.Label>
+                <Form.Group key={Math.random()} controlId={"member" + (i + 1)}>
+                  <Form.Label>Member {(i + 1)}</Form.Label>
                   <Form.Control required as="select">
                     <option></option>
                     {this.state.participants.map(p => (
-                      <option value={p.unity_id}>{p.name}</option>
+                      <option key={Math.random()} value={p.unity_id}>{p.name}</option>
                     ))}
                   </Form.Control>
                   <Form.Text className="text-muted">

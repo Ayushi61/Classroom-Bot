@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import Form from "react-bootstrap/form";
 import Button from "react-bootstrap/button";
 import LoginService from "../services/loginservice";
 import Alert from "react-bootstrap/alert";
+=======
+import React, { Component } from 'react'
+import Form from 'react-bootstrap/form'
+import Button from 'react-bootstrap/button'
+import LoginService from '../services/loginService'
+import Alert from 'react-bootstrap/alert'
+>>>>>>> 93c12e0bde09331ed169379db008dc73be2825fb
 
 class Login extends Component {
   constructor(props) {

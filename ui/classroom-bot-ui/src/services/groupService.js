@@ -5,47 +5,24 @@ class GroupService {
 
         this.data = {
             excel_upload: false,
-            columns: [
-                "No.",
-                "Action",
-                "Class Name",
-                "Team ID",
-                "Semester"
-            ],
-            rows: [
-                {
-                    "No.": "1",
-                    "Link": "/form/group",
-                    "Class Name": "CSC SE Fall 2020",
-                    "Team ID": "T001",
-                    "Semester": "Fall 2020"
-                },
-                {
-                    "No.": "2",
-                    "Link": "/form/group",
-                    "Class Name": "CSC SE Fall 2019",
-                    "Team ID": "T002",
-                    "Semester": "Fall 2019"
-                }
-            ]
+            columns: [],
+            rows: []
         };
     }
 
     getData() {
-        return fetch(this.api)
+        return fetch(this.api+'?type=all')
             .then((response) => response.json())
             .then((responseData) => {
                 let data = {};
                 data.columns = [];
                 data.columns.push("Link");
                 data.columns = data.columns.concat(Object.keys(responseData.data[0].fields));
-                delete data.columns[data.columns.indexOf('bot_token')];
-                delete data.columns[data.columns.indexOf('admin_user_id')];
+                delete data.columns[data.columns.indexOf('students')];
                 data.rows = [];
                 responseData.data.forEach(element => {
-                    delete element.fields.bot_token;
-                    delete element.fields.admin_user_id;
-                    element.fields["Link"] = "/form/course/" + element.fields.workspace_id;
+                    delete element.fields.students;
+                    element.fields["Link"] = "/form/group/" + element.fields.registered_course+'/'+element.fields.group_number;
                     data.rows.push(element.fields);
                 });
                 data.excel_upload = false;
@@ -65,17 +42,13 @@ class GroupService {
             });
     }
 
-    getCourseData(workspace_id) {
-        return fetch(this.api + '?workspace_id=' + workspace_id)
+    getGroupData(course_id, group_number) {
+        return fetch(this.api + '?type=group_number&course_id='+course_id+'&group_number='+group_number)
             .then((response) => response.json())
             .then((responseData) => {
                 return responseData.data[0].fields;
             })
             .catch(error => console.warn(error));
-    }
-
-    isValid() {
-
     }
 
     saveOne(data) {
