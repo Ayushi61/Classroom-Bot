@@ -20,7 +20,6 @@ def get_bot_token_from_team_id(team_id):
 
 
 def get_course_id_from_team_id(team_id):
-    
     course_url = os.getenv("BOT_SERVER_COURSE_URL", None)
 
     if course_url:

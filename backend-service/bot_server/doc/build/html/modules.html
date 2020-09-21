@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bot_server &#8212; Classroom Bot 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="bot-server">
+<h1>bot_server<a class="headerlink" href="#bot-server" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">api package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api.migrations.html">api.migrations package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0001_initial">api.migrations.0001_initial module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0002_auto_20200920_1131">api.migrations.0002_auto_20200920_1131 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0003_partof">api.migrations.0003_partof module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0004_remove_student_group">api.migrations.0004_remove_student_group module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0005_partof_registered_course">api.migrations.0005_partof_registered_course module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0006_auto_20200920_1800">api.migrations.0006_auto_20200920_1800 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0007_auto_20200920_1813">api.migrations.0007_auto_20200920_1813 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations.0008_auto_20200920_1837">api.migrations.0008_auto_20200920_1837 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.migrations.html#module-api.migrations">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api.tests.html">api.tests package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html#module-api.tests.test_urls">api.tests.test_urls module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html#module-api.tests.test_views">api.tests.test_views module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api.tests.html#module-api.tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.admin">api.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.models">api.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.request_dispatcher">api.request_dispatcher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.request_handler">api.request_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.serializer">api.serializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.views">api.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bot_server.html">bot_server package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bot_server.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bot_server.html#module-bot_server.asgi">bot_server.asgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bot_server.html#module-bot_server.settings">bot_server.settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bot_server.html#module-bot_server.urls">bot_server.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bot_server.html#module-bot_server.wsgi">bot_server.wsgi module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bot_server.html#module-bot_server">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">constants module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Classroom Bot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="all-about-me.html">All about me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">api package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ayushi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

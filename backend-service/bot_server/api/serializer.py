@@ -2,6 +2,9 @@ from rest_framework import serializers
 
 
 class CourseSerializer(serializers.Serializer):
+    """
+    Course Serializer
+    """
     workspace_id = serializers.CharField(max_length=100, required=True)
     semester = serializers.CharField(required=True)
     course_name = serializers.CharField(max_length=1000, required=True)
@@ -17,6 +20,9 @@ class CourseSerializer(serializers.Serializer):
 
 
 class StudentSerializer(serializers.Serializer):
+    """
+    Student serializer
+    """
     student_unity_id = serializers.CharField(max_length=1000, required=True)
     course_id = serializers.IntegerField(required=False)
     workspace_id = serializers.CharField(required=False)
@@ -31,7 +37,6 @@ class StudentSerializer(serializers.Serializer):
         pass
 
     def validate(self, data):
-
         if 'workspace_id' not in data and 'course_id' not in data:
             raise serializers.ValidationError("Either course_id or workspace_id should be present in the request.")
 
@@ -39,6 +44,9 @@ class StudentSerializer(serializers.Serializer):
 
 
 class ParticipantsSerializer(serializers.Serializer):
+    """
+    Participant serializer
+    """
     email_id = serializers.EmailField(required=True)
     student_unity_id = serializers.CharField(max_length=1000, required=True)
     name = serializers.CharField(max_length=1000, required=True)
@@ -51,6 +59,9 @@ class ParticipantsSerializer(serializers.Serializer):
 
 
 class GroupSerializer(serializers.Serializer):
+    """
+    Group Serializer
+    """
     group_number = serializers.IntegerField(required=True)
     workspace_id = serializers.CharField(max_length=100, required=False)
     course_id = serializers.IntegerField(required=False)
@@ -71,6 +82,9 @@ class GroupSerializer(serializers.Serializer):
 
 
 class AssignmentSerializer(serializers.Serializer):
+    """
+    Assignment serializer
+    """
     workspace_id = serializers.CharField(max_length=100, required=True)
     assignment_name = serializers.CharField(max_length=100, required=True)
     due_by = serializers.DateTimeField(format="%Y-%m-%dT%H:%M:%S", required=True)

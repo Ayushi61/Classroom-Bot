@@ -1,0 +1,1590 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>api package &#8212; Classroom Bot 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="api.migrations package" href="api.migrations.html" />
+    <link rel="prev" title="Welcome to Classroom Bot’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="api-package">
+<h1>api package<a class="headerlink" href="#api-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.migrations.html">api.migrations package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0001_initial">api.migrations.0001_initial module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0002_auto_20200920_1131">api.migrations.0002_auto_20200920_1131 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0003_partof">api.migrations.0003_partof module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0004_remove_student_group">api.migrations.0004_remove_student_group module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0005_partof_registered_course">api.migrations.0005_partof_registered_course module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0006_auto_20200920_1800">api.migrations.0006_auto_20200920_1800 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0007_auto_20200920_1813">api.migrations.0007_auto_20200920_1813 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations.0008_auto_20200920_1837">api.migrations.0008_auto_20200920_1837 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.migrations.html#module-api.migrations">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.tests.html">api.tests package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.tests.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.tests.html#module-api.tests.test_urls">api.tests.test_urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.tests.html#module-api.tests.test_views">api.tests.test_views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.tests.html#module-api.tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-api.admin">
+<span id="api-admin-module"></span><h2>api.admin module<a class="headerlink" href="#module-api.admin" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-api.apps">
+<span id="api-apps-module"></span><h2>api.apps module<a class="headerlink" href="#module-api.apps" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.apps.ApiConfig">
+<em class="property">class </em><code class="sig-prename descclassname">api.apps.</code><code class="sig-name descname">ApiConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app_name</span></em>, <em class="sig-param"><span class="n">app_module</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.apps.ApiConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.apps.config.AppConfig</span></code></p>
+<dl class="py attribute">
+<dt id="api.apps.ApiConfig.name">
+<code class="sig-name descname">name</code><em class="property"> = 'api'</em><a class="headerlink" href="#api.apps.ApiConfig.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.models">
+<span id="api-models-module"></span><h2>api.models module<a class="headerlink" href="#module-api.models" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.models.Assignment">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">Assignment</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.Assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Description for class Assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#api.models.Assignment.log_assignment_id" title="api.models.Assignment.log_assignment_id"><strong>log_assignment_id</strong></a> – Primary key indexing for student_id</p></li>
+<li><p><a class="reference internal" href="#api.models.Assignment.workspace_id" title="api.models.Assignment.workspace_id"><strong>workspace_id</strong></a> – slackbot workspace- unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Assignment.assignment_name" title="api.models.Assignment.assignment_name"><strong>assignment_name</strong></a> – name of the assignment- unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Assignment.due_by" title="api.models.Assignment.due_by"><strong>due_by</strong></a> – to be submited by - date time</p></li>
+<li><p><a class="reference internal" href="#api.models.Assignment.homework_url" title="api.models.Assignment.homework_url"><strong>homework_url</strong></a> – url for the assignment</p></li>
+<li><p><a class="reference internal" href="#api.models.Assignment.created_by" title="api.models.Assignment.created_by"><strong>created_by</strong></a> – name of the creator of assignment</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt id="api.models.Assignment.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#api.models.Assignment.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="api.models.Assignment.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#api.models.Assignment.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Assignment.assignment_name">
+<code class="sig-name descname">assignment_name</code><a class="headerlink" href="#api.models.Assignment.assignment_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Assignment.created_by">
+<code class="sig-name descname">created_by</code><a class="headerlink" href="#api.models.Assignment.created_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Assignment.due_by">
+<code class="sig-name descname">due_by</code><a class="headerlink" href="#api.models.Assignment.due_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.Assignment.get_next_by_due_by">
+<code class="sig-name descname">get_next_by_due_by</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: due_by&gt;</em>, <em class="sig-param">is_next=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.Assignment.get_next_by_due_by" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.models.Assignment.get_previous_by_due_by">
+<code class="sig-name descname">get_previous_by_due_by</code><span class="sig-paren">(</span><em class="sig-param">*</em>, <em class="sig-param">field=&lt;django.db.models.fields.DateTimeField: due_by&gt;</em>, <em class="sig-param">is_next=False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.Assignment.get_previous_by_due_by" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Assignment.homework_url">
+<code class="sig-name descname">homework_url</code><a class="headerlink" href="#api.models.Assignment.homework_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Assignment.log_assignment_id">
+<code class="sig-name descname">log_assignment_id</code><a class="headerlink" href="#api.models.Assignment.log_assignment_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Assignment.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;api.models.AssignmentManager object&gt;</em><a class="headerlink" href="#api.models.Assignment.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Assignment.workspace_id">
+<code class="sig-name descname">workspace_id</code><a class="headerlink" href="#api.models.Assignment.workspace_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.models.AssignmentManager">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">AssignmentManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.AssignmentManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.manager.Manager</span></code></p>
+<p>API’s to perform CRUD operations on Assignment table</p>
+<dl class="py method">
+<dt id="api.models.AssignmentManager.create_new_assignment">
+<code class="sig-name descname">create_new_assignment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">assignment</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.AssignmentManager.create_new_assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create new Assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>assignment</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.AssignmentManager.delete_assignment">
+<code class="sig-name descname">delete_assignment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">assignment_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.AssignmentManager.delete_assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> – </p></li>
+<li><p><strong>assignment_name</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.AssignmentManager.get_assignment_for_team">
+<code class="sig-name descname">get_assignment_for_team</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.AssignmentManager.get_assignment_for_team" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get assignment assigned to a team</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.models.Course">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">Course</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.Course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Description for class Course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#api.models.Course.log_course_id" title="api.models.Course.log_course_id"><strong>log_course_id</strong></a> – Primary key indexing for course</p></li>
+<li><p><a class="reference internal" href="#api.models.Assignment.workspace_id" title="api.models.Assignment.workspace_id"><strong>workspace_id</strong></a> – slackbot workspace id -unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Course.semester" title="api.models.Course.semester"><strong>semester</strong></a> – Semester for which course is offered - unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Course.course_name" title="api.models.Course.course_name"><strong>course_name</strong></a> – name of the course - unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Course.department" title="api.models.Course.department"><strong>department</strong></a> – Department that offers this course</p></li>
+<li><p><a class="reference internal" href="#api.models.Course.bot_token" title="api.models.Course.bot_token"><strong>bot_token</strong></a> – token for internal communication with slackbot</p></li>
+<li><p><a class="reference internal" href="#api.models.Course.admin_user_id" title="api.models.Course.admin_user_id"><strong>admin_user_id</strong></a> – user id/role who can edit the course field</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt id="api.models.Course.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#api.models.Course.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="api.models.Course.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#api.models.Course.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.admin_user_id">
+<code class="sig-name descname">admin_user_id</code><a class="headerlink" href="#api.models.Course.admin_user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.bot_token">
+<code class="sig-name descname">bot_token</code><a class="headerlink" href="#api.models.Course.bot_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.course_name">
+<code class="sig-name descname">course_name</code><a class="headerlink" href="#api.models.Course.course_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.department">
+<code class="sig-name descname">department</code><a class="headerlink" href="#api.models.Course.department" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.group_set">
+<code class="sig-name descname">group_set</code><a class="headerlink" href="#api.models.Course.group_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.log_course_id">
+<code class="sig-name descname">log_course_id</code><a class="headerlink" href="#api.models.Course.log_course_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;api.models.CourseManager object&gt;</em><a class="headerlink" href="#api.models.Course.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.semester">
+<code class="sig-name descname">semester</code><a class="headerlink" href="#api.models.Course.semester" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.student_set">
+<code class="sig-name descname">student_set</code><a class="headerlink" href="#api.models.Course.student_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Course.workspace_id">
+<code class="sig-name descname">workspace_id</code><a class="headerlink" href="#api.models.Course.workspace_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.models.CourseManager">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">CourseManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.CourseManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.manager.Manager</span></code></p>
+<p>API’s for Class Course</p>
+<p>To perform CRUD operations on Course.</p>
+<dl class="py method">
+<dt id="api.models.CourseManager.create_course">
+<code class="sig-name descname">create_course</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">course_name</span></em>, <em class="sig-param"><span class="n">department</span></em>, <em class="sig-param"><span class="n">semester</span></em>, <em class="sig-param"><span class="n">bot_token</span></em>, <em class="sig-param"><span class="n">admin_user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.CourseManager.create_course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates Course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> (<em>str</em>) – slackbot related id , 1 for each course</p></li>
+<li><p><strong>course_name</strong> (<em>str</em>) – Name of the course</p></li>
+<li><p><strong>department</strong> (<em>int</em>) – Name of the department that the course belongs to</p></li>
+<li><p><strong>semester</strong> (<em>str</em>) – Semester in which the course is offered</p></li>
+<li><p><strong>bot_token</strong> (<em>str</em>) – Slackbot related token</p></li>
+<li><p><strong>admin_user_id</strong> (<em>str</em>) – user id of the admin</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>message for successful creation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.CourseManager.del_course">
+<code class="sig-name descname">del_course</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">course_name</span></em>, <em class="sig-param"><span class="n">department</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.CourseManager.del_course" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete the course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> – </p></li>
+<li><p><strong>course_name</strong> – </p></li>
+<li><p><strong>department</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.CourseManager.get_all_courses">
+<code class="sig-name descname">get_all_courses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.CourseManager.get_all_courses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all courses</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.CourseManager.get_course_details">
+<code class="sig-name descname">get_course_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">course_name</span></em>, <em class="sig-param"><span class="n">department</span></em>, <em class="sig-param"><span class="n">semester</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.CourseManager.get_course_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the details of the course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> – </p></li>
+<li><p><strong>course_name</strong> – </p></li>
+<li><p><strong>department</strong> – </p></li>
+<li><p><strong>semester</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.CourseManager.get_workspace_id">
+<code class="sig-name descname">get_workspace_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">course</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.CourseManager.get_workspace_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the workspace if , given the course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>course</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.CourseManager.is_user_id_admin_of_team">
+<code class="sig-name descname">is_user_id_admin_of_team</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.CourseManager.is_user_id_admin_of_team" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if user belongs to admin</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> (<em>str</em>) – slackbot related id , 1 for each course</p></li>
+<li><p><strong>user_id</strong> (<em>str</em>) – Id of the user performing operation on the table</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True on success</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.models.Group">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">Group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Description for class Group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#api.models.Group.log_group_id" title="api.models.Group.log_group_id"><strong>log_group_id</strong></a> – Primary key indexing for group</p></li>
+<li><p><a class="reference internal" href="#api.models.Group.group_number" title="api.models.Group.group_number"><strong>group_number</strong></a> – group number - unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Group.registered_course" title="api.models.Group.registered_course"><strong>registered_course</strong></a> – related course - unique</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt id="api.models.Group.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#api.models.Group.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="api.models.Group.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#api.models.Group.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Group.group_number">
+<code class="sig-name descname">group_number</code><a class="headerlink" href="#api.models.Group.group_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Group.log_group_id">
+<code class="sig-name descname">log_group_id</code><a class="headerlink" href="#api.models.Group.log_group_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Group.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;api.models.GroupManager object&gt;</em><a class="headerlink" href="#api.models.Group.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Group.registered_course">
+<code class="sig-name descname">registered_course</code><a class="headerlink" href="#api.models.Group.registered_course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Group.registered_course_id">
+<code class="sig-name descname">registered_course_id</code><a class="headerlink" href="#api.models.Group.registered_course_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Group.student_set">
+<code class="sig-name descname">student_set</code><a class="headerlink" href="#api.models.Group.student_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.models.GroupManager">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">GroupManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.GroupManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.manager.Manager</span></code></p>
+<p>API’s to perform CRUD operations on Group table</p>
+<dl class="py method">
+<dt id="api.models.GroupManager.create_group">
+<code class="sig-name descname">create_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group_info</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.GroupManager.create_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the group, and assign participants</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>group_info</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.GroupManager.del_group">
+<code class="sig-name descname">del_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group_number</span></em>, <em class="sig-param"><span class="n">registered_course_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.GroupManager.del_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>delete the group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>group_number</strong> – </p></li>
+<li><p><strong>registered_course_id</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.GroupManager.get_all_groups">
+<code class="sig-name descname">get_all_groups</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">course</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.GroupManager.get_all_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve all groups</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>course</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.GroupManager.get_group_details">
+<code class="sig-name descname">get_group_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group_number</span></em>, <em class="sig-param"><span class="n">course</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.GroupManager.get_group_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get group details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>group_number</strong> – </p></li>
+<li><p><strong>course</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.GroupManager.get_students_of_group">
+<code class="sig-name descname">get_students_of_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group_number</span></em>, <em class="sig-param"><span class="n">course</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.GroupManager.get_students_of_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of students belonging to a particular group and course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>group_number</strong> – </p></li>
+<li><p><strong>course</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt id="api.models.MAX_STUDENTS_IN_GROUP">
+<code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">MAX_STUDENTS_IN_GROUP</code><em class="property"> = 5</em><a class="headerlink" href="#api.models.MAX_STUDENTS_IN_GROUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>—models.py—</p>
+<p>Structure</p>
+<p>Models: Course, Student, Group, Assinment
+Managers: CourseManager, StudentManager, GroupManager, AssignmentManager</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.models.Student">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">Student</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.Student" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.base.Model</span></code></p>
+<p>Description for class Student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#api.models.Student.log_student_id" title="api.models.Student.log_student_id"><strong>log_student_id</strong></a> – Primary key indexing for student_id</p></li>
+<li><p><a class="reference internal" href="#api.models.Student.student_unity_id" title="api.models.Student.student_unity_id"><strong>student_unity_id</strong></a> – unitiy id of student- unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Group.registered_course" title="api.models.Group.registered_course"><strong>registered_course</strong></a> – related course</p></li>
+<li><p><a class="reference internal" href="#api.models.Student.group" title="api.models.Student.group"><strong>group</strong></a> – list of groups that the user belongs to</p></li>
+<li><p><a class="reference internal" href="#api.apps.ApiConfig.name" title="api.apps.ApiConfig.name"><strong>name</strong></a> – related course</p></li>
+<li><p><a class="reference internal" href="#api.models.Student.email_id" title="api.models.Student.email_id"><strong>email_id</strong></a> – users email id- unique</p></li>
+<li><p><a class="reference internal" href="#api.models.Student.slack_user_id" title="api.models.Student.slack_user_id"><strong>slack_user_id</strong></a> – slack user</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py exception">
+<dt id="api.models.Student.DoesNotExist">
+<em class="property">exception </em><code class="sig-name descname">DoesNotExist</code><a class="headerlink" href="#api.models.Student.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.ObjectDoesNotExist</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="api.models.Student.MultipleObjectsReturned">
+<em class="property">exception </em><code class="sig-name descname">MultipleObjectsReturned</code><a class="headerlink" href="#api.models.Student.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.core.exceptions.MultipleObjectsReturned</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.email_id">
+<code class="sig-name descname">email_id</code><a class="headerlink" href="#api.models.Student.email_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.group">
+<code class="sig-name descname">group</code><a class="headerlink" href="#api.models.Student.group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the forward and reverse sides of
+a many-to-many relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Pizza</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">toppings</span> <span class="o">=</span> <span class="n">ManyToManyField</span><span class="p">(</span><span class="n">Topping</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;pizzas&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Pizza.toppings</span></code> and <code class="docutils literal notranslate"><span class="pre">Topping.pizzas</span></code> are <code class="docutils literal notranslate"><span class="pre">ManyToManyDescriptor</span></code>
+instances.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.log_student_id">
+<code class="sig-name descname">log_student_id</code><a class="headerlink" href="#api.models.Student.log_student_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.name">
+<code class="sig-name descname">name</code><a class="headerlink" href="#api.models.Student.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.objects">
+<code class="sig-name descname">objects</code><em class="property"> = &lt;api.models.StudentManager object&gt;</em><a class="headerlink" href="#api.models.Student.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.registered_course">
+<code class="sig-name descname">registered_course</code><a class="headerlink" href="#api.models.Student.registered_course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.registered_course_id">
+<code class="sig-name descname">registered_course_id</code><a class="headerlink" href="#api.models.Student.registered_course_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.slack_user_id">
+<code class="sig-name descname">slack_user_id</code><a class="headerlink" href="#api.models.Student.slack_user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="api.models.Student.student_unity_id">
+<code class="sig-name descname">student_unity_id</code><a class="headerlink" href="#api.models.Student.student_unity_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.models.StudentManager">
+<em class="property">class </em><code class="sig-prename descclassname">api.models.</code><code class="sig-name descname">StudentManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.StudentManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.db.models.manager.Manager</span></code></p>
+<p>API’s to perform CRUD operations on manager tables.</p>
+<dl class="py method">
+<dt id="api.models.StudentManager.assign_group">
+<code class="sig-name descname">assign_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span></em>, <em class="sig-param"><span class="n">course</span></em>, <em class="sig-param"><span class="n">group_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.StudentManager.assign_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assign group to a student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>participant</strong> – </p></li>
+<li><p><strong>course</strong> – </p></li>
+<li><p><strong>group_number</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.StudentManager.create_student">
+<code class="sig-name descname">create_student</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">student_unity_id</span></em>, <em class="sig-param"><span class="n">course</span></em>, <em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">email_id</span></em>, <em class="sig-param"><span class="n">slack_user_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.StudentManager.create_student" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create student entry</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>student_unity_id</strong> – </p></li>
+<li><p><strong>course</strong> – </p></li>
+<li><p><strong>name</strong> – </p></li>
+<li><p><strong>email_id</strong> – </p></li>
+<li><p><strong>slack_user_id</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.StudentManager.delete_student">
+<code class="sig-name descname">delete_student</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email_id</span></em>, <em class="sig-param"><span class="n">course</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.StudentManager.delete_student" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email_id</strong> – </p></li>
+<li><p><strong>course</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.StudentManager.get_all_students">
+<code class="sig-name descname">get_all_students</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.models.StudentManager.get_all_students" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all student details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.StudentManager.get_student_details">
+<code class="sig-name descname">get_student_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email_id</span></em>, <em class="sig-param"><span class="n">course</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.StudentManager.get_student_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get student details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email_id</strong> – </p></li>
+<li><p><strong>course</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.models.StudentManager.update_slack_user_id">
+<code class="sig-name descname">update_slack_user_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email_id</span></em>, <em class="sig-param"><span class="n">course</span></em>, <em class="sig-param"><span class="n">slack_user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.models.StudentManager.update_slack_user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update user id for the slack</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email_id</strong> – </p></li>
+<li><p><strong>course</strong> – </p></li>
+<li><p><strong>slack_user_id</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.request_dispatcher">
+<span id="api-request-dispatcher-module"></span><h2>api.request_dispatcher module<a class="headerlink" href="#module-api.request_dispatcher" title="Permalink to this headline">¶</a></h2>
+<p>This modules has functions to dispatches all the supported commands for the
+classroom api’s.</p>
+<p>Author: Ayushi Rajendra Kumar
+Date: 2020-09-02</p>
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_assignent_delete_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_assignent_delete_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_assignent_delete_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- Delete Assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_assignent_post_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_assignent_post_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_assignent_post_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- Create Assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_assignment_get_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_assignment_get_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_assignment_get_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- get Assignment details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_course_create_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_course_create_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_course_create_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- Create course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_course_delete_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_course_delete_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_course_delete_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- Delete course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_course_get_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_course_get_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_course_get_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- get course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_group_create_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_group_create_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_group_create_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- Create group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_group_delete_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_group_delete_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_group_delete_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- delete group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_group_get_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_group_get_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_group_get_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- get group details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_student_create_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_student_create_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_student_create_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- Create student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_student_delete_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_student_delete_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_student_delete_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- delete student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_student_get_request">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_student_get_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_student_get_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- get student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_dispatcher.dispatch_update_student_details">
+<code class="sig-prename descclassname">api.request_dispatcher.</code><code class="sig-name descname">dispatch_update_student_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_dispatcher.dispatch_update_student_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request dispatcher- Update student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>request</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.request_handler">
+<span id="api-request-handler-module"></span><h2>api.request_handler module<a class="headerlink" href="#module-api.request_handler" title="Permalink to this headline">¶</a></h2>
+<p>This modules has functions to handle all the supported commands for the
+classroom api’s.</p>
+<p>Author: Ayushi Rajendra Kumar
+Date: 2020-09-02</p>
+<dl class="py function">
+<dt id="api.request_handler.create_group">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">create_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group_info</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.create_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- create group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>group_info</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.create_new_course">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">create_new_course</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.create_new_course" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- create course</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.create_new_homework">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">create_new_homework</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">homework</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.create_new_homework" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- create Assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>homework</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.create_student">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">create_student</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.create_student" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- Create student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.delete_course">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">delete_course</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.delete_course" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- Delete courses</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.delete_group">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">delete_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.delete_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- Delete group</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.delete_homework">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">delete_homework</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.delete_homework" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- Delete Assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.delete_student">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">delete_student</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.delete_student" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- Delete student</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.get_all_courses">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">get_all_courses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.get_all_courses" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- get all courses</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.get_all_groups">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">get_all_groups</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">course_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.get_all_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- get groups</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> – </p></li>
+<li><p><strong>course_id</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.get_all_students">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">get_all_students</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.get_all_students" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- get all student details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.get_course_details">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">get_course_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.get_course_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- Get Course details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> – </p></li>
+<li><p><strong>data</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.get_homeworks_for_team_id">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">get_homeworks_for_team_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.get_homeworks_for_team_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- get Assignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>workspace_id</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.get_student_details">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">get_student_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email_id</span></em>, <em class="sig-param"><span class="n">workspace_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">course_id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.get_student_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- get student details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email_id</strong> – </p></li>
+<li><p><strong>workspace_id</strong> – </p></li>
+<li><p><strong>course_id</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.get_students_of_group">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">get_students_of_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workspace_id</span></em>, <em class="sig-param"><span class="n">course_id</span></em>, <em class="sig-param"><span class="n">group_number</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.get_students_of_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- get students of groups</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>workspace_id</strong> – </p></li>
+<li><p><strong>course_id</strong> – </p></li>
+<li><p><strong>group_number</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.missing_field_error">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">missing_field_error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">field</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.missing_field_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>error function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>field</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="api.request_handler.update_student_details">
+<code class="sig-prename descclassname">api.request_handler.</code><code class="sig-name descname">update_student_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.request_handler.update_student_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>REST Request habdler- update student details</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.serializer">
+<span id="api-serializer-module"></span><h2>api.serializer module<a class="headerlink" href="#module-api.serializer" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.serializer.AssignmentSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">api.serializer.</code><code class="sig-name descname">AssignmentSerializer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.AssignmentSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.serializers.Serializer</span></code></p>
+<p>Assignment serializer</p>
+<dl class="py method">
+<dt id="api.serializer.AssignmentSerializer.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.AssignmentSerializer.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.serializer.AssignmentSerializer.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.AssignmentSerializer.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.serializer.CourseSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">api.serializer.</code><code class="sig-name descname">CourseSerializer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.CourseSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.serializers.Serializer</span></code></p>
+<p>Course Serializer</p>
+<dl class="py method">
+<dt id="api.serializer.CourseSerializer.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.CourseSerializer.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.serializer.CourseSerializer.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.CourseSerializer.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.serializer.GroupSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">api.serializer.</code><code class="sig-name descname">GroupSerializer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.GroupSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.serializers.Serializer</span></code></p>
+<p>Group Serializer</p>
+<dl class="py method">
+<dt id="api.serializer.GroupSerializer.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.GroupSerializer.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.serializer.GroupSerializer.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.GroupSerializer.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.serializer.GroupSerializer.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attrs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.GroupSerializer.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.serializer.ParticipantsSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">api.serializer.</code><code class="sig-name descname">ParticipantsSerializer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.ParticipantsSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.serializers.Serializer</span></code></p>
+<p>Participant serializer</p>
+<dl class="py method">
+<dt id="api.serializer.ParticipantsSerializer.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.ParticipantsSerializer.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.serializer.ParticipantsSerializer.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.ParticipantsSerializer.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.serializer.StudentSerializer">
+<em class="property">class </em><code class="sig-prename descclassname">api.serializer.</code><code class="sig-name descname">StudentSerializer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.StudentSerializer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.serializers.Serializer</span></code></p>
+<p>Student serializer</p>
+<dl class="py method">
+<dt id="api.serializer.StudentSerializer.create">
+<code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.StudentSerializer.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.serializer.StudentSerializer.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instance</span></em>, <em class="sig-param"><span class="n">validated_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.StudentSerializer.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.serializer.StudentSerializer.validate">
+<code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.serializer.StudentSerializer.validate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.urls">
+<span id="api-urls-module"></span><h2>api.urls module<a class="headerlink" href="#module-api.urls" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-api.views">
+<span id="api-views-module"></span><h2>api.views module<a class="headerlink" href="#module-api.views" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.views.Assignment">
+<em class="property">class </em><code class="sig-prename descclassname">api.views.</code><code class="sig-name descname">Assignment</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.ListAPIView</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.CreateAPIView</span></code></p>
+<p>Assignment view</p>
+<dl class="py method">
+<dt id="api.views.Assignment.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Assignment.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Assignment.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Assignment.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Assignment.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Assignment.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.views.Course">
+<em class="property">class </em><code class="sig-prename descclassname">api.views.</code><code class="sig-name descname">Course</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.ListAPIView</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.CreateAPIView</span></code></p>
+<p>Course view</p>
+<dl class="py method">
+<dt id="api.views.Course.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Course.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Course.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Course.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Course.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Course.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.views.Group">
+<em class="property">class </em><code class="sig-prename descclassname">api.views.</code><code class="sig-name descname">Group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.ListAPIView</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.CreateAPIView</span></code></p>
+<p>Group view</p>
+<dl class="py method">
+<dt id="api.views.Group.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Group.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Group.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Group.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Group.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Group.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="api.views.Student">
+<em class="property">class </em><code class="sig-prename descclassname">api.views.</code><code class="sig-name descname">Student</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Student" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.ListAPIView</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.CreateAPIView</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.UpdateAPIView</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">rest_framework.generics.DestroyAPIView</span></code></p>
+<p>Student view</p>
+<dl class="py method">
+<dt id="api.views.Student.delete">
+<code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Student.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Student.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Student.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Student.patch">
+<code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Student.patch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.views.Student.post">
+<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.views.Student.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="api.views.Student.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#api.views.Student.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#api.serializer.StudentSerializer" title="api.serializer.StudentSerializer"><code class="xref py py-class docutils literal notranslate"><span class="pre">api.serializer.StudentSerializer</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Classroom Bot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">api package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.admin">api.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.apps">api.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.models">api.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.request_dispatcher">api.request_dispatcher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.request_handler">api.request_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.serializer">api.serializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.urls">api.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api.views">api.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-api">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.tests.html">api.tests package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bot_server.html">bot_server package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">constants module</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Classroom Bot’s documentation!</a></li>
+      <li>Next: <a href="api.migrations.html" title="next chapter">api.migrations package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ayushi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

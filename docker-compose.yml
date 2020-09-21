@@ -9,11 +9,11 @@ services:
       - 3000:80
     hostname: ui
 
-  mysql-db:
+  mysql:
     container_name: 'mysql'
     image: mysql:5.7
     ports:
-      - '3306:3306'
+      - 52000:3306
     environment:
        MYSQL_DATABASE: classroom_db
        MYSQL_USER: root
@@ -23,7 +23,7 @@ services:
   backend-service:
     build: 
         context: './backend-service'
-        dockerfile: 'deploy.dockerfile'
+        dockerfile: 'app.Dockerfile'
     container_name: backend-service
     image: backend-service:tag
     env_file: backend-service/sample.env
@@ -31,4 +31,4 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - mysql-db
+      - mysql
