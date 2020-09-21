@@ -94,6 +94,7 @@ class Group(generics.ListAPIView, generics.CreateAPIView):
 
     def delete(self, request, *args, **kwargs):
         response = dispatch_group_delete_request(request)
+
         status_code = None
         if response:
             status_code = 200

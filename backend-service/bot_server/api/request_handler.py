@@ -25,7 +25,7 @@ def missing_field_error(field):
 
 
 def create_new_course(data):
-    """REST Request handler- create course
+    """REST Request habdler- create course
 
     :param data:
     :return:
@@ -44,7 +44,8 @@ def create_new_course(data):
 
 
 def get_course_details(workspace_id, data):
-    """REST Request handler- Get Course details
+    """REST Request habdler- Get Course details
+
 
     :param workspace_id:
     :param data:
@@ -62,7 +63,8 @@ def get_course_details(workspace_id, data):
 
 
 def get_all_courses(workspace_id):
-    """REST Request handler- get all courses
+    """REST Request habdler- get all courses
+
 
     :param workspace_id:
     :return:
@@ -79,6 +81,7 @@ def get_all_courses(workspace_id):
 def delete_course(data):
     """REST Request handler- Delete courses
 
+
     :param data:
     :return:
     """
@@ -87,7 +90,7 @@ def delete_course(data):
 
 
 def create_student(data):
-    """REST Request handler- Create student
+    """REST Request habdler- Create student
 
     :param data:
     :return:
@@ -111,7 +114,7 @@ def create_student(data):
 
 
 def update_student_details(data):
-    """REST Request handler- update student details
+    """REST Request habdler- update student details
 
     :param data:
     :return:
@@ -216,7 +219,7 @@ def create_group(group_info: dict):
 
 
 def get_students_of_group(workspace_id, course_id, group_number):
-    """REST Request handler- get students of groups
+    """REST Request habdler- get students of groups
 
     :param workspace_id:
     :param course_id:
@@ -239,7 +242,7 @@ def get_students_of_group(workspace_id, course_id, group_number):
 
 
 def get_all_groups(workspace_id, course_id):
-    """REST Request handler- get groups
+    """REST Request habdler- get groups
 
     :param workspace_id:
     :param course_id:
