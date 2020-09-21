@@ -19,6 +19,8 @@ list his homework/project groups along with members info.
 
     eg: /my group (after the user has registered itself using **/my register**
     the bot should list the user's homework groups and their members.)
+    
+    ![Register User](/docs/images/register-user-slack.png)
 
 3. /group : This command helps managing groups of the class.
 
