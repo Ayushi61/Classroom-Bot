@@ -180,7 +180,8 @@ class StudentManager(models.Manager):
         student = self.filter(email_id=email_id, registered_course=course).all()
         group = Group.objects.filter(group_number=group_number, registered_course=course).first()
         if (student.values().count() == 0):
-            instance=self.create(student_unity_id=student_unity_id, registered_course=course, email_id=email_id, name=name)
+            instance = self.create(student_unity_id=student_unity_id, registered_course=course, email_id=email_id,
+                                   name=name)
             if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
                 instance.group.add(group)
                 return True
