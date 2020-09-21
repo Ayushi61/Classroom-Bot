@@ -165,7 +165,6 @@ class StudentManager(models.Manager):
                     name=name, email_id=email_id, slack_user_id=None)
         return "Create Student Successfully."
 
-
     def assign_group(self, participant, course, group_number):
 
         email_id = participant['email_id']
