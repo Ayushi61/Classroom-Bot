@@ -32,11 +32,11 @@ def create_new_course(data):
     """
     try:
         response = Course.objects.create_course(workspace_id=data["workspace_id"],
-                                               course_name=data["course_name"],
-                                               department=data["department"],
-                                               semester=data["semester"],
-                                               bot_token=data["bot_token"],
-                                               admin_user_id=data["admin_user_id"])
+                                                course_name=data["course_name"],
+                                                department=data["department"],
+                                                semester=data["semester"],
+                                                bot_token=data["bot_token"],
+                                                admin_user_id=data["admin_user_id"])
         return {'data': response}
     except Exception as e:
         traceback.print_exc()

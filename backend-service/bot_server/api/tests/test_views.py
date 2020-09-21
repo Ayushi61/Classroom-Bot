@@ -61,12 +61,12 @@ class TestPostViews(TestCase):
         response = self.client.post(self.student_url, data=student1_data, content_type='application/json')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Student.objects.all().count(), 1)
-    
+
     def test_incorrect_post_student(self):
         """
         Test behaviour of correct POST request for creating/adding a student to an existing workspace.
         """
-        
+
         self.client.post(self.course_url, data=course_data, content_type='application/json')
         incorrect_student_data = copy.deepcopy(student1_data)
         incorrect_student_data['workspace_id'] = 'abcd123'
