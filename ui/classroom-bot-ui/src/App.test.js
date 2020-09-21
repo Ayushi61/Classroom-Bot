@@ -22,20 +22,12 @@ test("render topbar", () => {
   expect(screen.getByText(/Classroom Slack Bot - Admin/)).toBeInTheDocument();
 });
 
-const links = [
-  { text: "Classroom Slack Bot - Admin", location: "/" },
-  //{ text: "Commands", location: "/commands" },
-  { text: "Data Configuration", location: "/table/datasource" },
-];
-// I use test.each to iterate the test cases above
-test.each(links)("Check if Nav Bar have %s link.", (link) => {
-  render(<TopBar />);
-  //Ensure the text is in the dom, will throw error it can't find
-  const linkDom = screen.getByText(link.text);
+// const links = [
+//   { text: "Classroom Slack Bot - Admin", location: "/" },
+//   //{ text: "Commands", location: "/commands" },
+//   { text: "Data Configuration", location: "/table/datasource" },
+// ];
 
-  //use jest assertion to verify the link property
-  expect(linkDom).toHaveAttribute("href", link.location);
-});
 
 //test("render body", () => {
 //render(<Body />);

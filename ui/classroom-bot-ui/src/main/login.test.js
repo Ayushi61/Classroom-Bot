@@ -4,7 +4,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Adapter from "enzyme-adapter-react-16";
 import React from "react";
 import { MemoryRouter } from "react-router";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 
 Enzyme.configure({ adapter: new Adapter() });
 
