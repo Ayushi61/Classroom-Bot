@@ -22,3 +22,16 @@ def register_user_email_id(team_id, email_id, slack_user_id):
             return "Something went wrong from our end. We will fix it soon. Sorry for inconvenience."
     
     return "Our system is wrongly configured. We will fix it soon. Sorry for inconvenience."
+
+
+def get_groups_for_user(slack_id):
+    
+    student_url = os.getenv("BOT_SERVER_STUDENT_URL", None)
+    
+    if student_url:
+        req = requests.get(student_url, params={
+            "student_id": slack_id
+        })
+        
+        res = req.json()
+        return res["data"]

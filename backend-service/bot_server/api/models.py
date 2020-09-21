@@ -174,7 +174,7 @@ class GroupManager(models.Manager):
             if Student.objects.assign_group(participant, course, group_number):
                 continue
         return "Create Group Successfully."
-
+    
     def get_group_details(self, group_number, course):
         """ Get group details
 
@@ -278,6 +278,39 @@ class StudentManager(models.Manager):
     """
     API's to perform CRUD operations on manager tables.
     """
+    
+    def get_groups_for_a_slack_user(self, user_id):
+        student_records = self.filter(slack_user_id=user_id).all()
+        
+        if student_records:
+            res = json.loads(serializers.serialize('json', [student_record for student_record in student_records]))
+            response_text = "You're in following groups: "
+            for re in res:
+                groups = re["fields"]["group"]
+                if not groups:
+                    response_text = "You're in no group at present. " \
+                                    "Contact your TA is this information is inconsistent in the system."
+                else:
+                    response_text += '{}'.format(groups)
+                g_details = Student.objects.filter(group__in=groups).all()
+                g_details = json.loads(serializers.serialize('json', [group for group in g_details]))
+                member_info = defaultdict(list)
+                for g_detail in g_details:
+                    for g_group in g_detail["fields"]["group"]:
+                        if g_group in groups:
+                            if g_detail["fields"]["name"] not in member_info[g_group]:
+                                member_info[g_group].append(g_detail["fields"]["name"])
+                            
+                print(dict(member_info))
+                            
+                for key in sorted(member_info):
+                    response_text += "\n\n"
+                    response_text += "Your team members in group number {}\n".format(key)
+                    for index, member in enumerate(member_info[key]):
+                        response_text += "{}. {}\n".format(index+1, member)
+            return response_text
+        else:
+            return "Student not registered with classroom bot. Try /me register your_email_id"
 
     def create_student(self, student_unity_id, course, name, email_id, slack_user_id=None):
         """Create student entry

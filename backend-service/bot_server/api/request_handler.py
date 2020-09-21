@@ -272,6 +272,16 @@ def delete_group(data):
     return Group.objects.del_group(group_number=data['group_number'], registered_course_id=course)
 
 
+def get_groups_for_a_slack_user(slack_id):
+    
+    response = Student.objects.get_groups_for_a_slack_user(user_id=slack_id)
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
+
 def get_homeworks_for_team_id(workspace_id):
     """REST Request habdler- get Assignment
 
