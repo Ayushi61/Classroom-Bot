@@ -225,7 +225,6 @@ class Student(models.Model):
     log_student_id = models.AutoField(primary_key=True)
     student_unity_id = models.CharField(max_length=10, unique=True)
     registered_course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True)
-    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=100)
     email_id = models.EmailField(unique=True, default=None)
     slack_user_id = models.CharField(max_length=100, null=True)

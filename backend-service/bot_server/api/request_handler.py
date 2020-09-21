@@ -57,21 +57,12 @@ def delete_course(data):
 
 def create_student(data):
 
-    if 'unity_id' not in data:
-        return missing_field_error('unity_id')
-    if 'name' not in data:
-        return missing_field_error('name')
-    if 'email_id' not in data:
-        return missing_field_error('email_id')
-
     if 'workspace_id' in data:
         course = Course.objects.get(workspace_id=data['workspace_id'])
-    elif 'course_id' in data:
-        course = Course.objects.get(log_course_id=data['course_id'])
     else:
-        return missing_field_error("Course Identifier")
+        course = Course.objects.get(log_course_id=data['course_id'])
 
-    return Student.objects.create_student(student_unity_id=data['unity_id'],
+    return Student.objects.create_student(student_unity_id=data['student_unity_id'],
                                           course=course,
                                           name=data['name'],
                                           email_id=data['email_id'])
