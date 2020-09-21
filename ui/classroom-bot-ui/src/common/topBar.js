@@ -10,9 +10,9 @@ function TopBar() {
                 <Navbar.Brand href="/">Classroom Slack Bot - Admin</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="mr-auto">
+                    {/* <Nav className="mr-auto">
                         <Nav.Link href="/table/datasource">Data Configuration</Nav.Link>
-                    </Nav>
+                    </Nav> */}
                 </Navbar.Collapse>
             </Navbar>
         </div>
