@@ -38,7 +38,11 @@ def dispatch_course_get_request(request):
     semester = request.query_params.get("semester", None)
 
     if course_name and department and semester and workspace_id:
-        return get_course_details(workspace_id, request.data)
+        data = {}
+        data['course_name'] = course_name
+        data['department'] = department
+        data['semester'] = semester
+        return get_course_details(workspace_id, data)
     else:
         return get_all_courses(workspace_id)
 

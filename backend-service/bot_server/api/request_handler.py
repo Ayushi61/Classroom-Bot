@@ -25,25 +25,26 @@ def missing_field_error(field):
 
 
 def create_new_course(data):
-    """REST Request habdler- create course
+    """REST Request handler- create course
 
     :param data:
     :return:
     """
     try:
-        return Course.objects.create_course(workspace_id=data["workspace_id"],
-                                            course_name=data["course_name"],
-                                            department=data["department"],
-                                            semester=data["semester"],
-                                            bot_token=data["bot_token"],
-                                            admin_user_id=data["admin_user_id"])
+        response = Course.objects.create_course(workspace_id=data["workspace_id"],
+                                               course_name=data["course_name"],
+                                               department=data["department"],
+                                               semester=data["semester"],
+                                               bot_token=data["bot_token"],
+                                               admin_user_id=data["admin_user_id"])
+        return {'data': response}
     except Exception as e:
         traceback.print_exc()
-        return f"Could not create the a course/workspace: {e}"
+        return {'data': f'Could not create the course/workspace: {e}', 'status_code': 400}
 
 
 def get_course_details(workspace_id, data):
-    """REST Request habdler- Get Course details
+    """REST Request handler- Get Course details
 
     :param workspace_id:
     :param data:
@@ -61,7 +62,7 @@ def get_course_details(workspace_id, data):
 
 
 def get_all_courses(workspace_id):
-    """REST Request habdler- get all courses
+    """REST Request handler- get all courses
 
     :param workspace_id:
     :return:
@@ -76,7 +77,7 @@ def get_all_courses(workspace_id):
 
 
 def delete_course(data):
-    """REST Request habdler- Delete courses
+    """REST Request handler- Delete courses
 
     :param data:
     :return:
@@ -86,7 +87,7 @@ def delete_course(data):
 
 
 def create_student(data):
-    """REST Request habdler- Create student
+    """REST Request handler- Create student
 
     :param data:
     :return:
@@ -94,20 +95,23 @@ def create_student(data):
     try:
         if 'workspace_id' in data:
             course = Course.objects.get(workspace_id=data['workspace_id'])
-        else:
+        elif 'course_id' in data:
             course = Course.objects.get(log_course_id=data['course_id'])
+        else:
+            raise Exception
 
-        return Student.objects.create_student(student_unity_id=data['student_unity_id'],
-                                              course=course,
-                                              name=data['name'],
-                                              email_id=data['email_id'])
+        response = Student.objects.create_student(student_unity_id=data['student_unity_id'],
+                                                  course=course,
+                                                  name=data['name'],
+                                                  email_id=data['email_id'])
+        return {'data': response}
     except Exception as e:
         traceback.print_exc()
-        return f"Could not create the a course/workspace: {e}"
+        return {'data': f'Could not create the student: {e}', 'status_code': 400}
 
 
 def update_student_details(data):
-    """REST Request habdler- update student details
+    """REST Request handler- update student details
 
     :param data:
     :return:
@@ -203,15 +207,16 @@ def create_group(group_info: dict):
     :return:
     """
     try:
-        return Group.objects.create_group(group_info=group_info)
+        response = Group.objects.create_group(group_info=group_info)
+        return {'data': response}
     except Exception as e:
         traceback.print_exc()
         print(group_info)
-        return f"Could not create the a group: {e}"
+        return {'data': f'Could not create a group: {e}', 'status_code': 400}
 
 
 def get_students_of_group(workspace_id, course_id, group_number):
-    """REST Request habdler- get students of groups
+    """REST Request handler- get students of groups
 
     :param workspace_id:
     :param course_id:
@@ -234,7 +239,7 @@ def get_students_of_group(workspace_id, course_id, group_number):
 
 
 def get_all_groups(workspace_id, course_id):
-    """REST Request habdler- get groups
+    """REST Request handler- get groups
 
     :param workspace_id:
     :param course_id:
@@ -255,7 +260,7 @@ def get_all_groups(workspace_id, course_id):
 
 
 def delete_group(data):
-    """REST Request habdler- Delete group
+    """REST Request handler- Delete group
 
     :param data:
     :return:
@@ -282,7 +287,7 @@ def get_groups_for_a_slack_user(slack_id):
 
 
 def get_homeworks_for_team_id(workspace_id):
-    """REST Request habdler- get Assignment
+    """REST Request handler- get Assignment
 
     :param workspace_id:
     :return:
@@ -297,29 +302,31 @@ def get_homeworks_for_team_id(workspace_id):
 
 
 def create_new_homework(homework: dict):
-    """REST Request habdler- create Assignment
+    """REST Request handler- create Assignment
 
     :param homework:
     :return:
     """
     try:
-        return Assignment.objects.create_new_assignment(assignment=homework)
+        response = Assignment.objects.create_new_assignment(assignment=homework)
+        return {'data': response}
     except Exception as e:
         traceback.print_exc()
         print(homework)
-        return "Could not create the howework. Something went wrong."
+        return {'data': f'Could not create a homework: {e}', 'status_code': 400}
 
 
 def delete_homework(data):
-    """REST Request habdler- Delete Assignment
+    """REST Request handler- Delete Assignment
 
     :param data:
     :return:
     """
     try:
-        return Assignment.objects.delete_assignment(workspace_id=data['workspace_id'],
-                                                    assignment_name=data['assignment_name'])
+        response = Assignment.objects.delete_assignment(workspace_id=data['workspace_id'],
+                                                        assignment_name=data['assignment_name'])
+        return {'data': response}
     except Exception as e:
         traceback.print_exc()
         print(data)
-        return "Could not dekete the howework. Something went wrong."
+        return {'data': f'Could not delete the homework: {e}', 'status_code': 400}
