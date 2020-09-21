@@ -158,11 +158,7 @@ def assignment_handler(request: dict) -> None:
 
 # code for handling my command from slack to class room environment
 
-<<<<<<< HEAD
-supported_my_command_operations = ('register', )
-=======
 supported_my_command_operations = ('register', 'group')
->>>>>>> master
 
 
 def is_valid_my_command_request(parameters):
@@ -176,14 +172,11 @@ def is_valid_my_command_request(parameters):
                 return True
             else:
                 return False
-<<<<<<< HEAD
-=======
         if parameters[0] == "group":
             if len(parameters) == 1:
                 return True
             else:
                 return False
->>>>>>> master
         else:
             return False
     else:
@@ -195,17 +188,6 @@ def parse_my_command_parameters_and_respond(request, parameters):
     response = ""
 
     if is_valid_my_command_request(parameters):
-<<<<<<< HEAD
-        
-        parameters = parameters.split(" ")
-        
-        if parameters[0] == "register":
-            email = parameters[1]
-            team_id = request["team_id"]
-            
-            response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
-            
-=======
 
         parameters = parameters.split(" ")
 
@@ -217,7 +199,6 @@ def parse_my_command_parameters_and_respond(request, parameters):
         elif parameters[0] == "group":
             response = get_groups_for_user(request['user_id'])
 
->>>>>>> master
     else:
         response = "Invalid request format/structure."
     return response
