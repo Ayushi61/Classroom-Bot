@@ -5,15 +5,21 @@ TEST-NETWORK=test-network
 
 .PHONY : help
 help :
-	@echo "backend.lint		: Run static code analyis for backend"
-	@echo "backend.app		: Build and run backend service alongwith mysql server"
-	@echo "backend.test		: Build and Run the tests for backend service"
-	@echo "clean			: Remove docker containers."
+	@echo "backend.lint			: Run static code analyis for backend"
+	@echo "backend-proxy.lint	: Run static code analysis for the slack proxy backend service"
+	@echo "backend.app			: Build and run backend service alongwith mysql server"
+	@echo "backend.test			: Build and Run the tests for backend service"
+	@echo "clean				: Remove docker containers."
 
 .PHONY : backend.lint
 backend.lint:
 	docker build -t backendlinter -f backend-service/lint.Dockerfile ./backend-service/
 	docker run --rm backendlinter
+
+.PHONY : backend-proxy.lint
+backend-proxy.lint:
+	docker build -t backendproxylinter -f backend-service/lint-bot-proxy.Dockerfile ./backend-service/
+	docker run --rm backendproxylinter
 
 .PHONY : backend.app
 backend.app:
@@ -21,7 +27,6 @@ backend.app:
 	docker-compose up -d ${MYSQL-CONTAINER}
 	docker-compose up -d ${BACKEND-SERVICE-CONTAINER}
 
-# temporary hack: run make backend.app twice and finally restart.backend
 .PHONY : restart.backend
 restart.backend:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
@@ -46,11 +51,11 @@ build-run-backend-test:
 	 -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD=group18 backendtest
 
 .PHONY : backend.test
-backend.test: create-network run-mysql build-run-backend-test clean
+backend.test: create-network run-mysql build-run-backend-test
 
 .PHONY : clean
 clean:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
-	- docker rm -f ${MYSQL-CONTAINER}
 	- docker rm -f ${BACKEND-TEST-CONTAINER}
+	- docker rm -f ${MYSQL-CONTAINER}
 	- docker network rm ${TEST-NETWORK}

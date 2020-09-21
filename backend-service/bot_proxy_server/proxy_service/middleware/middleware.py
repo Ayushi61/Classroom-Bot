@@ -17,8 +17,7 @@ class ValidateTeamIDMiddleware(BaseMiddleWare):
         data = request.data
 
         if "team_id" not in data:
-            return Response(data=
-                            {
+            return Response(data={
                                 "status": 1,
                                 "message": "Missing team_id in the request from the slack.",
                                 "data": []

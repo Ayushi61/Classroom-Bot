@@ -56,7 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'proxy_service.middleware.middleware.ValidateTeamIDMiddleware',
 ]
 
 ROOT_URLCONF = 'bot_proxy_server.urls'
