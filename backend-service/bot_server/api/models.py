@@ -163,15 +163,10 @@ class Group(models.Model):
 
 class StudentManager(models.Manager):
 
-    def create_student(self, student_unity_id, course, name, email_id, group=None, slack_user_id=None):
+    def create_student(self, student_unity_id, course, name, email_id, slack_user_id=None):
         try:
-            if (group == None):
-                self.create(student_unity_id=student_unity_id, registered_course=course,
-                            name=name, email_id=email_id, slack_user_id=None)
-            else:
-                instance = self.create(student_unity_id=student_unity_id, registered_course=course,
-                                       name=name, email_id=email_id, slack_user_id=None)
-                instance.objects.group.add(group)
+            self.create(student_unity_id=student_unity_id, registered_course=course,
+                        name=name, email_id=email_id, slack_user_id=None)
             return True
         except Exception as e:
             print("Error in creating student %s", e, flush=True)
