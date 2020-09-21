@@ -5,11 +5,19 @@ import Datasource from "../main/datasource";
 import CourseForm from "../main/courseForm";
 import GroupForm from "../main/groupForm";
 import Login from "../main/login";
+import Cookies from 'js-cookie';
 
 class Body extends Component {
   constructor(props) {
     super(props);
-    this.loggedIn = this.props.app.logged_in;
+    if (Cookies.get('loggedInUser') == null)
+      this.state = {
+        loggedIn: false
+      };
+    else
+    this.state = {
+      loggedIn: true
+    };
   }
 
   render() {
@@ -27,7 +35,7 @@ class Body extends Component {
             path="/login"
             component={() => <Login app={this.props.app} />}
           />
-          {!this.loggedIn ? <Redirect to="/login" /> : <div></div>}
+          {!this.state.loggedIn ? <Redirect to="/login" /> : <div></div>}
         </Router>
       </div>
     );

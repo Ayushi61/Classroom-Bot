@@ -1,19 +1,27 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/form'
 import Button from 'react-bootstrap/button'
+import { Redirect } from "react-router-dom";
 import LoginService from '../services/loginService'
 import Alert from 'react-bootstrap/alert'
+import Cookies from 'js-cookie';
 
 class Login extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      validated: false,
+      show_alert: false,
+      logged_in: false
     };
     this.loginService = new LoginService();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    Cookies.remove('loggedInUser');
   }
 
   handleChange(event) {
@@ -22,39 +30,45 @@ class Login extends Component {
     this.setState(obj);
   }
 
-  async handleSubmit(event) {
-    let alert_div = document.getElementsByClassName("alert-div")[0];
-    alert_div.style.display = "block";
-    alert_div.querySelectorAll(".spinner-border")[0].style.display = "block";
-
-    let response = await this.loginService.loginUser(this.state);
-    if (response == null) {
-      alert_div.querySelectorAll(".spinner-border")[0].style.display = "none";
-      alert_div.querySelectorAll(".alert-text")[0].style.display = "block";
-      alert_div.querySelectorAll(".alert-text")[0].innerHTML =
-        "The process could not be completed";
-    } else {
-      alert_div.querySelectorAll(".spinner-border")[0].style.display = "none";
-      alert_div.querySelectorAll(".alert-text")[0].style.display = "block";
-      alert_div.querySelectorAll(".alert-text")[0].innerHTML = "Logged in";
-      this.props.app.logged_in = true;
-      this.props.app.user = response;
-      window.location.href = "/main";
+  handleSubmit(event) {
+    let form = event.currentTarget;
+    event.preventDefault();
+    event.stopPropagation();
+    if (form.checkValidity() === false) {
+      this.setState({
+        validated: false
+      })
     }
-    return false;
+    let data = {};
+    Array.from(form.elements).forEach(element => {
+      data[element.id] = element.value;
+    });
+    let login = this.loginService.loginUser(data);
+    if (login === false) {
+      this.setState({
+        show_alert: true,
+        alert_message: "Incorrect Username or Password"
+      })
+    } else {
+      Cookies.set('loggedInUser', login);
+      this.setState({
+        logged_in: true
+      })
+    }
   }
 
   render() {
     return (
       <div>
-        {/* {this.props.app.logged_in && (<Redirect to='/main'/>)} */}
+        {this.state.logged_in && (<Redirect to='/main'/>)}
         <div className="row centered">
           <div className="col-sm-3"></div>
           <div className="col-sm-6 form-box">
-            <Form>
+            <Form noValidate validated={this.state.validated.toString()} onSubmit={this.handleSubmit}>
               <Form.Group controlId="username">
                 <Form.Label>Username</Form.Label>
                 <Form.Control
+                  required
                   type="text"
                   placeholder="username"
                   onChange={this.handleChange}
@@ -66,6 +80,7 @@ class Login extends Component {
               <Form.Group controlId="password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   type="password"
                   placeholder="Password"
                   onChange={this.handleChange}
@@ -75,21 +90,14 @@ class Login extends Component {
                 <div className="col-sm-2 custom-pad">
                   <Button
                     variant="primary"
-                    type="Button"
-                    onClick={this.props.handleSubmit}
+                    type="Submit"
                   >
                     Submit
                   </Button>
                 </div>
-                <div className="col-sm-10 custom-pad alert-div">
-                  <Alert key="1" variant="danger">
-                    <div
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                    >
-                      <span className="sr-only">Loading...</span>
-                    </div>
-                    <span className="col-sm-10 alert-text"></span>
+                <div className="col-sm-10 custom-pad">
+                  <Alert key="1" variant="danger" show={this.state.show_alert}>
+                    {this.state.alert_message}
                   </Alert>
                 </div>
               </div>

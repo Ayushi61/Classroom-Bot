@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      logged_in: true,
+      logged_in: false,
       user: null,
       data: [],
       isLoaded: false,

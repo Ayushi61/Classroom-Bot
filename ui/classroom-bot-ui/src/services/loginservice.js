@@ -10,7 +10,7 @@ class LoginService {
         if (obj['username'] === this.user[0].username && obj['password'] === this.user[0].password){
             return this.user;
         }
-        return null;
+        return false;
     }
 
 }
