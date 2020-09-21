@@ -61,6 +61,7 @@ def delete_course(data):
 
 def create_student(data):
 
+
     try:
         if 'unity_id' not in data:
             return missing_field_error('unity_id')
@@ -83,6 +84,8 @@ def create_student(data):
     except Exception as e:
         traceback.print_exc()
         return f"Could not create the a student: {e}"
+
+   
 
 
 def update_student_details(data):

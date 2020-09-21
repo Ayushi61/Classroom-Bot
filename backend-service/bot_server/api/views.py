@@ -37,7 +37,9 @@ class Course(generics.ListAPIView, generics.CreateAPIView):
     #     return Response(data=response)
 
 
+
 class Student(generics.ListAPIView, generics.CreateAPIView):
+
 
     def get(self, request, *args, **kwargs):
         response = dispatch_student_get_request(request)
@@ -47,9 +49,11 @@ class Student(generics.ListAPIView, generics.CreateAPIView):
         serializer = StudentSerializer(data=request.data)
         if serializer.is_valid():
             response = dispatch_student_create_request(request)
+
             return Response(data=response)
         else:
             return Response(data=serializer.errors, status=400)
+
 
     def patch(self, request, *args, **kwargs):
         response = dispatch_update_student_details(request)
