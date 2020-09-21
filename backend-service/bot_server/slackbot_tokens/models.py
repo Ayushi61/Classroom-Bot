@@ -41,6 +41,7 @@ class SlackCredManager(models.Manager):
             op_data['team_id'] = team_id
         return op_data
 
+
 # Create your models here.
 class SlackCred(models.Model):
     class Meta:
