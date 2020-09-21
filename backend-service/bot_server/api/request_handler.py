@@ -243,7 +243,7 @@ def get_students_of_group(workspace_id, course_id, group_number):
 
 def get_all_groups(workspace_id, course_id):
     """REST Request habdler- get groups
-    
+
     :param workspace_id:
     :param course_id:
     :return:
