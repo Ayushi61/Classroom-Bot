@@ -27,7 +27,6 @@ backend.app:
 	docker-compose up -d ${MYSQL-CONTAINER}
 	docker-compose up -d ${BACKEND-SERVICE-CONTAINER}
 
-# temporary hack: run make backend.app twice and finally restart.backend
 .PHONY : restart.backend
 restart.backend:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
@@ -52,11 +51,11 @@ build-run-backend-test:
 	 -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD=group18 backendtest
 
 .PHONY : backend.test
-backend.test: create-network run-mysql build-run-backend-test clean
+backend.test: create-network run-mysql build-run-backend-test
 
 .PHONY : clean
 clean:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
-	- docker rm -f ${MYSQL-CONTAINER}
 	- docker rm -f ${BACKEND-TEST-CONTAINER}
+	- docker rm -f ${MYSQL-CONTAINER}
 	- docker network rm ${TEST-NETWORK}
