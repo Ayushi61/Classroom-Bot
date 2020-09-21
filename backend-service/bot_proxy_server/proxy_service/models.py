@@ -24,12 +24,9 @@ class CommandRequestManager(models.Manager):
 
         req = CommandRequest(command=command, command_parameters=command_parameter, is_valid_request=is_valid_request)
 
-        try:
-            if not req.save():
-                return req.log_command_request_id
-            else:
-                return -1
-        except:
+        if not req.save():
+            return req.log_command_request_id
+        else:
             return -1
 
     def update_request(self, request_id: int, request_parameters: dict) -> int:
