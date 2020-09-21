@@ -273,7 +273,6 @@ def delete_group(data):
 
 
 def get_groups_for_a_slack_user(slack_id):
-    
     response = Student.objects.get_groups_for_a_slack_user(user_id=slack_id)
     return {
         "status": 0,
