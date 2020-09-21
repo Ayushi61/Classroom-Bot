@@ -17,7 +17,6 @@ error_response = {
 
 
 class Course(generics.ListAPIView, generics.CreateAPIView):
-    serializer_class = CourseSerializer
 
     def get(self, request, *args, **kwargs):
         response = dispatch_course_get_request(request)
@@ -31,7 +30,7 @@ class Course(generics.ListAPIView, generics.CreateAPIView):
             response = dispatch_course_create_request(request)
             return Response(data=response)
         else:
-            return Response(data=False)
+            return Response(data=serializer.errors, status=400)
 
     # def delete(self, request, *args, **kwargs):
     #     response = dispatch_course_delete_request(request)
@@ -39,15 +38,18 @@ class Course(generics.ListAPIView, generics.CreateAPIView):
 
 
 class Student(generics.ListAPIView, generics.CreateAPIView):
-    serializer_class = StudentSerializer
 
     def get(self, request, *args, **kwargs):
         response = dispatch_student_get_request(request)
         return Response(data=response)
 
     def post(self, request, *args, **kwargs):
-        response = dispatch_student_create_request(request)
-        return Response(data=response)
+        serializer = StudentSerializer(data=request.data)
+        if serializer.is_valid():
+            response = dispatch_student_create_request(request)
+            return Response(data=response)
+        else:
+            return Response(data=serializer.errors, status=400)
 
     def patch(self, request, *args, **kwargs):
         response = dispatch_update_student_details(request)
@@ -90,4 +92,4 @@ class Assignment(generics.ListAPIView, generics.CreateAPIView):
             return Response(data=response)
         else:
             print(serializer.errors)
-            return Response(data=serializer.errors)
+            return Response(data=serializer.errors, status=400)

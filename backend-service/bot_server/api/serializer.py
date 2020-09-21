@@ -6,6 +6,8 @@ class CourseSerializer(serializers.Serializer):
     semester = serializers.CharField(required=True)
     course_name = serializers.CharField(max_length=1000, required=True)
     department = serializers.CharField(max_length=1000, required=True)
+    bot_token = serializers.CharField(max_length=255, required=True)
+    admin_user_id = serializers.CharField(max_length=100, required=True)
 
     def update(self, instance, validated_data):
         pass
@@ -15,7 +17,16 @@ class CourseSerializer(serializers.Serializer):
 
 
 class StudentSerializer(serializers.Serializer):
-    student_unity_id = serializers.CharField(max_length=1000, required=True)
+    unity_id = serializers.CharField(max_length=10, required=True)
+    workspace_id = serializers.CharField(max_length=100, required=False)
+    course_id = serializers.IntegerField(required=False)
+    name = serializers.CharField(max_length=1000, required=True)
+    email_id = serializers.EmailField(required=True)
+
+    def validate(self, attrs):
+        if 'workspace_id' not in attrs and 'course_id' not in attrs:
+            raise serializers.ValidationError("Atleast one of course_id or workspace_id must be present")
+        return attrs
 
     def update(self, instance, validated_data):
         pass
