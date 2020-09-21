@@ -148,5 +148,4 @@ class TestGetViews(TestCase):
         self.assertEquals(data['student_unity_id'], student1_data['student_unity_id'])
         self.assertEquals(data['name'], student1_data['name'])
         self.assertEquals(data['email_id'], student1_data['email_id'])
-        self.assertEqual(data['registered_course'], )
         self.assertIsNone(data['slack_user_id'])
