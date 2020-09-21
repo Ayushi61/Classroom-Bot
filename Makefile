@@ -19,7 +19,7 @@ ui.install:
 ui.build:
 	cd ui/classroom-bot-ui && npm run-script build
 
-ui.test:
+ui.local.test:
 	cd ui/classroom-bot-ui && npm test
 
 ui.local.start:
@@ -36,6 +36,11 @@ ui.docker.build:
 ui.docker.run:
 	docker-compose rm -f ui
 	docker-compose up ui
+
+ui.docker.test:
+	docker build --file='ui/test.dockerfile' ui  --tag=node-test:local
+	docker run -it --name=node-test node-test:local
+	docker rm node-test
 
 ui.docker.run.all: ui.docker.build
 	docker-compose rm -f ui
