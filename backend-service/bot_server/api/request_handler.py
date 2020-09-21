@@ -60,7 +60,6 @@ def delete_course(data):
 
 
 def create_student(data):
-
     try:
         if 'workspace_id' in data:
             course = Course.objects.get(workspace_id=data['workspace_id'])
@@ -77,7 +76,6 @@ def create_student(data):
 
 
 def update_student_details(data):
-
     if 'email_id' not in data:
         return missing_field_error('email_id')
 
@@ -92,7 +90,8 @@ def update_student_details(data):
 
     response = None
     if 'group_num' in data:
-        response = Student.objects.assign_group(email_id=data['email_id'], course=data['course_id'], group_number=data['group_num'])
+        response = Student.objects.assign_group(email_id=data['participant'], course=data['course_id'],
+                                                group_number=data['group_num'])
     elif 'slack_user_id' in data:
         response = Student.objects.update_slack_user_id(data['email_id'], course, data['slack_user_id'])
     else:
@@ -101,7 +100,6 @@ def update_student_details(data):
 
 
 def get_student_details(email_id, workspace_id=None, course_id=None):
-
     if workspace_id is not None:
         course = Course.objects.get(workspace_id=workspace_id)
     elif course_id is not None:
@@ -130,7 +128,6 @@ def get_all_students():
 
 
 def delete_student(data):
-
     if 'email_id' not in data:
         return missing_field_error('email_id')
 
@@ -143,11 +140,11 @@ def delete_student(data):
 
     return Student.objects.delete_student(email_id=data['email_id'], course=course)
 
+
 # Group APIs
 
 
 def create_group(group_info: dict):
-
     try:
         return Group.objects.create_group(group_info=group_info)
     except Exception as e:
@@ -157,7 +154,6 @@ def create_group(group_info: dict):
 
 
 def get_students_of_group(workspace_id, course_id, group_number):
-
     if workspace_id is not None:
         course = Course.objects.get(workspace_id=workspace_id)
     elif course_id is not None:
@@ -174,7 +170,6 @@ def get_students_of_group(workspace_id, course_id, group_number):
 
 
 def get_all_groups(workspace_id, course_id):
-
     if workspace_id is not None:
         course = Course.objects.get(workspace_id=workspace_id)
     elif course_id is not None:
@@ -200,7 +195,6 @@ def get_groups_for_a_slack_user(slack_id):
 
 
 def get_homeworks_for_team_id(workspace_id):
-
     response = Assignment.objects.get_assignment_for_team(workspace_id=workspace_id)
 
     return {
@@ -211,7 +205,6 @@ def get_homeworks_for_team_id(workspace_id):
 
 
 def create_new_homework(homework: dict):
-
     try:
         return Assignment.objects.create_new_assignment(assignment=homework)
     except Exception as e:
