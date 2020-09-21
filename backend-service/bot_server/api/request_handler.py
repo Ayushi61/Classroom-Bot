@@ -199,7 +199,6 @@ def delete_student(data):
 
     return Student.objects.delete_student(email_id=data['email_id'], course=course)
 
-
 # Group APIs
 
 
