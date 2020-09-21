@@ -7,12 +7,12 @@ MAX_STUDENTS_IN_GROUP = 5
 
 '''
     ---models.py---
-    
+
     Structure
-    
+
     Models: Course, Student, Group, Assinment
     Managers: CourseManager, StudentManager, GroupManager, AssignmentManager
-    
+
 '''
 
 
