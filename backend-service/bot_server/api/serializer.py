@@ -17,16 +17,12 @@ class CourseSerializer(serializers.Serializer):
 
 
 class StudentSerializer(serializers.Serializer):
-    unity_id = serializers.CharField(max_length=10, required=True)
-    workspace_id = serializers.CharField(max_length=100, required=False)
+    student_unity_id = serializers.CharField(max_length=1000, required=True)
     course_id = serializers.IntegerField(required=False)
-    name = serializers.CharField(max_length=1000, required=True)
+    workspace_id = serializers.CharField(required=False)
+    name = serializers.CharField(required=True)
     email_id = serializers.EmailField(required=True)
-
-    def validate(self, attrs):
-        if 'workspace_id' not in attrs and 'course_id' not in attrs:
-            raise serializers.ValidationError("Atleast one of course_id or workspace_id must be present")
-        return attrs
+    slack_user_id = serializers.CharField(required=False)
 
     def update(self, instance, validated_data):
         pass
@@ -34,11 +30,24 @@ class StudentSerializer(serializers.Serializer):
     def create(self, validated_data):
         pass
 
+    def validate(self, data):
+
+        if 'workspace_id' not in data and 'course_id' not in data:
+            raise serializers.ValidationError("Either course_id or workspace_id should be present in the request.")
+
+        return data
+
 
 class ParticipantsSerializer(serializers.Serializer):
     email_id = serializers.EmailField(required=True)
     student_unity_id = serializers.CharField(max_length=1000, required=True)
     name = serializers.CharField(max_length=1000, required=True)
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
 
 
 class GroupSerializer(serializers.Serializer):
