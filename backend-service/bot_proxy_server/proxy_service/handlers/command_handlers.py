@@ -11,7 +11,7 @@ from ..slack_client import send_message
 from proxy_service.models import CommandRequest
 from proxy_service.bot_server_http_calls.assignment import (get_all_assignments_for_team,
                                                             create_new_assignment)
-from proxy_service.bot_server_http_calls.student import (register_user_email_id)
+from proxy_service.bot_server_http_calls.student import (register_user_email_id, get_groups_for_user)
 
 
 supported_group_command_parameters = ('help', 'list')
@@ -158,7 +158,7 @@ def assignment_handler(request: dict) -> None:
 
 # code for handling my command from slack to class room environment
 
-supported_my_command_operations = ('register', )
+supported_my_command_operations = ('register', 'group')
 
 
 def is_valid_my_command_request(parameters):
@@ -169,6 +169,11 @@ def is_valid_my_command_request(parameters):
 
         if parameters[0] == "register":
             if len(parameters) == 2:
+                return True
+            else:
+                return False
+        if parameters[0] == "group":
+            if len(parameters) == 1:
                 return True
             else:
                 return False
@@ -191,6 +196,8 @@ def parse_my_command_parameters_and_respond(request, parameters):
             team_id = request["team_id"]
             
             response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
+        elif parameters[0] == "group":
+            response = get_groups_for_user(request['user_id'])
             
     else:
         response = "Invalid request format/structure."

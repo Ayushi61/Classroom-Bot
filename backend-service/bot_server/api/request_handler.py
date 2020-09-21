@@ -189,6 +189,16 @@ def get_all_groups(workspace_id, course_id):
     }
 
 
+def get_groups_for_a_slack_user(slack_id):
+    
+    response = Student.objects.get_groups_for_a_slack_user(user_id=slack_id)
+    return {
+        "status": 0,
+        "message": "success",
+        "data": response
+    }
+
+
 def get_homeworks_for_team_id(workspace_id):
 
     response = Assignment.objects.get_assignment_for_team(workspace_id=workspace_id)

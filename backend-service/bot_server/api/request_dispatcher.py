@@ -10,7 +10,7 @@ from .request_handler import get_course_details, get_all_courses
 from .request_handler import (get_student_details, get_all_students, get_students_of_group,
                               create_group, create_student, update_student_details,
                               delete_student, get_all_groups, get_homeworks_for_team_id,
-                              create_new_homework)
+                              create_new_homework, get_groups_for_a_slack_user)
 from .request_handler import delete_course
 
 
@@ -45,9 +45,12 @@ def dispatch_student_get_request(request):
     email_id = request.query_params.get("email_id", None)
     workspace_id = request.query_params.get("workspace_id", None)
     course_id = request.query_params.get("course_id", None)
+    student_id = request.query_params.get("student_id", None)
 
     if email_id and (workspace_id or course_id):
         return get_student_details(email_id, workspace_id, course_id)
+    elif student_id:
+        return get_groups_for_a_slack_user(slack_id=student_id)
     else:
         return get_all_students()
 
