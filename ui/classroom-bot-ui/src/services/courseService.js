@@ -22,6 +22,7 @@ class CourseService {
         data.rows = [];
         responseData.data.forEach(element => {
           element.fields["Link"] = "/form/course/" + element.fields.workspace_id;
+          element.fields["id"] = element.pk;
           data.rows.push(element.fields);
         });
         data.excel_upload = false;

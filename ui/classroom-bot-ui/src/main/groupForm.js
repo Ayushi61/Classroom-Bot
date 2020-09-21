@@ -17,19 +17,21 @@ class GroupForm extends Component {
       participants: [],
       courses: []
     };
+    this.submit = this.submit.bind(this);
+    this.GroupService = new GroupService();
+    this.StudentService = new StudentService();
+    this.CourseService = new CourseService();
   }
 
   componentDidMount() {
-    let number = "new";
+    let number = "";
     if (this.props.match != null)
       number = this.props.match.params.number;
-    let course = "";
+    let course = "new";
     if (this.props.match != null)
       course = this.props.match.params.course;
-    if (number !== "new") {
-      this.GroupService = new GroupService();
+    if (course !== "new") {
       this.GroupService.getGroupData(course, number).then((response) => {
-        console.log(Object.keys(response));
         Object.keys(response).forEach(element => {
           if (element !== 'students') {
             let ele = document.getElementById(element);
@@ -42,21 +44,57 @@ class GroupForm extends Component {
         });
       });
     } else {
-      this.StudentService = new StudentService();
       this.StudentService.getData().then(response => {
         this.setState({
           participants: response.rows
         });
       });
 
-      this.CourseService = new CourseService();
       this.CourseService.getData().then(response => {
         this.setState({
           courses: response.rows
         });
       });
-
     }
+  }
+
+  submit(event) {
+    let form = event.currentTarget;
+    event.preventDefault();
+    event.stopPropagation();
+    if (form.checkValidity() === false) {
+      this.setState({
+        validated: false
+      })
+    }
+    let data = {};
+    Array.from(form.elements).forEach(element => {
+      data[element.id] = element.value;
+    });
+    console.log(data);
+    data.course_id = data.registered_course;
+    data.group_number = parseInt(data.group_number);
+    data.participants = [];
+    this.state.max_members.forEach(element => {
+      let participant = {};
+      let member = data['member' + (element + 1)].split('|');
+      if (member.length === 3) {
+        participant.email_id = member[1];
+        participant.student_unity_id = member[0];
+        participant.name = member[2];
+        data.participants.push(participant);
+      }
+    });
+    console.log(data);
+    this.GroupService.saveOne(data).then((response) => {
+      console.log(response);
+      if (response.length > 0) {
+        this.setState({
+          show_alert: true,
+          alert_message: response
+        });
+      }
+    });
   }
 
   render() {
@@ -65,7 +103,7 @@ class GroupForm extends Component {
         <div className="row">
           <div className="col-sm-2"></div>
           <div className="col-sm-8 form-box pad-top">
-            <Form noValidate validated={this.state.validated.toString()}>
+            <Form noValidate validated={this.state.validated.toString()} onSubmit={this.submit}>
               <Form.Group controlId="group_number">
                 <Form.Label>Group Number</Form.Label>
                 <Form.Control required type="text" placeholder="Group no." />
@@ -78,7 +116,7 @@ class GroupForm extends Component {
                 <Form.Control required as="select">
                   <option></option>
                   {this.state.courses.map(c => (
-                    <option key={Math.random()} value={c.workspace_id}>{c.department} {c.course_name}</option>
+                    <option key={Math.random()} value={c.id}>{c.department} {c.course_name}</option>
                   ))}
                 </Form.Control>
                 <Form.Text className="text-muted">
@@ -92,14 +130,14 @@ class GroupForm extends Component {
                     <Form.Control required as="select">
                       <option></option>
                       {this.state.participants.map(p => (
-                        <option key={Math.random()} value={p.unity_id}>{p.name}</option>
+                        <option key={Math.random()} value={p.student_unity_id + "|" + p.email_id + "|" + p.name}>{p.name}</option>
                       ))}
                     </Form.Control>
                   ) : (
                       <Form.Control as="select">
                         <option></option>
                         {this.state.participants.map(p => (
-                          <option key={Math.random()} value={p.unity_id}>{p.name}</option>
+                          <option key={Math.random()} value={p.student_unity_id + "|" + p.email_id + "|" + p.name}>{p.name}</option>
                         ))}
                       </Form.Control>
                     )}
@@ -108,20 +146,19 @@ class GroupForm extends Component {
                   </Form.Text>
                 </Form.Group>
               ))}
-
               <div className="row">
-                <div className="col-sm-1.5">
-                  <Button variant="outline-primary">Cancel</Button>
-                </div>
-                <div className="col-sm-1">
-                  <Button variant="primary" type="Submit">
+                <div className="col-sm-2">
+                  <Button className="custom-form-btn" variant="primary" type="Submit">
                     Save
-                </Button>
+                  </Button>
                 </div>
-                <div className="col-sm-9">
-                  <Alert key="1" variant="danger">
-                    This is a danger alert—check it out!
-                </Alert>
+                <div className="col-sm-2">
+                  <Button className="custom-form-btn" variant="outline-primary" href="/table/course">Cancel</Button>
+                </div>
+                <div className="col-sm-8">
+                  <Alert key="1" variant="danger" show={this.state.show_alert}>
+                    {this.state.alert_message}
+                  </Alert>
                 </div>
               </div>
             </Form>

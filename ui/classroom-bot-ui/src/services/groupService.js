@@ -14,6 +14,8 @@ class GroupService {
         return fetch(this.api+'?type=all')
             .then((response) => response.json())
             .then((responseData) => {
+
+                console.log(responseData);
                 let data = {};
                 data.columns = [];
                 data.columns.push("Link");
@@ -52,13 +54,10 @@ class GroupService {
     }
 
     saveOne(data) {
-        let formData = new FormData();
-        for (var key in data) {
-            formData.append(key, data[key]);
-        }
         return fetch(this.api, {
             method: 'POST',
-            body: formData
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
         }).then(response => {
             let data = response.json();
             data['status'] = 'success';

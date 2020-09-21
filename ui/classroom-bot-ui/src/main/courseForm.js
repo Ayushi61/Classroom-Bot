@@ -9,7 +9,6 @@ class CourseForm extends Component {
   constructor(props) {
     super(props);
     this.CourseService = new CourseService();
-    this.isValid = this.isValid.bind(this);
     this.submit = this.submit.bind(this);
     this.state = {
       validated: false,
@@ -33,7 +32,7 @@ class CourseForm extends Component {
       });
     }
   }
-  
+
   submit(event) {
     let form = event.currentTarget;
     event.preventDefault();
