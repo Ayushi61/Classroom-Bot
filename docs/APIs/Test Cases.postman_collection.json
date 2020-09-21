@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "b961a739-bdf6-4a0a-a615-f82ec9560624",
+		"name": "Test Cases",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all courses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/course",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get student details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "unity_id",
+							"value": "arajend4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_group",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"course_id\" : \"1\",\r\n\"group_number\": 55,\r\n\"participants\": [\r\n                  {\"email_id\": \"pqneqq@gmail.com\",\r\n                    \"student_unity_id\": \"qqq23564\",\r\n                    \"name\":\"dqqqqarsh\"},\r\n                    {\r\n                    \"email_id\": \"pqeqqqq@gmail.com\",\r\n                    \"student_unity_id\": \"Bggg2354\",\r\n                    \"name\":\"kqqqqdarsh\"\r\n                    }\r\n                ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/group",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"group"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_group",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "group_num",
+							"value": "25",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/group?type=all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"group"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch_student_group number",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "unity_id",
+							"value": "abcd",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "group_num",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "email_id",
+							"value": "cde@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "course_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "workspace_id",
+							"value": "ABC123",
+							"type": "text"
+						},
+						{
+							"key": "email_id",
+							"value": "fde@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "ayu2",
+							"type": "text"
+						},
+						{
+							"key": "unity_id",
+							"value": "arajend",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "team_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "workspace_name",
+							"value": "se",
+							"type": "text"
+						},
+						{
+							"key": "bot_communication_token",
+							"value": "2234",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/slackbot_tokens/slackbot_tokens/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"slackbot_tokens",
+						"slackbot_tokens",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_slcak_token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/slackbot_tokens/slackbot_tokens?team_id=1;req_type=get_token_details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"slackbot_tokens",
+						"slackbot_tokens"
+					],
+					"query": [
+						{
+							"key": "team_id",
+							"value": "1;req_type=get_token_details"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_requested_get_group_slackbot",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "type",
+							"value": "get_group_details",
+							"type": "text"
+						},
+						{
+							"key": "group_num",
+							"value": "12",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/slackbot_tokens/slackbot_tokens?team_id=1;req_type=get_requested",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"slackbot_tokens",
+						"slackbot_tokens"
+					],
+					"query": [
+						{
+							"key": "team_id",
+							"value": "1;req_type=get_requested"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "workspace_id",
+							"value": "ABC124",
+							"type": "text"
+						},
+						{
+							"key": "semester",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "course_name",
+							"value": "Algo1",
+							"type": "text"
+						},
+						{
+							"key": "department",
+							"value": "CSC",
+							"type": "text"
+						},
+						{
+							"key": "admin_user_id",
+							"value": "223",
+							"type": "text"
+						},
+						{
+							"key": "bot_token",
+							"value": "124",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/course",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "patch student",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "workspace_id",
+							"value": "ABC123",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "ayu1",
+							"type": "text"
+						},
+						{
+							"key": "unity_id",
+							"value": "adgffg",
+							"type": "text"
+						},
+						{
+							"key": "group_num",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "email_id",
+							"value": "cde@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/student",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

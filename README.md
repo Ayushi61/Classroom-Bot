@@ -12,6 +12,10 @@ Have look at how useful can classbot be for your classroom workspace!!!
 
 [Code of Conduct](CODE_OF_CONDUCT.md)
 
-[How to Contribute?](CONTRIBUTING.md)
+[Before Contributing](CONTRIBUTING.md)
 
 [Citation](CITATION.md)
+
+[Project 1 Assessment](PROJ1-selfAssessment.md)
+
+[Start Contributing](docs/design.md)
