@@ -24,3 +24,14 @@ services:
       - "8000:8000"
     depends_on:
       - mysql
+
+  backend-proxy-service:
+    build: 
+        context: './backend-service'
+        dockerfile: 'app-proxy.Dockerfile'
+    container_name: backend-proxy-service
+    image: backend-proxy-service:tag
+    env_file: backend-service/sample-proxy.env
+    restart: always
+    ports:
+      - "8001:8001"
