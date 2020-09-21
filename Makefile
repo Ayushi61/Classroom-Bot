@@ -46,7 +46,7 @@ backend.test:
 	 -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD=group18 backendtest
 
 .PHONY : backend.test
-run-tests: create-network run-mysql build-run-backend-test clean
+backend.test: create-network run-mysql build-run-backend-test clean
 
 .PHONY : clean
 clean:
