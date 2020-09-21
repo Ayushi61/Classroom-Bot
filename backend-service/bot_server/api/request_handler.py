@@ -46,6 +46,7 @@ def create_new_course(data):
 def get_course_details(workspace_id, data):
     """REST Request handler- Get Course details
 
+
     :param workspace_id:
     :param data:
     :return:
@@ -63,6 +64,7 @@ def get_course_details(workspace_id, data):
 
 def get_all_courses(workspace_id):
     """REST Request handler- get all courses
+
 
     :param workspace_id:
     :return:
