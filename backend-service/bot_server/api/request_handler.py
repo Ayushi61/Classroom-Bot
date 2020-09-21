@@ -61,15 +61,19 @@ def delete_course(data):
 
 def create_student(data):
 
-    if 'workspace_id' in data:
-        course = Course.objects.get(workspace_id=data['workspace_id'])
-    else:
-        course = Course.objects.get(log_course_id=data['course_id'])
+    try:
+        if 'workspace_id' in data:
+            course = Course.objects.get(workspace_id=data['workspace_id'])
+        else:
+            course = Course.objects.get(log_course_id=data['course_id'])
 
-    return Student.objects.create_student(student_unity_id=data['student_unity_id'],
-                                          course=course,
-                                          name=data['name'],
-                                          email_id=data['email_id'])
+        return Student.objects.create_student(student_unity_id=data['student_unity_id'],
+                                              course=course,
+                                              name=data['name'],
+                                              email_id=data['email_id'])
+    except Exception as e:
+        traceback.print_exc()
+        return f"Could not create the a course/workspace: {e}"
 
 
 def update_student_details(data):
