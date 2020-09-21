@@ -1,5 +1,6 @@
 BACKEND-SERVICE-CONTAINER=backend-service
 MYSQL-CONTAINER=mysql
+
 BACKEND-TEST-CONTAINER=test-backend
 TEST-NETWORK=test-network
 
@@ -10,6 +11,51 @@ help :
 	@echo "backend.app			: Build and run backend service alongwith mysql server"
 	@echo "backend.test			: Build and Run the tests for backend service"
 	@echo "clean				: Remove docker containers."
+
+start.all:
+	docker-compose build
+	docker-compose up -d
+
+ui.install:
+	cd ui/classroom-bot-ui && npm install
+
+ui.build:
+	cd ui/classroom-bot-ui && npm run-script build
+
+ui.local.test:
+	cd ui/classroom-bot-ui && npm test
+
+ui.local.start:
+	cd ui/classroom-bot-ui && npm start
+
+ui.docker.lint:
+	docker build --file='ui/lint.dockerfile' ui  --tag=node-lint:local
+	docker run -it --name=node-lint node-lint:local
+	docker rm node-lint
+
+ui.docker.build:
+	docker build --file='ui/deploy.dockerfile' ui --tag=bot-ui:local
+
+ui.docker.run:
+	docker-compose rm -f ui
+	docker-compose up ui
+
+ui.docker.test:
+	docker build --file='ui/test.dockerfile' ui  --tag=node-test:local
+	docker run -it --name=node-test node-test:local
+	docker rm node-test
+
+ui.docker.run.all: ui.docker.build
+	docker-compose rm -f ui
+	docker-compose up ui
+
+ui.docker.down:
+	docker-compose stop ui
+
+
+backend.down:
+	docker-compose stop backend-service
+	docker-compose rm backend-service
 
 .PHONY : backend.lint
 backend.lint:
