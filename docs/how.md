@@ -8,4 +8,4 @@ We have 3 micro-services setup to build the classroom environment.
 3. Admin UI - configure the classroom environments
 
 
-![The Big Picture](https://github.com/Ayushi61/Classroom-Bot/docs/images/thebigpicture.jpg)
+![The Big Picture](/docs/images/thebigpicture.jpg)
