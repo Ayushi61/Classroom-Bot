@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>api.tests package &#8212; Classroom Bot 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="api.migrations package" href="api.migrations.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="api-tests-package">
+<h1>api.tests package<a class="headerlink" href="#api-tests-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-api.tests.test_urls">
+<span id="api-tests-test-urls-module"></span><h2>api.tests.test_urls module<a class="headerlink" href="#module-api.tests.test_urls" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.tests.test_urls.TestURLs">
+<em class="property">class </em><code class="sig-prename descclassname">api.tests.test_urls.</code><code class="sig-name descname">TestURLs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">methodName</span><span class="o">=</span><span class="default_value">'runTest'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_urls.TestURLs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.SimpleTestCase</span></code></p>
+<dl class="py method">
+<dt id="api.tests.test_urls.TestURLs.test_assignment_url_resolution">
+<code class="sig-name descname">test_assignment_url_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_urls.TestURLs.test_assignment_url_resolution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.tests.test_urls.TestURLs.test_course_url_resolution">
+<code class="sig-name descname">test_course_url_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_urls.TestURLs.test_course_url_resolution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.tests.test_urls.TestURLs.test_group_url_resolution">
+<code class="sig-name descname">test_group_url_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_urls.TestURLs.test_group_url_resolution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="api.tests.test_urls.TestURLs.test_student_url_resolution">
+<code class="sig-name descname">test_student_url_resolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_urls.TestURLs.test_student_url_resolution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.tests.test_views">
+<span id="api-tests-test-views-module"></span><h2>api.tests.test_views module<a class="headerlink" href="#module-api.tests.test_views" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="api.tests.test_views.TestPostViews">
+<em class="property">class </em><code class="sig-prename descclassname">api.tests.test_views.</code><code class="sig-name descname">TestPostViews</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">methodName</span><span class="o">=</span><span class="default_value">'runTest'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_views.TestPostViews" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">django.test.testcases.TestCase</span></code></p>
+<p>Tests to verify the functioning of all the post requests in bot_server/api</p>
+<dl class="py method">
+<dt id="api.tests.test_views.TestPostViews.setUp">
+<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_views.TestPostViews.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test setup for each test in this class. It is done for each of the tests</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.tests.test_views.TestPostViews.test_post_assignment">
+<code class="sig-name descname">test_post_assignment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_views.TestPostViews.test_post_assignment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test behaviour of correct POST request for adding an assignment to an existing course.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.tests.test_views.TestPostViews.test_post_course">
+<code class="sig-name descname">test_post_course</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_views.TestPostViews.test_post_course" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test behaviour of correct POST request for creating a course workspace</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.tests.test_views.TestPostViews.test_post_group">
+<code class="sig-name descname">test_post_group</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_views.TestPostViews.test_post_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test behaviour of correct POST request for creating a student group in an existing workspace.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="api.tests.test_views.TestPostViews.test_post_student">
+<code class="sig-name descname">test_post_student</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#api.tests.test_views.TestPostViews.test_post_student" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test behaviour of correct POST request for creating/adding a student to an existing workspace.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-api.tests">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-api.tests" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Classroom Bot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="all-about-me.html">All about me</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="api.html">api package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="api.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.admin">api.admin module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.apps">api.apps module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.models">api.models module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.request_dispatcher">api.request_dispatcher module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.request_handler">api.request_handler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.serializer">api.serializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.urls">api.urls module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api.views">api.views module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-api">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="api.html">api package</a><ul>
+      <li>Previous: <a href="api.migrations.html" title="previous chapter">api.migrations package</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ayushi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/api.tests.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
