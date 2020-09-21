@@ -73,13 +73,7 @@ def create_student(data):
                                               email_id=data['email_id'])
     except Exception as e:
         traceback.print_exc()
-<<<<<<< HEAD
         return f"Could not create the a course/workspace: {e}"
-=======
-        return f"Could not create the a student: {e}"
-
-   
->>>>>>> abc2cb129ce5e25aad8d7b8418094a70d7ff2007
 
 
 def update_student_details(data):

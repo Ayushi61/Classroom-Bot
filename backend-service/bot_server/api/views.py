@@ -37,14 +37,8 @@ class Course(generics.ListAPIView, generics.CreateAPIView):
     #     return Response(data=response)
 
 
-<<<<<<< HEAD
 class Student(generics.ListAPIView, generics.CreateAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
     serializer_class = StudentSerializer
-=======
-
-class Student(generics.ListAPIView, generics.CreateAPIView):
-
->>>>>>> abc2cb129ce5e25aad8d7b8418094a70d7ff2007
 
     def get(self, request, *args, **kwargs):
         response = dispatch_student_get_request(request)
