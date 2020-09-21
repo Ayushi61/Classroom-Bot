@@ -159,10 +159,10 @@ class Group(models.Model):
 
 class StudentManager(models.Manager):
 
-    def create_student(self, student_unity_id, course, name, email_id, group=None, slack_user_id=None):
+    def create_student(self, student_unity_id, course, name, email_id, slack_user_id=None):
 
         self.create(student_unity_id=student_unity_id, registered_course=course,
-                    name=name, email_id=email_id, group=None, slack_user_id=None)
+                    name=name, email_id=email_id, slack_user_id=None)
         return "Create Student Successfully."
 
     def assign_group(self, participant, course, group_number):
