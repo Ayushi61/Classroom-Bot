@@ -13,7 +13,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CommandRequest',
             fields=[
-                ('request_status', models.CharField(auto_created=True, choices=[('registered', 'Registered'), ('completed', 'Completed'), ('invalid', 'Invalid'), ('other', 'Other')], default='registered', max_length=100)),
+                ('request_status', models.CharField(auto_created=True, choices=[('registered', 'Registered'),
+                                                                                ('completed', 'Completed'),
+                                                                                ('invalid', 'Invalid'),
+                                                                                ('other', 'Other')],
+                                                    default='registered', max_length=100)),
                 ('is_valid_request', models.BooleanField(auto_created=True, default=True)),
                 ('log_command_request_id', models.AutoField(primary_key=True, serialize=False)),
                 ('command', models.CharField(max_length=20)),
