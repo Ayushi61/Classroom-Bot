@@ -43,3 +43,6 @@ def assign_command_handler(command):
 
     elif command == "/assignment":
         return assignment_handler
+
+    elif command == "/my":
+        return my_handler

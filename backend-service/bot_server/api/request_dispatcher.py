@@ -88,12 +88,12 @@ def dispatch_group_get_request(request):
 
 def dispatch_assignment_get_request(request):
 
-    team_id = request.query_params.get("workspace_id", None)
+    workspace_id = request.query_params.get("workspace_id", None)
 
-    if not team_id:
+    if not workspace_id:
         return False
     else:
-        return get_homeworks_for_team_id(team_id=team_id)
+        return get_homeworks_for_team_id(workspace_id=workspace_id)
 
 
 def dispatch_assignent_post_request(request):
