@@ -11,6 +11,7 @@ from ..slack_client import send_message
 from proxy_service.models import CommandRequest
 from proxy_service.bot_server_http_calls.assignment import (get_all_assignments_for_team,
                                                             create_new_assignment)
+from proxy_service.bot_server_http_calls.student import (register_user_email_id)
 
 
 supported_group_command_parameters = ('help', 'list')
@@ -152,4 +153,58 @@ def assignment_handler(request: dict) -> None:
     """
     request_parameters = request["text"].replace("\xa0", " ")
     response_text = parse_assignment_command_parameters_and_respond(request, request_parameters)
+    send_command_response(request, response_text)
+
+
+# code for handling my command from slack to class room environment
+
+supported_my_command_operations = ('register', )
+
+
+def is_valid_my_command_request(parameters):
+
+    parameters = parameters.split(" ")
+
+    if parameters[0] in supported_my_command_operations:
+
+        if parameters[0] == "register":
+            if len(parameters) == 2:
+                return True
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+
+
+def parse_my_command_parameters_and_respond(request, parameters):
+
+    response = ""
+
+    if is_valid_my_command_request(parameters):
+        
+        parameters = parameters.split(" ")
+        
+        if parameters[0] == "register":
+            email = parameters[1]
+            team_id = request["team_id"]
+            
+            response = register_user_email_id(email_id=email, team_id=team_id, slack_user_id=request["user_id"])
+            
+    else:
+        response = "Invalid request format/structure."
+    return response
+
+
+def my_handler(request: dict) -> None:
+
+    """
+    This function handles a request from the slack for registering a new user using it's email address.
+    :param request: slack request
+    :return: None
+    """
+
+    request_parameters = request["text"].replace("\xa0", " ")
+    response_text = parse_my_command_parameters_and_respond(request, request_parameters)
     send_command_response(request, response_text)

@@ -18,13 +18,9 @@ class CourseManager(models.Manager):
         return False
 
     def create_course(self, workspace_id, course_name, department, semester, bot_token, admin_user_id):
-        try:
-            self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
-                        department=department, bot_token=bot_token, admin_user_id=admin_user_id)
-            return True
-        except Exception as e:
-            print("error in creating course ", e, flush=True)
-            return False
+        self.create(workspace_id=workspace_id, semester=semester, course_name=course_name,
+                    department=department, bot_token=bot_token, admin_user_id=admin_user_id)
+        return "Create Course Successfully."
 
     def get_course_details(self, workspace_id, course_name, department, semester):
         try:
@@ -163,14 +159,11 @@ class Group(models.Model):
 
 class StudentManager(models.Manager):
 
-    def create_student(self, student_unity_id, course, name, email_id, group=None, slack_user_id=None):
-        try:
-            self.create(student_unity_id=student_unity_id, registered_course=course,
-                        name=name, email_id=email_id, group=None, slack_user_id=None)
-            return True
-        except Exception as e:
-            print("Error in creating student %s", e, flush=True)
-            return False
+    def create_student(self, student_unity_id, course, name, email_id, slack_user_id=None):
+
+        self.create(student_unity_id=student_unity_id, registered_course=course,
+                    name=name, email_id=email_id, slack_user_id=None)
+        return "Create Student Successfully."
 
     def assign_group(self, participant, course, group_number):
 
@@ -178,14 +171,21 @@ class StudentManager(models.Manager):
         student_unity_id = participant['student_unity_id']
         name = participant['name']
         student = self.filter(email_id=email_id, registered_course=course).all()
-        if (student.values().count() == 0):
-            self.create_student(student_unity_id=student_unity_id, course=course, email_id=email_id, name=name)
         group = Group.objects.filter(group_number=group_number, registered_course=course).first()
-        if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
-            self.get(email_id=email_id, registered_course=course).group.add(group)
-            return True
+        if (student.values().count() == 0):
+            instance = self.create(student_unity_id=student_unity_id, registered_course=course, email_id=email_id,
+                                   name=name)
+            if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
+                instance.group.add(group)
+                return True
+            else:
+                return Exception
         else:
-            raise Exception
+            if self.filter(group=group, registered_course=course).all().count() <= MAX_STUDENTS_IN_GROUP:
+                self.get(email_id=email_id, registered_course=course).group.add(group)
+                return True
+            else:
+                return Exception
 
     def update_slack_user_id(self, email_id, course, slack_user_id):
         try:
