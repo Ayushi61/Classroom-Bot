@@ -13,12 +13,6 @@
 <img src="https://img.shields.io/tokei/lines/github.com/Ayushi61/Classroom-Bot" alt="Be Prepared for Industry">
 </center>
 
-### Features
-
-1. Query class resources like group information, assignment due dates and student details
-2. Send reminders through slack bot
-3. UI for admins to input all the data that the bot requires (so cool that you can use csv files).
-
 ### Why a developer cares
 
 1. Quantify the time taken by a user to scroll through all the resources vs using the Classroom-Bot. Contact the owner for more information on the prototype of the website that can make your as well as participants' task easy to do lab experiments.
@@ -29,6 +23,12 @@
 Have look at how useful can classbot be for your classroom workspace!!!
 
 [![Classbot Video](https://img.youtube.com/vi/CRSTGNChs1o/0.jpg)](https://youtu.be/CRSTGNChs1o)
+
+### Features
+
+1. Query class resources like group information, assignment due dates and student details
+2. Send reminders through slack bot
+3. UI for admins to input all the data that the bot requires (so cool that you can use csv files).
 
 #### Table Of Contents
 
