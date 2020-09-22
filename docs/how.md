@@ -8,23 +8,7 @@ to understand slack commands.
 
 Supported commands:
 
-1. /assignment : This command helps with assignment management for TAs and 
-assignment tracking and help for the students.
-
-    eg: /assignment list (type this in any channel and the bot should come back with all your assignments)
-
-2. /my : This command helps a student with his personal class management stuff. 
-The user can do things like register itself to the classroom-bot so that the bot remembers the user, 
-list his homework/project groups along with members info.
-
-    eg: /my group (after the user has registered itself using **/my register**
-    the bot should list the user's homework groups and their members.)
-    
-    ![Register User](/docs/images/register-user-slack.png)
-
-3. /group : This command helps managing groups of the class.
-
-    eg: /group list (should list all the list the groups of the class with member details)
+Refer to this for supported commands: [Supported Commands](/backend-service/bot_proxy_server/docs/cmdexmple.md)
 
 
 ![The Big Picture](/docs/images/thebigpicture.jpg)
@@ -43,36 +27,34 @@ We have 3 micro-services setup to build the classroom environment.
 1. Proxy Slack Service<br/><br/>
 
    This service listens to all the events happening at the slack. A slack event can be 
-   considered as things happening on a slack workspace (messages in channels, mention to the bot etc).
+   considered as things happening on a slack workspace (slash command request, messages in channels, mention to the bot etc).
    <br/><br/>
    
    Our main motive of this service?<br>
    This service exists so that the system can receives all the requests users want
    to make to the **classroom-bot**. 
-   <br/>Following requests are accepted by the classroom-bot at
-   present.
    
-   #### Assignments Requests
-   1. Admin user can create assignment for the class.
-   2. All the users can list the assignments with all the details like due date, resources link etc.
-   
-   #### Group Requests
-   1. List group details the user is part of.
-   
-   #### User Management Requests
-   Your class TA could have added you as a student to our system using the admin portal.
-   But to correctly identify the identity of the student on slack (slack has it's own
-   user id per user) we need a mapping to map slack user id to our system. For this reason the user 
-   has to tell the class bot it's identity on slack.
-   
+   To request for a service from the slack bot type in one of the supported commands with correct parameters.
    The way to do that is by typing this in any of the channel or a direct message to the slackbot:
+   
+   Example slash command request:
    
    /my register {your_school_email_id_which_ta_would_have_used}
    For example: /my register xyz.ncsu.edu
    
-   After this registration is done a whole bunch of features can be made available to the user
-   by typing minimal things on slack.
-   
-   For example now typing the following on slack will list all your groups and your team mates: 
-   
-   /my group
+2. Bot Server:
+
+    This is the brain of the bot. The server has apis to access courses configured, assignments, students in
+    particular course, assignment groups.
+    
+    This service essentially remembers everything you want your bot to remember and help with in your classroom.
+    
+    The proxy service after receiving requests from the slash and parsing it calls API end points from this service 
+    to fetch appropriate data.
+    
+3. Admin UI
+
+    This is where the admin of a course gets all his super power from. The admin can control things
+    like creating a new course, setting up assignments, creating assignment groups, assigning grades.
+    
+    The admin UI also calls bot server apis.
