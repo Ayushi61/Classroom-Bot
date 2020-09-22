@@ -1,15 +1,21 @@
-# Classbot 
-## A SlackBot to take care of your classroom resources!!
+<center>
+<h1>Classbot</h1>
 
-<div align="center">[![Build Status](https://travis-ci.org/Ayushi61/Classroom-Bot.svg?branch=master)](https://travis-ci.org/github/Ayushi61/Classroom-Bot)
-[![DOI](https://zenodo.org/badge/288084201.svg)](https://zenodo.org/badge/latestdoi/288084201)</div>
+<h2>A SlackBot to take care of your classroom resources!!</h2>
 
+<a href="https://travis-ci.org/github/Ayushi61/Classroom-Bot"><img src="https://travis-ci.org/Ayushi61/Classroom-Bot.svg?branch=master" alt="Build Status"></a>
 
-<div align="center">![Issues](https://img.shields.io/github/issues-raw/Ayushi61/Classroom-Bot)
-![Closed issues](https://img.shields.io/github/issues-closed-raw/Ayushi61/Classroom-Bot?style=plastic)</div>
+<a href="https://zenodo.org/badge/latestdoi/288084201"><img src="https://zenodo.org/badge/288084201.svg" alt="DOI"></a>
 
-<div align="center">![Light Weight](https://img.shields.io/github/repo-size/Ayushi61/Classroom-Bot)
-![Be Prepared for Industry](https://img.shields.io/tokei/lines/github.com/Ayushi61/Classroom-Bot)</div>
+<img src="https://img.shields.io/github/issues-raw/Ayushi61/Classroom-Bot" alt="Issues">
+
+<img src="https://img.shields.io/github/issues-closed-raw/Ayushi61/Classroom-Bot?style=plastic" alt="Closed Issues">
+
+<img src="https://img.shields.io/github/repo-size/Ayushi61/Classroom-Bot" alt="Light Weight">
+
+<img src="https://img.shields.io/tokei/lines/github.com/Ayushi61/Classroom-Bot" alt="Be Prepared for Industry">
+
+</center>
 
 ### Features
 
@@ -30,12 +36,12 @@ Have look at how useful can classbot be for your classroom workspace!!!
 
 #### Table Of Contents
 
-[Code of Conduct](CODE_OF_CONDUCT.md)
+1. [Code of Conduct](CODE_OF_CONDUCT.md)
 
-[Before Contributing](CONTRIBUTING.md)
+2. [Before Contributing](CONTRIBUTING.md)
 
-[Citation](CITATION.md)
+3. [Start Contributing](docs/design.md)
 
-[Project 1 Assessment](PROJ1-selfAssessment.md)
+4. [Citation](CITATION.md)
 
-[Start Contributing](docs/design.md)
+5. [Project 1 Assessment](PROJ1-selfAssessment.md)
