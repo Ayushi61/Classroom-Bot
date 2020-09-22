@@ -2,12 +2,17 @@
 
 ## How to Install and get going
 
-### Instructions to Setup different modules and services of this project
+### Reference Documentation and User Guide
 
 1. [Setup Bot Server Application](../backend-service/bot_server/README.md)
 2. [Setup Bot Proxy Server Application]
-3. [Setup UI]
+3. [Setup UI](../ui/classroom-bot-ui/README.md)
 4. Run all the four components
+
+### Documentation of Bot Server Artifactory
+
+Refer the automatically generated [docs](https://prithvipatl.github.io/html/) through commented code.
+
 
 ### Sample API endpoints
 
@@ -15,6 +20,3 @@
 
 Refer postman collection uploaded in [`docs/APIs`](./APIs/Test%20Cases.postman_collection.json)
 
-### Documentation of Bot Server Artifactory
-
-Refer the automatically generated [docs](https://prithvipatl.github.io/html/) through commented code.
