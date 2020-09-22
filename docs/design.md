@@ -5,7 +5,7 @@
 ### Reference Documentation and User Guide
 
 1. [Setup Bot Server Application](../backend-service/bot_server/README.md)
-2. [Setup Bot Proxy Server Application]
+2. [Proxy Server Docs](/backend-service/bot_proxy_server/docs/alldocs.md)
 3. [Setup UI](../ui/classroom-bot-ui/README.md)
 4. Run all the four components
 

@@ -1,4 +1,13 @@
-# What all can the classroom bot do?
+# What is a classroom bot?
+
+A lot of classrooms use slack as mode of communication. 
+
+* But what if we could turn that slack room into a complete integrated classroom experience?
+* What if the professors and the TAs had a bot which could allow them to manage lot of admin tasks for their course from slack?
+* What if all the students had their back by a bot which would never let them miss any deadlines, see their class schedule, 
+grades, assignments and other classroom resources from slack?
+
+The classroom bot is the bot that can satisfy all of the above **what ifs**.
 
 ### What all did we plan?
 
