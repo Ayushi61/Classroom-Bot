@@ -118,4 +118,4 @@ this app on to your workspace before you should see an option for "Install App" 
 "Reinstall App". Do "Reinstall App" everytime you add a new permission or change the request url in command configuration.
 
 
-**It's not rare that things don't work after following all the steps. Feel free to reach out to the author @ [this email](atrived@ncsu.edu)**
+**It's not rare that things don't work after following all the steps. Feel free to reach out to the author @ (atrived@ncsu.edu)**
