@@ -2,9 +2,9 @@
 
 ## Requirements
 
-1. `python --version` <br\>
+1. `python --version` <br/>
    Python 3.7.3
-2. `mysql --version` <br\>
+2. `mysql --version` <br/>
    [mysql Ver 14.14 Distrib 5.7.31](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/), for Linux (x86_64) using  EditLine wrapper
 3. [Django and code base requirements](./requirements.txt)
 4. Linter, which adheres to PEP8 standards:
