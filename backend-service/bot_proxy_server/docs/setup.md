@@ -68,3 +68,10 @@ Let' start:
     request url since it is accessible to everyone via ngrok.
     
 **Hurray, the standalone setup is finished.**
+
+
+#### Containerized setup
+
+The author is really tired and stress with so much documentation. We will finish this section of the doc
+ASAP. Meanwhile you can have a look at docker-compose.yml to checkout how it works. If it's really urgent
+reach out to (atrived@ncsu.edu).
