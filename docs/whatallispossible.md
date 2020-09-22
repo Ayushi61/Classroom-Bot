@@ -57,7 +57,7 @@ In terms of what we have already implemented we would have fine tuned all the op
     4. Set personal reminders for individual students based on what they want to get reminded.
     
 
-##Final comments
+## Final comments
 
 A lot of things the team has implemented or has proposed to implement is by keeping CSC 510 Fall 2020 course structure
 in mind. But in the end this bot should be designed in a way that it can integrate with any general 
