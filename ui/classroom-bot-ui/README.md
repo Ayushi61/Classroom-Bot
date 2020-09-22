@@ -1,6 +1,7 @@
 # ClassBot Admin UI documentation
 
 ## High Level Diagram
+![fin](https://user-images.githubusercontent.com/59896588/93835394-126c7300-fc4d-11ea-9294-35b513ad408c.jpg)
 
 
 ## Setup and Installations
