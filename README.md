@@ -26,20 +26,28 @@ Have look at how useful can classbot be for your classroom workspace!!!
 
 [![Classbot Video](https://img.youtube.com/vi/CRSTGNChs1o/0.jpg)](https://youtu.be/CRSTGNChs1o)
 
-### Features
+A lot of classrooms use slack as mode of communication. 
 
-1. Query class resources like group information, assignment due dates and student details
-2. Send reminders through slack bot
-3. UI for admins to input all the data that the bot requires (so cool that you can use csv files).
+* But what if we could turn that slack room into a complete integrated classroom experience?
+* What if the professors and the TAs had a bot which could allow them to manage lot of admin tasks for their course from slack?
+* What if all the students had their back by a bot which would never let them miss any deadlines, see their class schedule, 
+grades, assignments and other classroom resources from slack?
+
+The classroom bot is the bot that can satisfy all of the above **what ifs**.
+
 
 #### Table Of Contents
 
-1. [Code of Conduct](CODE_OF_CONDUCT.md)
+1. [What is Classroom Bot](/docs/whatallispossible.md)
 
-2. [Before Contributing](CONTRIBUTING.md)
+2. [Quick intro to the system](/docs/how.md)
 
-3. [Start Contributing](docs/design.md)
+2. [Code of Conduct](CODE_OF_CONDUCT.md)
 
-4. [Citation](CITATION.md)
+3. [Before Contributing](CONTRIBUTING.md)
 
-5. [Project 1 Assessment](PROJ1-selfAssessment.md)
+4. [Start Contributing](docs/design.md)
+
+5. [Citation](CITATION.md)
+
+6. [Project 1 Assessment](PROJ1-selfAssessment.md)
