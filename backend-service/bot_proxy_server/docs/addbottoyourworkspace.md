@@ -116,3 +116,6 @@ app into our system through the admin UI to get things working.
 9. Just last thing:   In your app home page under "Settings" click "Install App". Here if you haven't installed
 this app on to your workspace before you should see an option for "Install App" otherwise you should see
 "Reinstall App". Do "Reinstall App" everytime you add a new permission or change the request url in command configuration.
+
+
+**It's not rare that things don't work after following all the steps. Feel free to reach out to the author @ [this email](atrived@ncsu.edu)**
