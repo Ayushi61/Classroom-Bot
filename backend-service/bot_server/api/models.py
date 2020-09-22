@@ -1,6 +1,7 @@
 from django.db import models
 import json
 from django.core import serializers
+from collections import defaultdict
 
 # Create your models here.
 MAX_STUDENTS_IN_GROUP = 5
