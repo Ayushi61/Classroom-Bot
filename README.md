@@ -10,7 +10,6 @@
 <img src="https://img.shields.io/github/issues-raw/Ayushi61/Classroom-Bot" alt="Issues">
 <img src="https://img.shields.io/github/issues-closed-raw/Ayushi61/Classroom-Bot?style=plastic" alt="Closed Issues">
 <img src="https://img.shields.io/github/repo-size/Ayushi61/Classroom-Bot" alt="Light Weight">
-<img src="https://img.shields.io/tokei/lines/github.com/Ayushi61/Classroom-Bot" alt="Be Prepared for Industry">
 <img src="https://img.shields.io/github/issues/Ayushi61/Classroom-Bot/Haktoberfest" alt="Win a Tshirt">
 
 </center>
