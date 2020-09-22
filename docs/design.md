@@ -17,4 +17,4 @@ Refer postman collection uploaded in [`docs/APIs`](./APIs/Test%20Cases.postman_c
 
 ### Documentation of Bot Server Artifactory
 
-Refer the automatically generated [docs](./../backend-service/bot_server/api/doc/build/html/index.html) through commented code.
+Refer the automatically generated [docs](https://prithvipatl.github.io/html/) through commented code.
