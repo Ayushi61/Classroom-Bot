@@ -9,7 +9,7 @@
 ![Closed issues](https://img.shields.io/github/issues-closed-raw/Ayushi61/Classroom-Bot?style=plastic)</div>
 
 <div align="center">![Light Weight](https://img.shields.io/github/repo-size/Ayushi61/Classroom-Bot)
-![Be Prepared for Industry](https://img.shields.io/tokei/lines/github.com/Ayushi61/Classroom-Bot)div>
+![Be Prepared for Industry](https://img.shields.io/tokei/lines/github.com/Ayushi61/Classroom-Bot)</div>
 
 ### Features
 
