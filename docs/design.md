@@ -1,8 +1,6 @@
 # All that a developer needs to know
 
-## How to Install and get going
-
-### Reference Documentation and User Guide
+## How to Install and Get Going!
 
 1. [Setup Bot Server Application](../backend-service/bot_server/README.md)
 2. [Proxy Server Docs](/backend-service/bot_proxy_server/docs/alldocs.md)

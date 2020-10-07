@@ -3,6 +3,6 @@ Because we cannot create new issues in a forked repository, we will use this `.m
 
 You can complete an item by putting an `x` inside of the `[]` for the item.
  [x] - Fix case-sensitive files
- [ ] - Create and use a `venv` environment for the backend
+ [x] - Create and use a `venv` environment for the backend
+ [ ] - Require `Docker` (?)
  [ ] - 
- [ ] -

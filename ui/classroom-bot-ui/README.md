@@ -9,11 +9,9 @@ This section gives a detailed description of the steps required to setup a devel
 The UI was built using react by leveraging standard react libraries. 
 
 ### Prerequisites
-The below prerequisites are required to setup and run the Admin component of the project
-* [node js](https://nodejs.org/en/download/)
-* [react js](https://reactjs.org/)
+* [Node.js](https://nodejs.org/en/download/)
 * [Docker](https://docs.docker.com/get-docker/)
-* [docker-compose](https://docs.docker.com/compose/)
+* [Docker-Compose](https://docs.docker.com/compose/)
 * [make](https://www.gnu.org/software/make/)  
     Make should be pre-installed in linux and mac os. For windows please consider setting up a virtual machine. However, this is not a hard requirement. All commands can be run locally from the Makefile in the project
 

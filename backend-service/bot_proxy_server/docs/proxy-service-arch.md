@@ -3,7 +3,7 @@
 
 At present the bot can fulfill student request coming through slash commands only.
 
-![Request Flow](/backend-service/bot_proxy_server/docs/images/proxy-server-request-handling.jpg)
+![Request Flow](./images/proxy-server-request-handling.jpg)
 
 Below is the flow of a request from slack coming to us and the system coming up with a response for the
 request. The flow represents both logical request-response flow along with code flow. The code is 

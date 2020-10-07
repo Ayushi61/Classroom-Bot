@@ -1,4 +1,5 @@
 BACKEND-SERVICE-CONTAINER=backend-service
+BACKEND-PROXY-SERVICE-CONTAINER=backend-proxy-service
 MYSQL-CONTAINER=mysql
 
 BACKEND-TEST-CONTAINER=test-backend
@@ -29,19 +30,19 @@ ui.local.start:
 	cd ui/classroom-bot-ui && npm start
 
 ui.docker.lint:
-	docker build --file='ui/lint.dockerfile' ui  --tag=node-lint:local
+	docker build -f ui/lint.Dockerfile ui --tag=node-lint:local
 	docker run -it --name=node-lint node-lint:local
 	docker rm node-lint
 
 ui.docker.build:
-	docker build --file='ui/deploy.dockerfile' ui --tag=bot-ui:local
+	docker build -f ui/app.Dockerfile ui --tag=bot-ui:local
 
 ui.docker.run:
 	docker-compose rm -f ui
 	docker-compose up ui
 
 ui.docker.test:
-	docker build --file='ui/test.dockerfile' ui  --tag=node-test:local
+	docker build --file='ui/test.Dockerfile' ui  --tag=node-test:local
 	docker run -it --name=node-test node-test:local
 	docker rm node-test
 
@@ -51,7 +52,6 @@ ui.docker.run.all: ui.docker.build
 
 ui.docker.down:
 	docker-compose stop ui
-
 
 backend.down:
 	docker-compose stop backend-service
@@ -73,28 +73,33 @@ backend.app:
 	docker-compose up -d ${MYSQL-CONTAINER}
 	docker-compose up -d ${BACKEND-SERVICE-CONTAINER}
 
+.PHONY : backend.app
+backend-proxy.app:
+	docker-compose build
+	docker-compose up -d ${MYSQL-CONTAINER}
+	docker-compose up -d ${BACKEND-PROXY-SERVICE-CONTAINER}
+
 .PHONY : restart.backend
 restart.backend:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
 	- docker-compose up -d ${BACKEND-SERVICE-CONTAINER}
 
-.PHONY : run-mysql
-run-mysql:
-	- docker run --name ${MYSQL-CONTAINER} --network ${TEST-NETWORK} -e MYSQL_ROOT_PASSWORD=group18 \
-     -e MYSQL_DATABASE=classroom_db -e MYSQL_USER=user \
-     -e MYSQL_PASSWORD=group18 -p 52000:3306 -d mysql:5.7
-	- sleep 60
-
 .PHONY : create-network
 create-network:
 	- docker network create ${TEST-NETWORK}
 
+.PHONY : run-mysql
+run-mysql:
+	- docker run --name ${MYSQL-CONTAINER} --network ${TEST-NETWORK} \
+	 -p 52000:3306 \
+	 -e MYSQL_ROOT_PASSWORD=group18 \
+	 -d mysql:5.7
+
 .PHONY : build-run-backend-test
 build-run-backend-test:
-	docker build -t backendtest -f backend-service/test.Dockerfile ./backend-service/
+	docker build -t ${BACKEND-TEST-CONTAINER} -f backend-service/test.Dockerfile ./backend-service/
 	docker run --rm --name ${BACKEND-TEST-CONTAINER} --network ${TEST-NETWORK} \
-	 -p 8002:8002 --env-file backend-service/sample.env -e MYSQL_HOST=${MYSQL-CONTAINER} \
-	 -e MYSQL_USER=root -e MYSQL_ROOT_PASSWORD=group18 backendtest
+	 -p 8002:8002 --env-file backend-service/bot_server/.env ${BACKEND-TEST-CONTAINER}
 
 .PHONY : backend.test
 backend.test: create-network run-mysql build-run-backend-test
@@ -102,6 +107,7 @@ backend.test: create-network run-mysql build-run-backend-test
 .PHONY : clean
 clean:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
+	- docker rm -f ${BACKEND-PROXY-SERVICE-CONTAINER}
 	- docker rm -f ${BACKEND-TEST-CONTAINER}
 	- docker rm -f ${MYSQL-CONTAINER}
-	- docker network rm ${TEST-NETWORK}
+	- docker network rm ${TEST-NETWORK} 

@@ -22,11 +22,11 @@ services:
 
   backend-service:
     build:
-        context: './backend-service'
+        context: './backend-service/bot_server'
         dockerfile: 'app.Dockerfile'
     container_name: backend-service
     image: backend-service:tag
-    env_file: backend-service/sample.env
+    env_file: backend-service/bot_server/.env
     restart: always
     ports:
       - "8000:8000"
@@ -35,11 +35,11 @@ services:
 
   backend-proxy-service:
     build:
-        context: './backend-service'
-        dockerfile: 'app-proxy.Dockerfile'
+        context: './backend-service/bot_proxy_server'
+        dockerfile: 'app.Dockerfile'
     container_name: backend-proxy-service
     image: backend-proxy-service:tag
-    env_file: backend-service/sample-proxy.env
+    env_file: backend-service/bot_proxy_server/.env
     restart: always
     ports:
       - "8001:8001"

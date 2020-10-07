@@ -1,9 +1,0 @@
-# classroom bot proxy
-export BOT_PROXY_SERVER_SECRET_KEY="sample_key"
-export MYSQL_BOT_PROXY_DB_NAME=bot_proxy
-export MYSQL_BOT_PROXY_USER=root
-export MYSQL_BOT_PROXY_PASSWORD=
-export MYSQL_BOT_PROXY_HOST=localhost
-export MYSQL_BOT_PROXY_CONNECTION_PORT=3306
-export BOT_PROXY_SERVER_API_VERSION=v0.1
-export BOT_SERVER_COURSE_URL=http://localhost:8001/api/course/

@@ -1,4 +1,11 @@
-# How to setup the proxy-service? It's simple
+# Instructions to run Django Proxy Service
+
+## Requirements
+
+1. Python 3.7.3
+2. IDE that supports `pycodestyle`
+3. We use a `.pyenv` file if you use [PyEnv](https://github.com/pyenv/pyenv) to manage multiple python environments
+4. Docker
 
 #### Standalone setup (Without docker)
 
@@ -56,10 +63,9 @@ Let' start:
         
         10. BOT_SERVER_STUDENT_URL: Student endpoint of the backend service.
        
-3. Install requirements: Install the python requirements inside backend-service/bot_proxy_server.
-    The best way is to use virtual environments.
+3. 
     
-4. Migrate: python manage.py migrate
+4. Migrate: `python manage.py migrate`
 
 5. Run server: python manage.py runserver (this by default runs the server on port 8000)
 
