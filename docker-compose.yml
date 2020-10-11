@@ -8,17 +8,21 @@ services:
     ports:
       - 3000:80
     hostname: ui
+    networks: 
+      - test
 
   mysql:
     container_name: 'mysql'
     image: mysql:5.7
     ports:
-      - 52000:3306
+      - 3306:3306
     environment:
        MYSQL_DATABASE: classroom_db
        MYSQL_USER: root
        MYSQL_ROOT_PASSWORD: group18
     restart: on-failure
+    networks: 
+      - test
 
   backend-service:
     build:
@@ -32,6 +36,8 @@ services:
       - "8000:8000"
     depends_on:
       - mysql
+    networks:
+      - test
 
   backend-proxy-service:
     build:
@@ -45,3 +51,9 @@ services:
       - "8001:8001"
     depends_on:
       - mysql
+    networks: 
+      - test
+  
+networks:
+  test:
+    driver: bridge

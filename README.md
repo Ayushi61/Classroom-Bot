@@ -35,18 +35,16 @@ grades, assignments and other classroom resources from slack?
 The classroom bot is the bot that can satisfy all of the above **what ifs**.
 
 
-#### Table Of Contents
+## Developing and Contributing
 
-1. [What is Classroom Bot](/docs/whatallispossible.md)
+To get started, you will need to first review our [CONTRIBUTING](./CONTRIBUTING.md) document and our [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) guidelines.
 
-2. [Quick intro to the system](/docs/how.md)
+After that, we have many resources available in the [docs](./docs) directory of this repository. Take a look at these to understand how Class Room Bot works.
 
-2. [Code of Conduct](CODE_OF_CONDUCT.md)
+### Development Environment
 
-3. [Before Contributing](CONTRIBUTING.md)
+To get your local environment up and running, we suggest reading the `README.md` for every part of Classroom Bot
 
-4. [Start Contributing](docs/design.md)
-
-5. [Citation](CITATION.md)
-
-6. [Project 1 Assessment](PROJ1-selfAssessment.md)
+* [Backend Service](./backend-service/bot_server/README.md)
+* [Proxy Service](./backend-service/bot_proxy_server/README.md)
+* [UI Application](./ui/README.md)

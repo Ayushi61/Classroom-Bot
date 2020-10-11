@@ -20,25 +20,13 @@ start.all:
 ui.install:
 	cd ui/classroom-bot-ui && npm install
 
-ui.build:
+ui.build: ui.install
 	cd ui/classroom-bot-ui && npm run-script build
 
-ui.local.test:
-	cd ui/classroom-bot-ui && npm test
-
-ui.local.start:
-	cd ui/classroom-bot-ui && npm start
-
-ui.docker.lint:
-	docker build -f ui/lint.Dockerfile ui --tag=node-lint:local
-	docker run -it --name=node-lint node-lint:local
-	docker rm node-lint
-
-ui.docker.build:
+ui.docker.build: ui.build
 	docker build -f ui/app.Dockerfile ui --tag=bot-ui:local
 
-ui.docker.run:
-	docker-compose rm -f ui
+ui.docker.run: ui.build ui.docker.build 
 	docker-compose up ui
 
 ui.docker.test:
@@ -46,26 +34,7 @@ ui.docker.test:
 	docker run -it --name=node-test node-test:local
 	docker rm node-test
 
-ui.docker.run.all: ui.docker.build
-	docker-compose rm -f ui
-	docker-compose up ui
-
-ui.docker.down:
-	docker-compose stop ui
-
-backend.down:
-	docker-compose stop backend-service
-	docker-compose rm backend-service
-
-.PHONY : backend.lint
-backend.lint:
-	docker build -t backendlinter -f backend-service/lint.Dockerfile ./backend-service/
-	docker run --rm backendlinter
-
-.PHONY : backend-proxy.lint
-backend-proxy.lint:
-	docker build -t backendproxylinter -f backend-service/lint-bot-proxy.Dockerfile ./backend-service/
-	docker run --rm backendproxylinter
+ui.app: ui.docker.run
 
 .PHONY : backend.app
 backend.app:
@@ -84,30 +53,43 @@ restart.backend:
 	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
 	- docker-compose up -d ${BACKEND-SERVICE-CONTAINER}
 
-.PHONY : create-network
-create-network:
-	- docker network create ${TEST-NETWORK}
+.PHONY : run.mysql
+run.mysql:
+	- docker-compose build
+	- docker-compose up -d ${MYSQL-CONTAINER}
 
-.PHONY : run-mysql
-run-mysql:
-	- docker run --name ${MYSQL-CONTAINER} --network ${TEST-NETWORK} \
-	 -p 52000:3306 \
-	 -e MYSQL_ROOT_PASSWORD=group18 \
-	 -d mysql:5.7
+.PHONY : run.all
+run.all: run.mysql backend.app backend-proxy.app ui.app
 
-.PHONY : build-run-backend-test
-build-run-backend-test:
+.PHONY : clean
+clean:
+	- docker-compose stop
+	- docker-compose rm
+
+## LINTERS ##
+
+.PHONY : backend.lint
+backend.lint:
+	docker build -t backendlinter -f backend-service/lint.Dockerfile ./backend-service/
+	docker run --rm backendlinter
+
+.PHONY : backend-proxy.lint
+backend-proxy.lint:
+	docker build -t backendproxylinter -f backend-service/lint-bot-proxy.Dockerfile ./backend-service/
+	docker run --rm backendproxylinter
+
+ui.lint:
+	docker build -f ui/lint.Dockerfile ui --tag=node-lint:local
+	docker run -it --name=node-lint node-lint:local
+	docker rm node-lint
+
+## TESTS ##
+
+.PHONY : build.run.backend-test
+build.run.backend.test:
 	docker build -t ${BACKEND-TEST-CONTAINER} -f backend-service/test.Dockerfile ./backend-service/
 	docker run --rm --name ${BACKEND-TEST-CONTAINER} --network ${TEST-NETWORK} \
 	 -p 8002:8002 --env-file backend-service/bot_server/.env ${BACKEND-TEST-CONTAINER}
 
 .PHONY : backend.test
-backend.test: create-network run-mysql build-run-backend-test
-
-.PHONY : clean
-clean:
-	- docker rm -f ${BACKEND-SERVICE-CONTAINER}
-	- docker rm -f ${BACKEND-PROXY-SERVICE-CONTAINER}
-	- docker rm -f ${BACKEND-TEST-CONTAINER}
-	- docker rm -f ${MYSQL-CONTAINER}
-	- docker network rm ${TEST-NETWORK} 
+backend.test: run.mysql build.run.backend.test
