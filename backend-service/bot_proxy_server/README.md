@@ -22,7 +22,20 @@ Then install all dependencies
        
 ### Running the Proxy Service
 
-If you want to run outside of the Docker container, you can manually start the server using the following commands:
+If you want to run outside of the Docker container, you can manually start the server. 
+
+First, you will need to export the local environment for running the 
+```
+source local.env
+```
+
+Second, you will need to create a super-user to access all of the Django resources. This user will be used for both the proxy service and the backend service, so you will only need to create it once.
+
+When you run this command, you will be prompted for a username, email, and a password. Use whatever you want, just remember them as this is now the super-user for your local development environment.
+
+```
+./venv/bin/python manage.py createsuperuser
+```
 
 ```
 ./venv/bin/python manage.py makemigrations
