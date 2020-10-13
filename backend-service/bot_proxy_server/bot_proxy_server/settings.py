@@ -37,7 +37,6 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'proxy_service',
     'django.contrib.admin',

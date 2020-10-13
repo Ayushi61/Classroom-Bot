@@ -52,3 +52,5 @@ make backend-proxy.app
 ```
 
 This will run the MySQL database, the backend service, and the backend proxy service.
+
+**Note: if you run `make clean.all`, you will need to re-run migrations and create a new super-user since the database docker image is destroyed and re-created!! You can use `make pause.all` if you need to stop the Docker machines**`

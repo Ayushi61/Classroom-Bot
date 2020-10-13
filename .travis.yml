@@ -13,4 +13,4 @@ jobs:
         script: make backend-proxy.lint
       - stage: backend-test
         script: make backend.test
-        after_Script: make clean
+        after_Script: make clean.all

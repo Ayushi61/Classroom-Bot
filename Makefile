@@ -61,9 +61,11 @@ run.mysql:
 .PHONY : run.all
 run.all: run.mysql backend.app backend-proxy.app ui.app
 
-.PHONY : clean
-clean:
+pause.all:
 	- docker-compose stop
+
+.PHONY : clean
+clean.all: pause.all
 	- docker-compose rm
 
 ## LINTERS ##
