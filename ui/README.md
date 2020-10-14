@@ -20,18 +20,12 @@ Follow the below steps and commands to setup and run the admin ui locally
 
 #### Local Installation
 1. Clone the git repository and from the root folder run the below command to install all the dependencies for the Admin UI  
-    `make ui.install`
+`make ui.install`
 
-2. After the installation you need to update the configuration files for the front end to point to the django api service. Navigate to the file `ui/classroom-bot-ui/.env` and update the below values  
-    `REACT_APP_BACKEND_HOST = <DJANGO APP HOSTNAME>`  
-    `REACT_APP_BACKEND_PORT = <DJANGO APP PORT>`  
-    * Please note: in case of docker installation you can leave this as default
-
-3. Finally navigate back to the root directory of the project and run the below command to start the development server  
+2. Finally navigate back to the root directory of the project and run the below command to start the development server  
     `make ui.local.start`
 
 4. The admin ui will run in the url http://localhot:3000
-
 
 #### Docker Installation
 1. Clone the git repository and ensure the docker daemon on your machine is started

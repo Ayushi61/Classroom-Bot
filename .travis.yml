@@ -8,9 +8,9 @@ jobs:
       - stage: backend-lint
         script: make backend.lint
       - stage: ui-lint
-        script: make ui.docker.lint
+        script: make ui.lint
       - stage: backend-proxy-lint
         script: make backend-proxy.lint
       - stage: backend-test
         script: make backend.test
-        after_Script: make clean
+        after_Script: make clean.all

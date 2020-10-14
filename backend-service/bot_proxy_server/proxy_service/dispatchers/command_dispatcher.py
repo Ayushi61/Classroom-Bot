@@ -38,11 +38,11 @@ def assign_command_handler(command):
     :return: handler function
     """
 
-    if command == "/group":
+    if command == "/class-groups":
         return group_handler
 
-    elif command == "/assignment":
+    elif command == "/class-assignments":
         return assignment_handler
 
-    elif command == "/my":
+    elif command == "/my-class":
         return my_handler

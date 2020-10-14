@@ -29,7 +29,7 @@ Then install all dependencies
 
 ## Note for a developer
 
-1. Always makemigrations and commit those new migration files to respository to keep track of changes to Database. Use the steps without Docker option for that.
+1. Always make migrations and commit those new migration files to respository to keep track of changes to Database. Use the steps without Docker option for that.
 
 ## Steps to follow for local development with docker
 
