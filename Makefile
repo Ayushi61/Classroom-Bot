@@ -29,7 +29,7 @@ ui.local.test:
 ui.local.start:
 	cd ui/classroom-bot-ui && npm start
 
-ui.docker.lint:
+ui.lint:
 	docker build -f ui/lint.Dockerfile ui --tag=node-lint:local
 	docker run -it --name=node-lint node-lint:local
 	docker rm node-lint
