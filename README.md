@@ -1,5 +1,5 @@
 
-# Classbot
+# Classroom-Bot
 
 ## A SlackBot to take care of your classroom resources!!
 
@@ -12,7 +12,11 @@
 <img src="https://img.shields.io/github/repo-size/Ayushi61/Classroom-Bot" alt="Light Weight">
 <img src="https://img.shields.io/github/issues/Ayushi61/Classroom-Bot/Haktoberfest" alt="Win a Tshirt">
 
+ [![Slack Classroom-Bot](https://img.youtube.com/vi/aldS90l3hYY/0.jpg)](https://www.youtube.com/watch?v=aldS90l3hYY)
+ 
+
 </center>
+<hr>
 
 ### Why a developer cares
 
