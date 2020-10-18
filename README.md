@@ -25,9 +25,7 @@
 3. Work on each component of the project. Or Pick your choice: Django Backend, REACT UI or Docker and Tavis based DevOps, or Automated Tests
 4. Make an impact for the fellow academic community.
 
-Have look at how useful can classbot be for your classroom workspace!!!
-
-[![Classbot Video](https://img.youtube.com/vi/CRSTGNChs1o/0.jpg)](https://youtu.be/CRSTGNChs1o)
+### What's in it for a student/instructor?
 
 A lot of classrooms use slack as mode of communication. 
 
