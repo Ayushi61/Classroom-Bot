@@ -30,9 +30,7 @@ ui.local.start:
 	cd ui/classroom-bot-ui && npm start
 
 ui.lint:
-	docker build -f ui/lint.Dockerfile ui --tag=node-lint:local
-	docker run -it --name=node-lint node-lint:local
-	docker rm node-lint
+	pycodestyle	
 
 ui.docker.build:
 	docker build -f ui/app.Dockerfile ui --tag=bot-ui:local
