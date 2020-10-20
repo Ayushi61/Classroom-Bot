@@ -57,7 +57,7 @@ backend.down:
 
 .PHONY : project.lint
 project.lint :
-	pip install pycodestyle
+	pip install pycodestyle --user
 	pycodestyle --exclude=python3.8 .
 
 
