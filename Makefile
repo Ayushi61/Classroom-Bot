@@ -58,7 +58,7 @@ backend.down:
 .PHONY : project.lint
 project.lint :
 	pip install pycodestyle --user
-	pycodestyle --exclude=python3.8 .
+	pycodestyle --max-line-length=200 --exclude=python3.8 .
 
 
 .PHONY : backend.app
