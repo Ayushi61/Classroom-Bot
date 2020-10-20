@@ -5,12 +5,8 @@ services:
 
 jobs:
     include:
-      - stage: backend-lint
-        script: make backend.lint
-      - stage: ui-lint
-        script: make ui.lint
-      - stage: backend-proxy-lint
-        script: make backend-proxy.lint
+      - stage: project.lint
+        script: make project.lint
       - stage: backend-test
         script: make backend.test
         after_Script: make clean

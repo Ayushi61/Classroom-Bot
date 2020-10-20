@@ -29,8 +29,6 @@ ui.local.test:
 ui.local.start:
 	cd ui/classroom-bot-ui && npm start
 
-ui.lint:
-	pycodestyle	
 
 ui.docker.build:
 	docker build -f ui/app.Dockerfile ui --tag=bot-ui:local
@@ -55,15 +53,12 @@ backend.down:
 	docker-compose stop backend-service
 	docker-compose rm backend-service
 
-.PHONY : backend.lint
-backend.lint:
-	docker build -t backendlinter -f backend-service/lint.Dockerfile ./backend-service/
-	docker run --rm backendlinter
 
-.PHONY : backend-proxy.lint
-backend-proxy.lint:
-	docker build -t backendproxylinter -f backend-service/lint-bot-proxy.Dockerfile ./backend-service/
-	docker run --rm backendproxylinter
+
+.PHONY : project.lint
+project.lint :
+    pycodestyle --exclude=python3.8 .
+
 
 .PHONY : backend.app
 backend.app:
